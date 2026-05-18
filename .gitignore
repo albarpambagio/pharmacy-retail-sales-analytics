@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+logs/*.log
+logs/*.log.md
+
+# Node
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Data (large files only — keep small docs/data/*.md)
+docs/data/temp/
+docs/data/*.sql
