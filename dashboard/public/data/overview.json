@@ -1,0 +1,47 @@
+{
+  "total_revenue": 1447721724.6520848,
+  "total_transactions": 38953,
+  "avg_margin_pct": 33.891105427499866,
+  "monthly": [
+    {
+      "year_month": "2015-01",
+      "revenue": 194780.0,
+      "transactions": 6,
+      "avg_margin_pct": 22.347408712558188,
+      "revenue_rj": null,
+      "revenue_ri": 194780.0
+    },
+    {
+      "year_month": "2015-03",
+      "revenue": 37795601.8064,
+      "transactions": 393,
+      "avg_margin_pct": 36.639199979553794,
+      "revenue_rj": 32414657.8064,
+      "revenue_ri": 5380944.0
+    },
+    {
+      "year_month": "2015-04",
+      "revenue": 18628655.045,
+      "transactions": 641,
+      "avg_margin_pct": 37.27285295279304,
+      "revenue_rj": 14620431.350000001,
+      "revenue_ri": 4008223.6950000003
+    },
+    {
+      "year_month": "2015-08",
+      "revenue": 445268789.4327488,
+      "transactions": 18589,
+      "avg_margin_pct": 39.75337455851594,
+      "revenue_rj": 208549099.29003596,
+      "revenue_ri": 236719690.1427125
+    },
+    {
+      "year_month": "2015-09",
+      "revenue": 945833898.367936,
+      "transactions": 19324,
+      "avg_margin_pct": 33.44269093407837,
+      "revenue_rj": 513130760.3259681,
+      "revenue_ri": 432703138.04196715
+    }
+  ]
+}

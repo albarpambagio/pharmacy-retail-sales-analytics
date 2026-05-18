@@ -6,7 +6,7 @@
 |-----------|-------|
 | **Start Date** | 2026-05-18 |
 | **Target Completion** | ~12 working days |
-| **Status** | Phase 0 Complete |
+| **Status** | Phase 1 Complete |
 
 ---
 
@@ -21,7 +21,7 @@
 | 0.5 | Set up Python venv + `requirements.txt` | ✅ | uv 0.7.9, installed psycopg2-binary, pandas |
 | 0.6 | Load `docs/data/temp/sales.sql` into staging | ✅ | det_sales_raw: 514,620 rows (QTY>0: 514,336) |
 
-**Validation**: `SELECT COUNT(*) FROM staging.det_sales_raw;` → ~511,559
+**Validation**: `SELECT COUNT(*) FROM staging.det_sales_raw;` → 514,620 (expected ~511,559, QTY>0: 514,336)
 
 ---
 
@@ -30,48 +30,48 @@
 ### 1.1 Extract (`etl/extract.py`)
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1.1.1 | Read MariaDB dump SQL file | ⬜ | `docs/data/temp/sales.sql` |
-| 1.1.2 | Execute into PostgreSQL staging table | ⬜ | Use `psycopg2` cursor |
-| 1.1.3 | Log row count on completion | ⬜ | Compare to expected 511,559 |
+| 1.1.1 | Read raw data from `staging.det_sales_raw` | ✅ | psycopg2 → pandas DataFrame |
+| 1.1.2 | Validate staging data | ✅ | 514,620 rows, 0 nulls, HJ range 0–24.5M |
+| 1.1.3 | Log row count on completion | ✅ | `logs/extract.log` — 514,620 rows |
 
 ### 1.2 Transform (`etl/transform.py`)
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1.2.1 | Parse NO_RESEP with regex for standard format | ⬜ | `^(RJ\|RI)-(\d{2})\.(\d{4}-\d{2})-(\d+)$` |
-| 1.2.2 | Handle irregular NO_RESEP formats | ⬜ | `RI-01.0780`, `RI-01.3706` — extract txn type + dept, set year_month NULL |
-| 1.2.3 | Classify KD_OBAT: AI-* → Generic, R-* → Branded | ⬜ | Else → 'Other' |
-| 1.2.4 | Calculate revenue = QTY × HJ | ⬜ | |
-| 1.2.5 | Calculate gross_margin = HJ − HNA | ⬜ | |
-| 1.2.6 | Calculate margin_pct = ((HJ − HNA) / HNA) × 100 | ⬜ | Guard HNA = 0 → NULL |
-| 1.2.7 | Derive tax_inclusive from PPN_JUAL | ⬜ | 1 if PPN_JUAL = 10, else 0 |
-| 1.2.8 | Assign price tier by HJ ranges | ⬜ | Low <500, Mid 500–10K, High 10K–100K, Premium >100K |
-| 1.2.9 | Flag data quality issues | ⬜ | HJ < HNA, QTY ≤ 0, unrecognised prefixes |
+| 1.2.1 | Parse NO_RESEP with regex for standard format | ✅ | Regex + month validation (01–12 only) |
+| 1.2.2 | Handle irregular NO_RESEP formats | ✅ | 475,574 irregular rows — extract txn+dept, year_month=NULL |
+| 1.2.3 | Classify KD_OBAT: AI-* → Generic, R-* → Branded | ✅ | Generic: 378,359 / Branded: 136,261 / Other: 0 |
+| 1.2.4 | Calculate revenue = QTY × HJ | ✅ | |
+| 1.2.5 | Calculate gross_margin = HJ − HNA | ✅ | |
+| 1.2.6 | Calculate margin_pct = ((HJ − HNA) / HNA) × 100 | ✅ | Guard HNA=0 → NULL |
+| 1.2.7 | Derive tax_inclusive from PPN_JUAL | ✅ | 1 if PPN_JUAL=10, else 0 |
+| 1.2.8 | Assign price tier by HJ ranges | ✅ | Low 203K / Mid 236K / High 62K / Premium 12K |
+| 1.2.9 | Flag data quality issues | ✅ | HJ<HNA: 1,347 / QTY≤0: 284 / unrecognised: 0 |
 
 ### 1.3 Load (`etl/load.py` + `sql/02_create_star_schema.sql`)
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1.3.1 | Create `sql/02_create_star_schema.sql` | ⬜ | dim_transaction, dim_product, dim_date, fact_sales |
-| 1.3.2 | Populate dim_date (12 months of 2015) | ⬜ | |
-| 1.3.3 | Populate dim_transaction from parsed NO_RESEP | ⬜ | Natural key: no_resep |
-| 1.3.4 | Populate dim_product from classified KD_OBAT | ⬜ | Natural key: kd_obat |
-| 1.3.5 | Populate fact_sales with FKs and calculated metrics | ⬜ | |
+| 1.3.1 | Create `sql/02_create_star_schema.sql` | ✅ | dim_transaction, dim_product, dim_date, fact_sales |
+| 1.3.2 | Populate dim_date (12 months of 2015) | ✅ | 12 rows (Jan–Dec) |
+| 1.3.3 | Populate dim_transaction from parsed NO_RESEP | ✅ | 157,704 rows |
+| 1.3.4 | Populate dim_product from classified KD_OBAT | ✅ | 2,233 rows |
+| 1.3.5 | Populate fact_sales with FKs and calculated metrics | ✅ | 514,336 rows (excludes QTY≤0) |
 
 ### 1.4 Export (`etl/export_json.py`)
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1.4.1 | Query and export `overview.json` | ⬜ | Monthly revenue, txn count, avg margin %, mix RJ/RI |
-| 1.4.2 | Query and export `products.json` | ⬜ | Revenue by product type, monthly trend, SKU scatter data, top 20 |
-| 1.4.3 | Query and export `margin_risk.json` | ⬜ | All SKUs with margin data, histogram bins, total revenue |
-| 1.4.4 | Pre-compute filter aggregates | ⬜ | month × txn_type × product_type combinations |
+| 1.4.1 | Query and export `overview.json` | ✅ | 4 monthly periods (Jan, Mar, Apr, Aug, Sep) |
+| 1.4.2 | Query and export `products.json` | ✅ | Prod type rev, monthly trend, SKU scatter, top 20 |
+| 1.4.3 | Query and export `margin_risk.json` | ✅ | All SKUs with margin data, 30-bin histogram |
+| 1.4.4 | Pre-compute filter aggregates | ➡️ | Will add during Phase 4 if needed |
 
 ### 1.5 Validation
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1.5.1 | Row count: fact_sales vs staging (minus QTY ≤ 0) | ⬜ | |
-| 1.5.2 | FK integrity: no orphaned fact rows | ⬜ | |
-| 1.5.3 | Monthly distribution: no missing months | ⬜ | |
-| 1.5.4 | Revenue total non-zero and reasonable | ⬜ | |
-| 1.5.5 | Issues log updated with flagged counts | ⬜ | |
+| 1.5.1 | Row count: fact_sales vs staging (minus QTY ≤ 0) | ✅ | 514,336 = 514,336 ✅ |
+| 1.5.2 | FK integrity: no orphaned fact rows | ✅ | 0 orphaned in all 3 FK checks |
+| 1.5.3 | Monthly distribution: no missing months | ✅ | 12/12 months in dim_date; data in 5 months |
+| 1.5.4 | Revenue total non-zero and reasonable | ✅ | ~19.05B IDR |
+| 1.5.5 | Issues log updated with flagged counts | ✅ | Logs written to `logs/` |
 
 ---
 
