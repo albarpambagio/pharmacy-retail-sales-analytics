@@ -117,39 +117,50 @@ def populate_fact_sales(conn, df: pd.DataFrame):
 
 
 def main():
-    conn = psycopg2.connect(**DB_CONFIG)
-    df = pd.read_sql_query("SELECT * FROM staging.det_sales_transformed;", conn)
+    try:
+        conn = psycopg2.connect(**DB_CONFIG)
+        df = pd.read_sql_query("SELECT * FROM staging.det_sales_transformed;", conn)
 
-    create_schema_tables(conn)
-    populate_dim_date(conn)
-    populate_dim_transaction(conn, df)
-    populate_dim_product(conn, df)
-    populate_fact_sales(conn, df)
+        create_schema_tables(conn)
+        populate_dim_date(conn)
+        populate_dim_transaction(conn, df)
+        populate_dim_product(conn, df)
+        populate_fact_sales(conn, df)
 
-    cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM dim_date;")
-    dim_date_count = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(*) FROM dim_transaction;")
-    dim_txn_count = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(*) FROM dim_product;")
-    dim_prod_count = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(*) FROM fact_sales;")
-    fact_count = cur.fetchone()[0]
-    cur.close()
-    conn.close()
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM dim_date;")
+        dim_date_count = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(*) FROM dim_transaction;")
+        dim_txn_count = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(*) FROM dim_product;")
+        dim_prod_count = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(*) FROM fact_sales;")
+        fact_count = cur.fetchone()[0]
+        cur.close()
+        conn.close()
 
-    log_lines = [
-        f"load.py — {pd.Timestamp.now()}",
-        f"  dim_date:         {dim_date_count} rows",
-        f"  dim_transaction:  {dim_txn_count} rows",
-        f"  dim_product:      {dim_prod_count} rows",
-        f"  fact_sales:       {fact_count} rows",
-        f"  Input rows:       {len(df)}",
-        "",
-    ]
-    print("\n".join(log_lines))
-    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
+        log_lines = [
+            f"load.py — {pd.Timestamp.now()}",
+            f"  dim_date:         {dim_date_count} rows",
+            f"  dim_transaction:  {dim_txn_count} rows",
+            f"  dim_product:      {dim_prod_count} rows",
+            f"  fact_sales:       {fact_count} rows",
+            f"  Input rows:       {len(df)}",
+            "",
+        ]
+        print("\n".join(log_lines))
+        LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
+
+    except Exception as e:
+        log_lines = [
+            f"load.py — ERROR: {pd.Timestamp.now()}",
+            f"  {type(e).__name__}: {e}",
+        ]
+        print("\n".join(log_lines))
+        LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
+        raise
 
 
 if __name__ == "__main__":

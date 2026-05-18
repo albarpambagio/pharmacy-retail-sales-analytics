@@ -38,27 +38,32 @@ psql -h localhost -p 5433 -U postgres -c "CREATE DATABASE db_pharmacy;"
 # Create staging schema
 psql -h localhost -p 5433 -U postgres -d db_pharmacy -f sql/01_create_schema.sql
 
-# Load data from MariaDB dump
-psql -h localhost -p 5433 -U postgres -d db_pharmacy -f docs/data/temp/sales.sql
+# MariaDB dump needs conversion — use convert_and_load.py instead (see below)
 ```
 
 ### Python Dependencies
 ```bash
-python -m venv .venv
+uv venv
 # Windows:
 .venv\Scripts\activate
 # Linux/Mac:
 source .venv/bin/activate
 
-pip install psycopg2-binary pandas
+uv pip install psycopg2-binary pandas
+```
+
+### MariaDB Dump → PostgreSQL (one-time)
+The raw dump uses MariaDB syntax. Run this conversion script instead of `psql -f`:
+```bash
+uv run python etl/convert_and_load.py
 ```
 
 ### Run ETL Pipeline
 ```bash
-python etl/extract.py      # Load raw data into staging
-python etl/transform.py    # Parse, classify, calculate metrics
-python etl/load.py         # Build star schema
-python etl/export_json.py  # Export to static JSON for dashboard
+uv run python etl/extract.py      # Validate staging data
+uv run python etl/transform.py    # Parse, classify, calculate metrics
+uv run python etl/load.py         # Build star schema
+uv run python etl/export_json.py  # Export to static JSON for dashboard
 ```
 
 ### Dashboard Setup

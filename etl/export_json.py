@@ -16,6 +16,7 @@ DB_CONFIG = {
 }
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "dashboard" / "public" / "data"
+LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "export_json.log"
 
 
 def query_dict(conn, sql: str) -> list[dict]:
@@ -33,8 +34,8 @@ def export_overview(conn) -> dict:
             SUM(f.revenue)::float AS revenue,
             COUNT(*)::int AS transactions,
             AVG(f.margin_pct)::float AS avg_margin_pct,
-            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'RJ')::float AS revenue_rj,
-            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'RI')::float AS revenue_ri
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient')::float AS revenue_outpatient,
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient')::float AS revenue_inpatient
         FROM fact_sales f
         JOIN dim_date d ON f.date_key = d.date_key
         JOIN dim_transaction t ON f.no_resep = t.no_resep
@@ -164,23 +165,44 @@ def export_margin_risk(conn) -> dict:
 
 
 def main():
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    conn = psycopg2.connect(**DB_CONFIG)
+    try:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        conn = psycopg2.connect(**DB_CONFIG)
 
-    print("Exporting overview.json...")
-    overview = export_overview(conn)
-    (OUTPUT_DIR / "overview.json").write_text(json.dumps(overview, indent=2), encoding="utf-8")
+        print("Exporting overview.json...")
+        overview = export_overview(conn)
+        (OUTPUT_DIR / "overview.json").write_text(json.dumps(overview, indent=2), encoding="utf-8")
 
-    print("Exporting products.json...")
-    products = export_products(conn)
-    (OUTPUT_DIR / "products.json").write_text(json.dumps(products, indent=2), encoding="utf-8")
+        print("Exporting products.json...")
+        products = export_products(conn)
+        (OUTPUT_DIR / "products.json").write_text(json.dumps(products, indent=2), encoding="utf-8")
 
-    print("Exporting margin_risk.json...")
-    margin_risk = export_margin_risk(conn)
-    (OUTPUT_DIR / "margin_risk.json").write_text(json.dumps(margin_risk, indent=2), encoding="utf-8")
+        print("Exporting margin_risk.json...")
+        margin_risk = export_margin_risk(conn)
+        (OUTPUT_DIR / "margin_risk.json").write_text(json.dumps(margin_risk, indent=2), encoding="utf-8")
 
-    conn.close()
-    print("Done. Files written to:", OUTPUT_DIR)
+        conn.close()
+
+        log_lines = [
+            f"export_json.py — {pd.Timestamp.now()}",
+            f"  overview.json:    {len(overview.get('monthly', []))} monthly periods",
+            f"  products.json:    {len(products.get('sku_scatter', []))} SKUs, {len(products.get('top_20', []))} top 20",
+            f"  margin_risk.json: {len(margin_risk.get('skus', []))} SKUs, {len(margin_risk.get('histogram', []))} bins",
+            "",
+        ]
+        print("\n".join(log_lines))
+        LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
+
+    except Exception as e:
+        log_lines = [
+            f"export_json.py — ERROR: {pd.Timestamp.now()}",
+            f"  {type(e).__name__}: {e}",
+        ]
+        print("\n".join(log_lines))
+        LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
+        raise
 
 
 if __name__ == "__main__":
