@@ -71,7 +71,7 @@
 | 1.5.2 | FK integrity: no orphaned fact rows | ✅ | 0 orphaned in all 3 FK checks |
 | 1.5.3 | Monthly distribution: no missing months | ✅ | 12/12 months in dim_date; data in 5 months |
 | 1.5.4 | Revenue total non-zero and reasonable | ✅ | ~19.05B IDR |
-| 1.5.5 | Issues log updated with flagged counts | ✅ | Logs written to `logs/` |
+| 1.5.5 | Issues log updated with flagged counts | ✅ | `docs/issues_log.md` created |
 
 ---
 
