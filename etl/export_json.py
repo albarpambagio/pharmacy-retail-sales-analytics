@@ -9,14 +9,10 @@ import psycopg2
 import psycopg2.extras
 import pandas as pd
 from pathlib import Path
-
-DB_CONFIG = {
-    "host": "localhost", "port": 5433,
-    "dbname": "db_pharmacy", "user": "postgres", "password": "admin",
-}
+from config import DB_CONFIG, get_log_path
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "dashboard" / "public" / "data"
-LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "export_json.log"
+LOG_PATH = get_log_path("export_json")
 
 
 def query_dict(conn, sql: str) -> list[dict]:

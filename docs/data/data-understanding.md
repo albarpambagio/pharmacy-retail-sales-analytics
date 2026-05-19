@@ -6,6 +6,8 @@
 |-----------|-------|
 | **Project** | Retail Sales Analytics |
 | **Source** | Hospital/Pharmacy System (MariaDB) |
+| **Data First Accessed** | 2026-05-18 |
+| **Source URL** | https://data.mendeley.com/datasets/2ym7v78wtd/1 |
 | **Date Range** | 2015 |
 | **Location** | `docs/data/sales.sql` |
 

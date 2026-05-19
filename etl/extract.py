@@ -6,14 +6,9 @@ This script does NOT load data (already loaded by convert_and_load.py).
 
 import psycopg2
 import pandas as pd
-from pathlib import Path
+from config import DB_CONFIG, get_log_path
 
-DB_CONFIG = {
-    "host": "localhost", "port": 5433,
-    "dbname": "db_pharmacy", "user": "postgres", "password": "admin",
-}
-
-LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "extract.log"
+LOG_PATH = get_log_path("extract")
 
 
 def main():

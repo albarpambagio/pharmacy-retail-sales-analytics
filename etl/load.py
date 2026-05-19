@@ -2,20 +2,16 @@
 load.py
 Read transformed data, build star schema in PostgreSQL.
 Populates: dim_date, dim_transaction, dim_product, fact_sales.
+Implements data traceability with batch tracking and lineage.
 """
 
 import psycopg2
 import pandas as pd
 import numpy as np
-from pathlib import Path
+import json
+from config import DB_CONFIG, get_log_path, generate_batch_id, SCHEMA_SQL_PATH
 
-DB_CONFIG = {
-    "host": "localhost", "port": 5433,
-    "dbname": "db_pharmacy", "user": "postgres", "password": "admin",
-}
-
-LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "load.log"
-SCHEMA_SQL_PATH = Path(__file__).resolve().parent.parent / "sql" / "02_create_star_schema.sql"
+LOG_PATH = get_log_path("load")
 
 
 def create_schema_tables(conn):
@@ -87,7 +83,7 @@ def date_key_from_ym(ym):
         return None
 
 
-def populate_fact_sales(conn, df: pd.DataFrame):
+def populate_fact_sales(conn, df: pd.DataFrame, batch_id: str):
     df = df[df["flag_qty_le_zero"] == False].copy()
     cur = conn.cursor()
     rows = []
@@ -100,6 +96,7 @@ def populate_fact_sales(conn, df: pd.DataFrame):
             None if (r["margin_pct"] is None or (isinstance(r["margin_pct"], float) and np.isnan(r["margin_pct"]))) else float(r["margin_pct"]),
             int(r["tax_inclusive"]),
             bool(r["flag_hj_lt_hna"]), bool(r["flag_qty_le_zero"]),
+            batch_id,
         ))
 
     cur.executemany(
@@ -107,25 +104,50 @@ def populate_fact_sales(conn, df: pd.DataFrame):
         INSERT INTO fact_sales
         (no_resep, kd_obat, date_key, qty, hna, hj, ppn_jual,
          revenue, gross_margin, margin_pct, tax_inclusive,
-         flag_hj_lt_hna, flag_qty_le_zero)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+         flag_hj_lt_hna, flag_qty_le_zero, etl_batch_id)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
         """,
         rows,
     )
     conn.commit()
     cur.close()
+    return len(rows)
+
+
+def update_lineage(conn, batch_id: str, source_rows: int, transformed_rows: int, fact_rows: int, issues: dict, status: str):
+    cur = conn.cursor()
+    cur.execute("""
+        UPDATE etl.lineage 
+        SET run_end = NOW(), fact_rows_loaded = %s, issues_log = %s, status = %s
+        WHERE batch_id = %s
+    """, (fact_rows, json.dumps(issues), status, batch_id))
+    conn.commit()
+    cur.close()
+
+
+def init_lineage(conn, batch_id: str, source_rows: int):
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO etl.lineage (batch_id, source_rows, status)
+        VALUES (%s, %s, 'RUNNING')
+    """, (batch_id, source_rows))
+    conn.commit()
+    cur.close()
 
 
 def main():
+    batch_id = generate_batch_id()
     try:
         conn = psycopg2.connect(**DB_CONFIG)
         df = pd.read_sql_query("SELECT * FROM staging.det_sales_transformed;", conn)
+
+        init_lineage(conn, batch_id, len(df))
 
         create_schema_tables(conn)
         populate_dim_date(conn)
         populate_dim_transaction(conn, df)
         populate_dim_product(conn, df)
-        populate_fact_sales(conn, df)
+        fact_count = populate_fact_sales(conn, df, batch_id)
 
         cur = conn.cursor()
         cur.execute("SELECT COUNT(*) FROM dim_date;")
@@ -135,16 +157,20 @@ def main():
         cur.execute("SELECT COUNT(*) FROM dim_product;")
         dim_prod_count = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM fact_sales;")
-        fact_count = cur.fetchone()[0]
+        total_fact_count = cur.fetchone()[0]
+
+        update_lineage(conn, batch_id, len(df), len(df), fact_count, {}, 'COMPLETED')
+
         cur.close()
         conn.close()
 
         log_lines = [
             f"load.py — {pd.Timestamp.now()}",
+            f"  Batch ID:         {batch_id}",
             f"  dim_date:         {dim_date_count} rows",
             f"  dim_transaction:  {dim_txn_count} rows",
             f"  dim_product:      {dim_prod_count} rows",
-            f"  fact_sales:       {fact_count} rows",
+            f"  fact_sales:       {total_fact_count} rows (this run: {fact_count})",
             f"  Input rows:       {len(df)}",
             "",
         ]
@@ -153,8 +179,10 @@ def main():
         LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
 
     except Exception as e:
+        update_lineage(conn, batch_id, 0, 0, 0, {"error": str(e)}, 'FAILED')
         log_lines = [
             f"load.py — ERROR: {pd.Timestamp.now()}",
+            f"  Batch ID:       {batch_id}",
             f"  {type(e).__name__}: {e}",
         ]
         print("\n".join(log_lines))

@@ -37,9 +37,27 @@ CREATE TABLE fact_sales (
     margin_pct      double precision,
     tax_inclusive   integer NOT NULL DEFAULT 0,
     flag_hj_lt_hna  boolean NOT NULL DEFAULT false,
-    flag_qty_le_zero boolean NOT NULL DEFAULT false
+    flag_qty_le_zero boolean NOT NULL DEFAULT false,
+    etl_batch_id    varchar(20),
+    loaded_at       timestamp NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX idx_fact_sales_date    ON fact_sales(date_key);
+CREATE INDEX idx_fact_sales_date     ON fact_sales(date_key);
 CREATE INDEX idx_fact_sales_no_resep ON fact_sales(no_resep);
 CREATE INDEX idx_fact_sales_kd_obat  ON fact_sales(kd_obat);
+CREATE INDEX idx_fact_sales_batch    ON fact_sales(etl_batch_id);
+
+CREATE SCHEMA IF NOT EXISTS etl;
+
+CREATE TABLE IF NOT EXISTS etl.lineage (
+    batch_id        varchar(20) PRIMARY KEY,
+    run_start       timestamp NOT NULL DEFAULT NOW(),
+    run_end         timestamp,
+    source_rows     integer,
+    transformed_rows integer,
+    fact_rows_loaded integer,
+    issues_log      jsonb,
+    status          varchar(20) NOT NULL DEFAULT 'RUNNING'
+);
+
+CREATE INDEX IF NOT EXISTS idx_lineage_status ON etl.lineage(status);

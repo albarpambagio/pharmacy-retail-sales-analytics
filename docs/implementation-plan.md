@@ -5,8 +5,10 @@
 | Attribute | Value |
 |-----------|-------|
 | **Start Date** | 2026-05-18 |
+| **Data First Accessed** | 2026-05-18 |
+| **Data Source** | https://data.mendeley.com/datasets/2ym7v78wtd/1 |
 | **Target Completion** | ~12 working days |
-| **Status** | Phase 1 Complete |
+| **Status** | Phase 1-3 Complete |
 
 ---
 
@@ -20,6 +22,7 @@
 | 0.4 | Initialize Next.js from Shadboard starter-kit in `/dashboard` | ➡️ | Deferred to Phase 4 |
 | 0.5 | Set up Python with `pyproject.toml` + `uv sync` | ✅ | uv 0.7.9, dependencies in pyproject.toml |
 | 0.6 | Load `docs/data/temp/sales.sql` into staging | ✅ | det_sales_raw: 514,620 rows (QTY>0: 514,336) |
+| 0.7 | Create `etl/config.py` for centralized configuration | ✅ | DB config, batch ID generation, log paths |
 
 **Validation**: `SELECT COUNT(*) FROM staging.det_sales_raw;` → 514,620 (expected ~511,559, QTY>0: 514,336)
 
@@ -72,6 +75,8 @@
 | 1.5.3 | Monthly distribution: no missing months | ✅ | 12/12 months in dim_date; data in 5 months |
 | 1.5.4 | Revenue total non-zero and reasonable | ✅ | ~19.05B IDR |
 | 1.5.5 | Issues log updated with flagged counts | ✅ | `docs/issues_log.md` created |
+| 1.5.6 | Data traceability: batch ID tracking | ✅ | fact_sales.etl_batch_id, staging.etl_batch_id |
+| 1.5.7 | Data traceability: lineage table | ✅ | etl.lineage tracks batch status, row counts |
 
 ---
 
@@ -89,6 +94,7 @@
 | 2.8 | Create marimo notebook `analysis/eda_notebook.py` with 8 inline charts + explanations | ✅ | 11 cells, reactive Plotly charts via `mo.as_html()` |
 | 2.9 | Export 8 CSV summaries → `analysis/summaries/*.csv` | ✅ | Same data as charts, spreadsheet-ready |
 | 2.10 | Document 7 findings in insights log | ✅ | 5 actionable, 7 total mapped to stakeholders |
+| 2.11 | SCAN Framework C — Columns and Coverage | ✅ | `docs/scan-columns-coverage.md` documents dataset limitations |
 
 **Marimo Notebook** (`analysis/eda_notebook.py`): view via `uv run marimo edit analysis/eda_notebook.py`
 - 11 cells: intro + global summary + 8 chart sections + findings table
@@ -117,6 +123,7 @@
 | 3.5 | Q3: 2×2 cross-tab: product type × transaction type | ✅ | 6 cells exported to product_transaction_crosstab.csv |
 | 3.6 | Q3: Monthly stability check of mix | ✅ | 18 rows exported to monthly_stability.csv |
 | 3.7 | Document quantified findings with recommendations | ✅ | 4 new findings added to insights_log.md |
+| 3.8 | CSV export verification | ✅ | verify_export() checks columns, row counts, NULLs |
 
 ---
 

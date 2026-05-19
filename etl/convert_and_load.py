@@ -10,17 +10,10 @@ import sys
 from datetime import datetime
 import psycopg2
 from pathlib import Path
-
-DB_CONFIG = {
-    "host": "localhost",
-    "port": 5433,
-    "dbname": "db_pharmacy",
-    "user": "postgres",
-    "password": "admin",
-}
+from config import DB_CONFIG, get_log_path
 
 DUMP_PATH = Path(__file__).resolve().parent.parent / "docs" / "data" / "temp" / "sales.sql"
-LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "convert_and_load.log"
+LOG_PATH = get_log_path("convert_and_load")
 
 TABLE_MAP = {
     "det_sales": "staging.det_sales_raw",

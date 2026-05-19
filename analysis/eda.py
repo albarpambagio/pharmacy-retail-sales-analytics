@@ -5,6 +5,7 @@ Analyze star schema data, generate Plotly charts + CSV summaries.
 """
 
 import os
+import sys
 import psycopg2
 import pandas as pd
 import plotly.express as px
@@ -12,15 +13,14 @@ import plotly.graph_objects as go
 from pathlib import Path
 from datetime import datetime
 
-DB_CONFIG = {
-    "host": "localhost", "port": 5433,
-    "dbname": "db_pharmacy", "user": "postgres", "password": "admin",
-}
+# Use centralized config from etl
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "etl"))
+from config import DB_CONFIG, LOG_DIR
 
 BASE = Path(__file__).resolve().parent.parent
 CHART_DIR = BASE / "analysis" / "charts"
 SUMMARY_DIR = BASE / "analysis" / "summaries"
-LOG_PATH = BASE / "logs" / "eda.log"
+LOG_PATH = LOG_DIR / "eda.log"
 
 
 def query_df(conn, sql: str) -> pd.DataFrame:

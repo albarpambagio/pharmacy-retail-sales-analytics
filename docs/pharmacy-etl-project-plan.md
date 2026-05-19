@@ -6,6 +6,8 @@
 |-----------|--------|
 | **Dataset** | Retail Sales Dataset of a Pharmacy in Indonesia (Mendeley, CC BY 4.0) |
 | **Source** | Hospital pharmacy system (MariaDB export), 2015 |
+| **Data First Accessed** | 2026-05-18 |
+| **Source URL** | https://data.mendeley.com/datasets/2ym7v78wtd/1 |
 | **Volume** | ~511,559 transaction lines |
 | **Stack** | Python → PostgreSQL → Static JSON → Next.js (Shadboard) + Marimo (EDA notebooks) → Cloudflare Pages |
 | **Portfolio Goal** | Demonstrate end-to-end ETL pipeline + analyst insight skills |
@@ -75,6 +77,7 @@ pharmacy-sales-analytics/
 │   ├── 01_create_schema.sql
 │   └── 02_create_star_schema.sql
 ├── etl/
+│   ├── config.py         # Centralized DB configuration and batch ID generation
 │   ├── extract.py
 │   ├── transform.py
 │   ├── load.py
@@ -242,6 +245,8 @@ Before proceeding to analysis, confirm:
 - [ ] Monthly distribution of transactions is reasonable (no missing months)
 - [ ] Revenue total is non-zero and within expected IDR range
 - [ ] Issues log updated with counts for each flagged category
+- [ ] Batch ID tracked in `fact_sales.etl_batch_id` and `staging.et_sales_transformed.etl_batch_id`
+- [ ] Lineage table `etl.lineage` populated with batch status, row counts
 
 ### Key Deliverable
 Documented pipeline with a clear issues log. The README should include a simple flowchart:
@@ -269,6 +274,13 @@ Document upfront what this dataset *cannot* answer:
 - No competitor pricing data (can't benchmark margins externally)
 - Single year only (no YoY comparison — mitigate by emphasising monthly trends)
 - No stock/inventory data (can't calculate stockout risk directly)
+
+**Deliverable:** `docs/scan-columns-coverage.md` — Comprehensive documentation of:
+- All columns available and their derivation logic
+- What the dataset CAN answer (8 business questions)
+- What the dataset CANNOT answer (8 limitations)
+- Data quality summary with counts and percentages
+- Recommendations for next data request
 
 ### A — Aggregates and Anomalies
 
@@ -348,6 +360,17 @@ Type: Contextual / Directional / Actionable
 Stakeholder Team:
 Recommendation:
 ```
+
+### Export Verification
+
+All CSV exports from `deep_dive.py` are verified before completion:
+
+| Check | Implementation |
+|-------|---------------|
+| Required columns present | `verify_export()` checks column list |
+| Row count minimum | Fails if below `min_rows` parameter |
+| NULL values in critical columns | Flags any NULLs in required fields |
+| Exit on failure | `sys.exit(1)` if any verification fails |
 
 ---
 

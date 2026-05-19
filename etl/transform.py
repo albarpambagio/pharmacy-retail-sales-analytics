@@ -2,20 +2,17 @@
 transform.py
 Parse NO_RESEP, classify KD_OBAT, calculate revenue/margin, assign price tiers.
 Reads from staging.det_sales_raw, writes to staging.det_sales_transformed.
+Implements data traceability with batch tracking.
 """
 
 import re
 import psycopg2
 import pandas as pd
 import numpy as np
-from pathlib import Path
+import json
+from config import DB_CONFIG, get_log_path, generate_batch_id
 
-DB_CONFIG = {
-    "host": "localhost", "port": 5433,
-    "dbname": "db_pharmacy", "user": "postgres", "password": "admin",
-}
-
-LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "transform.log"
+LOG_PATH = get_log_path("transform")
 
 NO_RESEP_RE = re.compile(r"^(RJ|RI)-(\d{2})\.(\d{4}-\d{2})-(\d+)$")
 
@@ -155,6 +152,8 @@ def main():
         price_tier_counts = df["price_tier"].value_counts().to_dict()
         txn_type_counts = df["txn_type"].value_counts().to_dict()
 
+        batch_id = generate_batch_id()
+
         cur.execute("DROP TABLE IF EXISTS staging.det_sales_transformed;")
         cur.execute(
             """
@@ -179,7 +178,9 @@ def main():
                 tax_inclusive          integer,
                 flag_hj_lt_hna         boolean,
                 flag_qty_le_zero       boolean,
-                flag_unrecognized_prefix boolean
+                flag_unrecognized_prefix boolean,
+                etl_batch_id           varchar(20),
+                loaded_at              timestamp NOT NULL DEFAULT NOW()
             );
             """
         )
@@ -200,6 +201,7 @@ def main():
                 bool(r["flag_hj_lt_hna"]),
                 bool(r["flag_qty_le_zero"]),
                 bool(r["flag_unrecognized_prefix"]),
+                batch_id,
             ))
 
         insert_sql = """
@@ -208,8 +210,9 @@ def main():
              txn_type, dept_code, year_month, transaction_date, seq_no, irregular,
              product_type, price_tier,
              revenue, gross_margin, margin_pct, tax_inclusive,
-             flag_hj_lt_hna, flag_qty_le_zero, flag_unrecognized_prefix)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+             flag_hj_lt_hna, flag_qty_le_zero, flag_unrecognized_prefix,
+             etl_batch_id)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
         """
         for row in rows_to_insert:
             cur.execute(insert_sql, row)
@@ -220,6 +223,7 @@ def main():
 
         log_lines = [
             f"transform.py — {pd.Timestamp.now()}",
+            f"  Batch ID:          {batch_id}",
             f"  Rows transformed:  {len(df)}",
             f"  Irregular NO_RESEP: {irreg_count}",
             f"  Product types:     {product_type_counts}",
@@ -235,6 +239,7 @@ def main():
     except Exception as e:
         log_lines = [
             f"transform.py — ERROR: {pd.Timestamp.now()}",
+            f"  Batch ID:          {batch_id}",
             f"  {type(e).__name__}: {e}",
         ]
         print("\n".join(log_lines))

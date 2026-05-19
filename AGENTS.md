@@ -8,6 +8,8 @@ Pharmacy Retail Sales Analytics — End-to-end ETL pipeline + interactive dashbo
 |-----------|--------|
 | **Dataset** | Retail Sales Dataset of a Pharmacy in Indonesia (Mendeley, CC BY 4.0) |
 | **Source** | Hospital pharmacy system (MariaDB export), 2015 |
+| **Data First Accessed** | 2026-05-18 |
+| **Source URL** | https://data.mendeley.com/datasets/2ym7v78wtd/1 |
 | **Volume** | ~511,559 transaction lines |
 | **Stack** | Python → PostgreSQL → Static JSON → Next.js (Shadboard) + Marimo (EDA notebooks) → Cloudflare Pages |
 | **Portfolio Goal** | Demonstrate end-to-end ETL pipeline + analyst insight skills |
@@ -45,6 +47,18 @@ psql -h localhost -p 5433 -U postgres -d db_pharmacy -f sql/01_create_schema.sql
 ```bash
 uv sync
 ```
+
+### Configuration
+All ETL scripts use centralized configuration from `etl/config.py`:
+- Database connection settings
+- Log file paths
+- Batch ID generation
+
+### Batch Tracking & Data Traceability
+Each ETL run is tracked with a unique batch ID:
+- `etl/transform.py` — tracks batch ID in staging.det_sales_transformed.etl_batch_id
+- `etl/load.py` — tracks batch ID in fact_sales.etl_batch_id
+- `etl.lineage` — central registry of all pipeline runs with status, row counts, and issues
 
 ### MariaDB Dump → PostgreSQL (one-time)
 The raw dump uses MariaDB syntax. Run this conversion script instead of `psql -f`:
@@ -111,7 +125,9 @@ fact_sales
 ├── date_key (FK → dim_date)
 ├── qty, hna, hj
 ├── revenue, gross_margin, margin_pct
-└── tax_inclusive
+├── tax_inclusive
+├── etl_batch_id (batch tracking)
+└── loaded_at (timestamp)
 
 dim_transaction
 ├── no_resep (PK)
@@ -128,6 +144,13 @@ dim_date
 ├── year_month (2015-01 … 2015-12)
 ├── month_num (1–12)
 └── month_name (January … December)
+
+etl.lineage (batch registry)
+├── batch_id (PK)
+├── run_start, run_end
+├── source_rows, transformed_rows, fact_rows_loaded
+├── issues_log (JSONB)
+└── status (RUNNING/COMPLETED/FAILED)
 ```
 
 ### NO_RESEP Parsing Logic
