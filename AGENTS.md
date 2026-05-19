@@ -9,7 +9,7 @@ Pharmacy Retail Sales Analytics — End-to-end ETL pipeline + interactive dashbo
 | **Dataset** | Retail Sales Dataset of a Pharmacy in Indonesia (Mendeley, CC BY 4.0) |
 | **Source** | Hospital pharmacy system (MariaDB export), 2015 |
 | **Volume** | ~511,559 transaction lines |
-| **Stack** | Python → PostgreSQL → Static JSON → Next.js (Shadboard) → Cloudflare Pages |
+| **Stack** | Python → PostgreSQL → Static JSON → Next.js (Shadboard) + Marimo (EDA notebooks) → Cloudflare Pages |
 | **Portfolio Goal** | Demonstrate end-to-end ETL pipeline + analyst insight skills |
 
 ### Business Scenario
@@ -43,13 +43,7 @@ psql -h localhost -p 5433 -U postgres -d db_pharmacy -f sql/01_create_schema.sql
 
 ### Python Dependencies
 ```bash
-uv venv
-# Windows:
-.venv\Scripts\activate
-# Linux/Mac:
-source .venv/bin/activate
-
-uv pip install psycopg2-binary pandas
+uv sync
 ```
 
 ### MariaDB Dump → PostgreSQL (one-time)
@@ -64,6 +58,13 @@ uv run python etl/extract.py      # Validate staging data
 uv run python etl/transform.py    # Parse, classify, calculate metrics
 uv run python etl/load.py         # Build star schema
 uv run python etl/export_json.py  # Export to static JSON for dashboard
+
+### EDA Notebook (Marimo)
+```bash
+uv run marimo edit analysis/eda_notebook.py  # Interactive EDA viewer (opens browser)
+# or headless run:
+uv run python analysis/eda_notebook.py
+```
 ```
 
 ### Dashboard Setup
@@ -83,7 +84,7 @@ npm run build              # Static build for deployment
 ```
 Phase 0: Setup        → Folder structure, database, Next.js init
 Phase 1: ETL          → extract.py → transform.py → load.py → export_json.py
-Phase 2: EDA          → analysis/eda.py (SCAN framework)
+Phase 2: EDA          → analysis/eda.py + analysis/eda_notebook.py (marimo) (SCAN framework)
 Phase 3: Deep Dive    → analysis/deep_dive.py (North Star method)
 Phase 4: Dashboard    → 3 pages in Next.js + Shadboard
 Phase 5: Write-up     → README, insights, recommendations
@@ -204,6 +205,7 @@ pharmacy-sales-analytics/
 │   └── export_json.py             # Export to static JSON
 ├── analysis/
 │   ├── eda.py                     # EDA using SCAN framework
+│   ├── eda_notebook.py            # Marimo notebook with interactive EDA charts
 │   └── deep_dive.py               # Deep dive analysis
 ├── dashboard/                     # Next.js + Shadboard app
 │   ├── public/

@@ -18,7 +18,7 @@
 | 0.2 | Create PostgreSQL database `db_pharmacy` on port 5433 | ✅ | psql 18, password: admin |
 | 0.3 | Create `sql/01_create_schema.sql` — staging table | ✅ | 4 staging tables (det_sales, ms_product, ms_sales, transaction) |
 | 0.4 | Initialize Next.js from Shadboard starter-kit in `/dashboard` | ➡️ | Deferred to Phase 4 |
-| 0.5 | Set up Python venv + `requirements.txt` | ✅ | uv 0.7.9, installed psycopg2-binary, pandas |
+| 0.5 | Set up Python with `pyproject.toml` + `uv sync` | ✅ | uv 0.7.9, dependencies in pyproject.toml |
 | 0.6 | Load `docs/data/temp/sales.sql` into staging | ✅ | det_sales_raw: 514,620 rows (QTY>0: 514,336) |
 
 **Validation**: `SELECT COUNT(*) FROM staging.det_sales_raw;` → 514,620 (expected ~511,559, QTY>0: 514,336)
@@ -79,28 +79,44 @@
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 2.1 | Monthly revenue total (Jan–Dec) | ⬜ | Check seasonality |
-| 2.2 | Monthly transaction count | ⬜ | Volume vs value trends |
-| 2.3 | Revenue by transaction type (RJ vs RI) | ⬜ | Channel split |
-| 2.4 | Revenue by product type (generic vs branded) | ⬜ | Product split |
-| 2.5 | Top 20 SKUs by revenue | ⬜ | Concentration check |
-| 2.6 | Margin % distribution (histogram) | ⬜ | Compression cluster |
-| 2.7 | Price tier distribution | ⬜ | SKU mix |
-| 2.8 | Document 5+ findings in insights log | ⬜ | Metric, dimension, finding, stakeholder |
+| 2.1 | Monthly revenue total (Jan–Dec) | ✅ | Only 5/12 months have valid dates (92.4% rows undated) |
+| 2.2 | Monthly transaction count | ✅ | 38,953 dated txns vs 157,677 total |
+| 2.3 | Revenue by transaction type (RJ vs RI) | ✅ | Outpatient 63.8%, Inpatient 28.7%, Unknown 7.5% |
+| 2.4 | Revenue by product type (generic vs branded) | ✅ | Generic 70.3%, Branded 29.7% — margins ~35% both |
+| 2.5 | Top 20 SKUs by revenue | ✅ | 35.6% revenue concentration, 18/20 generic |
+| 2.6 | Margin % distribution (histogram) | ✅ | 23 SKUs (1%) below 10% — low systemic risk |
+| 2.7 | Price tier distribution | ✅ | Premium 40.8% revenue, Mid 45% transaction volume |
+| 2.8 | Create marimo notebook `analysis/eda_notebook.py` with 8 inline charts + explanations | ✅ | 11 cells, reactive Plotly charts via `mo.as_html()` |
+| 2.9 | Export 8 CSV summaries → `analysis/summaries/*.csv` | ✅ | Same data as charts, spreadsheet-ready |
+| 2.10 | Document 7 findings in insights log | ✅ | 5 actionable, 7 total mapped to stakeholders |
+
+**Marimo Notebook** (`analysis/eda_notebook.py`): view via `uv run marimo edit analysis/eda_notebook.py`
+- 11 cells: intro + global summary + 8 chart sections + findings table
+- Each chart cell: SQL query → Plotly figure → `mo.md(...)` wrapping explanation + `mo.as_html(fig)`
+- Reactive: data flows between cells automatically (marimo dependency graph)
+- Also runnable headlessly: `python analysis/eda_notebook.py`
+
+**Generated CSVs** (`analysis/summaries/`): `monthly_revenue.csv`, `revenue_by_txn_type.csv`, `revenue_by_product_type.csv`, `monthly_product_trend.csv`, `top20_skus.csv`, `margin_distribution.csv`, `price_tier_distribution.csv`, `sku_performance.csv`
 
 ---
+
+## Key EDA Findings (Top 3)
+
+1. **Generics dominate**: 70.3% of revenue, 18/20 top SKUs, with near-identical margins to branded (~35%)
+2. **Data gap limits monthly analysis**: 92.4% of rows have no valid date — only 5 months chartable
+3. **Margin risk is low**: Only 23 SKUs (1%) below 10% threshold, representing 0.2% of revenue
 
 ## Phase 3 — Deep Dive (North Star Method)
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 3.1 | Q1: Monthly revenue trend + mix shift analysis | ⬜ | Revenue by channel over time |
-| 3.2 | Q1: Decompose revenue = txn count × avg revenue/txn | ⬜ | Volume vs value driver |
-| 3.3 | Q2: Margin % by SKU, rank by revenue volume | ⬜ | Identify compression risk SKUs |
-| 3.4 | Q2: Cross-check risk SKUs: generic/branded, RJ/RI | ⬜ | |
-| 3.5 | Q3: 2×2 cross-tab: product type × transaction type | ⬜ | Revenue, txn count, avg margin % |
-| 3.6 | Q3: Monthly stability check of mix | ⬜ | |
-| 3.7 | Document quantified findings with recommendations | ⬜ | Include confidence levels |
+| 3.1 | Q1: Monthly revenue trend + mix shift analysis | ✅ | 9 rows exported to monthly_revenue_trend.csv |
+| 3.2 | Q1: Decompose revenue = txn count × avg revenue/txn | ✅ | 9 rows exported to revenue_decomposition.csv |
+| 3.3 | Q2: Margin % by SKU, rank by revenue volume | ✅ | 2,230 rows exported to margin_by_sku.csv |
+| 3.4 | Q2: Cross-check risk SKUs: generic/branded, RJ/RI | ✅ | 887 rows exported to risk_skus_crosscheck.csv |
+| 3.5 | Q3: 2×2 cross-tab: product type × transaction type | ✅ | 6 cells exported to product_transaction_crosstab.csv |
+| 3.6 | Q3: Monthly stability check of mix | ✅ | 18 rows exported to monthly_stability.csv |
+| 3.7 | Document quantified findings with recommendations | ✅ | 4 new findings added to insights_log.md |
 
 ---
 
