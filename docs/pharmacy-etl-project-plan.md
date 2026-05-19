@@ -7,7 +7,7 @@
 | **Dataset** | Retail Sales Dataset of a Pharmacy in Indonesia (Mendeley, CC BY 4.0) |
 | **Source** | Hospital pharmacy system (MariaDB export), 2015 |
 | **Volume** | ~511,559 transaction lines |
-| **Stack** | Python → PostgreSQL → Static JSON → Next.js (Shadboard) → Cloudflare Pages |
+| **Stack** | Python → PostgreSQL → Static JSON → Next.js (Shadboard) + Marimo (EDA notebooks) → Cloudflare Pages |
 | **Portfolio Goal** | Demonstrate end-to-end ETL pipeline + analyst insight skills |
 
 ### Business Scenario
@@ -80,7 +80,8 @@ pharmacy-sales-analytics/
 │   ├── load.py
 │   └── export_json.py     # Exports query results to static JSON
 ├── analysis/
-│   ├── eda.py
+│   ├── eda.py                 # Headless EDA script (SCAN framework)
+│   ├── eda_notebook.py        # Marimo notebook with interactive EDA charts
 │   └── deep_dive.py
 ├── dashboard/             # Next.js + Shadboard app
 │   ├── public/
@@ -271,7 +272,7 @@ Document upfront what this dataset *cannot* answer:
 
 ### A — Aggregates and Anomalies
 
-Run these pivot-level analyses using SQL or Python, document findings in insights log:
+Run these pivot-level analyses using SQL or Python, document findings in insights log. All 8 charts are rendered in a marimo notebook (`analysis/eda_notebook.py`) for interactive exploration:
 
 | Analysis | Why |
 |----------|-----|
@@ -292,6 +293,8 @@ After aggregates, identify 2–3 segments worth deep-diving. Expected candidates
 
 ### Key Deliverable
 Populated insights log with at least 5 findings, each with: metric, dimension, finding (quantified), stakeholder team.
+
+Interactive marimo notebook at `analysis/eda_notebook.py` with all 8 charts + inline explanations. View via `uv run marimo edit analysis/eda_notebook.py`.
 
 ---
 
