@@ -161,9 +161,18 @@
 | **Loading** | Skeleton gray boxes replace KPI cards and charts while `overview.json` fetches |
 | **Filter: specific month** | Line chart highlights that month's dot; table filters to single row; KPI cards show that month's values; delta hidden |
 | **Filter: All (default)** | Full year view; KPI cards show annual totals; delta hidden |
-| **Empty data** | Not expected (fixed dataset) — show "No data for selected filters" text if edge case occurs |
+| **Empty month selected** | Show "No transactions recorded for this month" — applies to 7 months without valid dates |
+| **No data for filters** | Show "No data for selected filters" with icon and suggestion to try different filter values |
 
 ---
+
+## Data Coverage Notes
+
+> ⚠️ **Important**: The source dataset has limited date coverage. Only **5 out of 12 months** (January, March, April, August, September) have valid transaction dates. 92.4% of rows have no parseable date from NO_RESEP.
+>
+> - Line chart and area chart will show gaps for missing months
+> - Summary table shows only months with valid dates
+> - Month filter: selecting a month without data shows empty state message
 
 ## Annotations
 
@@ -171,11 +180,11 @@
 |---|---------|------|
 | 1 | Navigation | Active page ("Overview") visually distinguished — underline or bold. No icons in nav — text only for clarity |
 | 2 | Page header | H1 is the only H1 on page. Subtitle provides date context immediately |
-| 3 | Filters | Dropdowns, not toggles — consistent with Shadboard component library. Label above each dropdown |
-| 4 | KPI cards | Three equal-width cards in a row. Sparklines sourced from same monthly data as line chart |
-| 5 | Line chart | Single series only — do not add second series here. Mix chart (6) handles the split view |
-| 6 | Area chart | Stacked 100% — shows proportion, not absolute values. Pair with line chart (5) for full picture |
-| 7 | Summary table | Gives exact numbers that charts approximate. Managers often want to screenshot this |
+| 3 | Filters | Dropdowns, not toggles — consistent with Shadboard component library. Label above each dropdown. **Month filter**: months without data show "No data" on selection |
+| 4 | KPI cards | Three equal-width cards in a row. Sparklines sourced from same monthly data as line chart. Delta vs previous month hidden when selected month has no data |
+| 5 | Line chart | Single series only — do not add second series here. Mix chart (6) handles the split view. **Empty months**: show gap/break in line, not interpolated |
+| 6 | Area chart | Stacked 100% — shows proportion, not absolute values. Pair with line chart (5) for full picture. Months without data show as 0% or hidden |
+| 7 | Summary table | Gives exact numbers that charts approximate. Managers often want to screenshot this. **Shows only dated rows** — filtered to months with valid data |
 
 ---
 

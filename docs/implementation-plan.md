@@ -127,29 +127,42 @@
 
 ---
 
+## Phase 3b — Marimo Notebook Update (Deep Dive Extension)
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 3b.1 | Add revenue decomposition chart (txn count × avg revenue/txn) | ⬜ | Dual-axis bar+line from `revenue_decomposition.csv` |
+| 3b.2 | Add margin risk cross-check scatter (generic/branded × RJ/RI) | ⬜ | Faceted 2×2 from `risk_skus_crosscheck.csv` |
+| 3b.3 | Add product×transaction crosstab heatmap | ⬜ | 2×2 matrix from `product_transaction_crosstab.csv` |
+| 3b.4 | Add monthly stability line chart (generic vs branded % over months) | ⬜ | Dual line, 9 months from `monthly_stability.csv` |
+| 3b.5 | Update findings panel with Phase 3 quantified recommendations | ⬜ | Append to existing findings table |
+
+---
+
 ## Phase 4 — Dashboard (Shadboard + Next.js)
 
 ### Page 1 — Executive Overview
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 4.1.1 | Navigation bar with active page indicator | ⬜ | Text-only, no icons |
-| 4.1.2 | Page header: H1 + subtitle | ⬜ | |
-| 4.1.3 | Global filters (Month, Txn Type, Product Type) | ⬜ | Dropdowns, default All |
-| 4.1.4 | KPI cards: Total Revenue, Transactions, Avg Margin % | ⬜ | Sparklines, delta vs prev month |
-| 4.1.5 | Monthly revenue line chart (Recharts) | ⬜ | IDR formatted Y-axis |
-| 4.1.6 | Revenue mix area chart (100% stacked) | ⬜ | RJ vs RI composition |
-| 4.1.7 | Monthly performance summary table (TanStack) | ⬜ | Sortable, conditional formatting |
-| 4.1.8 | Mobile responsive layout | ⬜ | Stacked filters, full-width cards |
+| 4.1.1 | Navigation bar with active page indicator | ✅ | Shadboard built-in sidebar, active state via `usePathname()` |
+| 4.1.2 | Page header: H1 + subtitle | ✅ | "Executive Overview" + "Hospital Pharmacy Performance · Full Year 2015" |
+| 4.1.3 | Global filters (Month, Txn Type, Product Type) | ⚠️ | Month + Txn Type work; Product Type state declared but NOT wired into filtering logic |
+| 4.1.4 | KPI cards: Total Revenue, Transactions, Avg Margin % | ✅ | MoM deltas via prev month comparison, skeleton loading |
+| 4.1.5 | Monthly revenue line chart (Recharts) | ✅ | IDR formatted Y-axis, custom tooltip |
+| 4.1.6 | Revenue mix area chart (100% stacked) | ✅ | Outpatient vs Inpatient % split |
+| 4.1.7 | Monthly performance summary table | ✅ | Sortable (click headers), conditional formatting, TOTAL footer row |
+| 4.1.8 | Mobile responsive layout | ✅ | Tailwind `md:grid-cols-{2,3}` breakpoints, stacked on mobile |
 
 ### Page 2 — Product Performance
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 4.2.1 | KPI cards: Generic Revenue, Branded Revenue, Total SKUs | ⬜ | % of total shown |
-| 4.2.2 | Bar chart: Generic vs Branded revenue | ⬜ | 2 bars, simple |
-| 4.2.3 | Line chart: Monthly trend by product type | ⬜ | Solid vs dashed lines |
-| 4.2.4 | Scatter chart: Revenue vs Margin % (SKU quadrant) | ⬜ | Median lines, 4 quadrant labels |
-| 4.2.5 | Top 20 SKUs table (TanStack) | ⬜ | Search, export CSV, sortable |
-| 4.2.6 | Mobile responsive layout | ⬜ | Horizontal bars, paginated table |
+| 4.2.1 | KPI cards: Generic Revenue, Branded Revenue, Total SKUs | ✅ | % of total shown |
+| 4.2.2 | Bar chart: Generic vs Branded revenue | ✅ | 2 bars, simple |
+| 4.2.3 | Line chart: Monthly trend by product type | ✅ | Solid vs dashed lines |
+| 4.2.4 | Scatter chart: Revenue vs Margin % (SKU quadrant) | ✅ | Median lines, 4 quadrant labels |
+| 4.2.5 | Top 20 SKUs table (TanStack) | ✅ | Search, export CSV, sortable |
+| 4.2.6 | Mobile responsive layout | ✅ | Horizontal bars, paginated table |
+| 4.2.7 | **Explanation section (interpretation guide)** | ✅ | Collapsible card, 5 items — Generic vs Branded, Quadrant Analysis, Top 20 Table, Monthly Trend, Data Source |
 
 ### Page 3 — Margin Risk
 | # | Task | Status | Notes |
@@ -161,12 +174,14 @@
 | 4.3.5 | At-risk SKU detail table (TanStack) | ⬜ | Auto-filtered, export CSV |
 | 4.3.6 | Live update: slider → all components react | ⬜ | Client-side, no re-fetch |
 | 4.3.7 | Mobile responsive layout | ⬜ | |
+| 4.3.8 | **Explanation section (interpretation guide)** | ⬜ | Collapsible card, 6 items — Margin Threshold, At-Risk SKU Definition, Scatter Plot, Histogram, Gross Margin Formula, Risk Interpretation |
 
 ### Deployment
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 4.4.1 | Configure `next.config.js` for static export | ⬜ | `output: 'export'` |
-| 4.4.2 | Build: `npm run build` | ⬜ | Verify no errors |
+| 4.4.1 | Configure `next.config.mjs` for static export | ✅ | `output: 'export'`, `images.unoptimized: true` |
+| 4.4.2 | Build: `npm run build` | ✅ | Production + static export builds pass |
+| 4.4.3 | Create `.env` with `BASE_URL` | ✅ | `.env` from `.env.example` |
 | 4.4.3 | Deploy to Cloudflare Pages | ⬜ | Connect GitHub repo |
 | 4.4.4 | Verify live URL on mobile | ⬜ | |
 

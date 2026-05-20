@@ -21,3 +21,6 @@ Thumbs.db
 # Data (large files only — keep small docs/data/*.md)
 docs/data/temp/
 docs/data/*.sql
+
+# Operational / living documents (update as project evolves)
+docs/bi-framework.md

@@ -170,11 +170,15 @@
 | **Loading** | Skeleton placeholders for all charts and table |
 | **Filter: Product Type = Generic** | Branded KPI card grays out; bar chart shows single bar; scatter shows Generic dots only; table filtered |
 | **Filter: Product Type = Branded** | Reverse of above |
-| **Filter: specific month** | All charts and table reflect that month's data only |
+| **Filter: specific month without data** | Show "No data for this month" message |
 | **Table search active** | Scatter chart highlights matching SKU dots; others dimmed |
 | **Scatter dot hover** | Tooltip appears; corresponding table row highlighted |
 
 ---
+
+## Data Coverage Notes
+
+> ⚠️ **Important**: Only **5 out of 12 months** have valid transaction dates. All monthly trend charts reflect this sparsity.
 
 ## Annotations
 
@@ -182,7 +186,7 @@
 |---|---------|------|
 | 4 | KPI cards | Unlike Page 1, these cards show type-split values, not totals. Helps Finance see the mix at a glance before drilling into charts |
 | 5 | Bar chart | Intentionally simple — 2 bars only. Fights the temptation to add more series |
-| 6 | Line chart | Dashed line for Generic distinguishes without color dependency (accessible) |
+| 6 | Line chart | Dashed line for Generic distinguishes without color dependency (accessible). **Months without data** show as gaps, not interpolated |
 | 7 | Scatter quadrant | This is the most analytically dense element in the project. Label quadrants clearly. Median lines, not arbitrary thresholds |
 | 8 | Table search | Client-side only — no API call. Fast. Cross-highlights scatter chart to show spatial position of searched SKU |
 

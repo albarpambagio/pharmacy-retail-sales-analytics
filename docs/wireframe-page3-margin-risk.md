@@ -187,12 +187,17 @@
 | **Loading** | Skeleton placeholders for all charts and table |
 | **Slider at 0%** | Zero at-risk SKUs; KPI cards show 0; table shows empty state: "No SKUs below this threshold" |
 | **Slider at 30%** | Most SKUs flagged; scatter mostly red; KPI "Revenue at Risk" = large proportion of total |
-| **Default (10%)** | Expected: moderate number of at-risk SKUs visible |
+| **Default (10%)** | Expected: only 23 SKUs (1%) at risk — low systemic risk |
+| **Filter: specific month without data** | Recalculate based on filtered data; may show fewer at-risk SKUs |
 | **Filter: Transaction Type = Inpatient** | Recalculates only for RI transactions — useful because RI structurally has different margin profile |
 | **Table row hover** | Corresponding dot in scatter chart highlighted with ring |
 | **Export triggered** | CSV download of currently visible at-risk SKUs with all columns |
 
 ---
+
+## Data Coverage Notes
+
+> ⚠️ **Important**: Only **5 out of 12 months** have valid transaction dates. This affects transaction count metrics in scatter plot and table.
 
 ## Annotations
 
