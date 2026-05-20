@@ -9,9 +9,16 @@ interface KPICardProps {
   value: string
   subtitle: string
   delta?: number
+  deltaLabel?: string
 }
 
-export function KPICard({ title, value, subtitle, delta }: KPICardProps) {
+export function KPICard({
+  title,
+  value,
+  subtitle,
+  delta,
+  deltaLabel,
+}: KPICardProps) {
   const deltaIcon =
     delta == null ? (
       <Minus className="h-4 w-4 text-muted-foreground" />
@@ -37,7 +44,7 @@ export function KPICard({ title, value, subtitle, delta }: KPICardProps) {
           {delta != null && (
             <span className={`text-sm font-medium ${deltaColor}`}>
               {delta > 0 ? "+" : ""}
-              {delta.toFixed(1)}% vs prev month
+              {delta.toFixed(1)}% {deltaLabel || "vs prev month"}
             </span>
           )}
           {delta == null && (

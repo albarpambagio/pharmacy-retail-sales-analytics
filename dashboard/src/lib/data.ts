@@ -51,3 +51,48 @@ export function formatCurrency(value: number): string {
 export function formatNumber(value: number): string {
   return value.toLocaleString("id-ID")
 }
+
+export interface ProductTypeRevenue {
+  product_type: string
+  revenue: number
+  transactions: number
+  avg_margin_pct: number
+}
+
+export interface MonthlyTrend {
+  year_month: string
+  product_type: string
+  revenue: number
+  transactions: number
+}
+
+export interface SKUScatter {
+  kd_obat: string
+  product_type: string
+  revenue: number
+  avg_margin_pct: number | null
+  total_qty: number
+  transaction_count: number
+}
+
+export interface Top20SKU {
+  kd_obat: string
+  product_type: string
+  price_tier: string
+  revenue: number
+  avg_margin_pct: number
+  total_qty: number
+}
+
+export interface ProductsData {
+  product_type_revenue: ProductTypeRevenue[]
+  monthly_trend: MonthlyTrend[]
+  sku_scatter: SKUScatter[]
+  top_20: Top20SKU[]
+}
+
+export async function getProductsData(): Promise<ProductsData> {
+  const res = await fetch("/data/products.json")
+  if (!res.ok) throw new Error("Failed to fetch products data")
+  return res.json()
+}

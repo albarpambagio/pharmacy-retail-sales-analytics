@@ -87,6 +87,8 @@ export default function OverviewPage() {
           ? ((last.transactions - prev.transactions) / prev.transactions) * 100
           : 0,
       margin: last.avg_margin_pct - prev.avg_margin_pct,
+      lastMonth: last.year_month,
+      prevMonth: prev.year_month,
     }
   }, [data, month])
 
@@ -146,18 +148,21 @@ export default function OverviewPage() {
           value={formatCurrency(filtered.totalRevenue)}
           subtitle="Full year 2015"
           delta={prevMonth?.revenue}
+          deltaLabel={prevMonth ? `vs ${prevMonth.prevMonth}` : undefined}
         />
         <KPICard
           title="Total Transactions"
           value={formatNumber(filtered.totalTransactions)}
           subtitle="Full year 2015"
           delta={prevMonth?.transactions}
+          deltaLabel={prevMonth ? `vs ${prevMonth.prevMonth}` : undefined}
         />
         <KPICard
           title="Avg Margin %"
           value={`${filtered.avgMargin.toFixed(1)}%`}
           subtitle="Full year 2015"
           delta={prevMonth?.margin}
+          deltaLabel={prevMonth ? `vs ${prevMonth.prevMonth}` : undefined}
         />
       </div>
 

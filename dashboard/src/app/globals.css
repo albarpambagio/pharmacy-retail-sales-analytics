@@ -14,11 +14,9 @@ html:lang(en) {
 }
 
 @theme inline {
-  --font-lato:
-    var(--font-lato), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+  --font-lato: "Lato", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-cairo:
-    var(--font-cairo), ui-sans-serif, system-ui, sans-serif,
+  --font-cairo: "Cairo", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-border: hsl(var(--border));
