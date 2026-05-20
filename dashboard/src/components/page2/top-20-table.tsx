@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import React, { useMemo, useState } from "react"
 import { ArrowUpDown, Download, Search } from "lucide-react"
 
 import type { Top20SKU } from "@/lib/data"
@@ -22,7 +22,9 @@ type SortKey =
   | "total_qty"
   | "product_type"
 
-export function Top20Table({ data }: Top20TableProps) {
+export const Top20Table = React.memo(function Top20Table({
+  data,
+}: Top20TableProps) {
   const [search, setSearch] = useState("")
   const [sortKey, setSortKey] = useState<SortKey>("revenue")
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc")
@@ -200,4 +202,4 @@ export function Top20Table({ data }: Top20TableProps) {
       </CardContent>
     </Card>
   )
-}
+})

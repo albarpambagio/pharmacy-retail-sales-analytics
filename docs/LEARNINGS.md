@@ -366,6 +366,247 @@ When encountering issues:
 
 ---
 
+## 11. React Context for Centralized Data Loading
+
+### The Problem
+
+Each page fetched its own JSON data independently via `fetch()` in a `useEffect`. This meant:
+- Page 1 loaded `overview.json`
+- Page 2 loaded `products.json`
+- Page 3 would load `margin_risk.json`
+
+Each page had its own loading state, error handling, and data-cache boilerplate — duplicated code and no shared loading state.
+
+### Solution: DataProvider + useData() Hook
+
+Created a centralized `DataProvider` at the root layout level that loads all 3 datasets simultaneously via `Promise.all`:
+
+```typescript
+// src/contexts/data-context.tsx
+useEffect(() => {
+  let cancelled = false
+
+  Promise.all([
+    getOverviewData().catch((e) => { if (!cancelled) setError(e.message); return null }),
+    getProductsData().catch(() => null),
+    getMarginRiskData().catch(() => null),
+  ]).then(([ov, pr, mr]) => {
+    if (!cancelled) setState({ overview: ov, products: pr, marginRisk: mr })
+  })
+
+  return () => { cancelled = true }
+}, [])
+```
+
+Pages then consume via `useData()`:
+
+```typescript
+const { overview, products, marginRisk, loading } = useData()
+```
+
+### Key Design Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| `Promise.all` over sequential | All 3 datasets are independent — parallel fetch is faster |
+| `cancelled` flag | Prevents setState after unmount (no "can't perform React state update" warning) |
+| Per-fetch `.catch()` | One dataset failing doesn't block the others — partial data still renders |
+| Shared `loading` | True only when ALL datasets are null; individual datasets can be partially loaded |
+
+### Result
+
+- One `useEffect` call instead of 3
+- Shared loading state across pages
+- Single error boundary point
+- Pages are simpler — just consume context
+
+---
+
+## 12. Debounced Slider Pattern
+
+### The Problem
+
+The margin threshold slider fires `onValueChange` on every tick. Without debouncing, every tick triggers:
+1. Re-filtering all SKUs by threshold
+2. Re-computing scatter chart data (including sampling logic)
+3. Re-rendering charts and table
+
+At 30 possible slider positions, this is fine. But the slider emits values on `mousemove` — potentially dozens of events per second as the user drags.
+
+### Solution: useDebounce Hook
+
+```typescript
+// src/hooks/use-debounce.ts
+export function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+
+  return debouncedValue
+}
+```
+
+In Page 3:
+
+```typescript
+const [threshold, setThreshold] = useState(10)
+const debouncedThreshold = useDebounce(threshold, 120)
+
+// Derived data only depends on debounced value
+const atRiskSKUs = useMemo(() =>
+  filteredSkus.filter(s => s.avg_margin_pct < debouncedThreshold),
+  [filteredSkus, debouncedThreshold]
+)
+```
+
+### How It Works
+
+| Layer | Updates When | Purpose |
+|-------|-------------|---------|
+| `threshold` (raw state) | Every slider tick | Instant UI feedback (badge shows current value) |
+| `debouncedThreshold` (derived) | 120ms after last change | Expensive filtering, chart rendering |
+
+### Result
+
+- Slider feels responsive (badge updates immediately)
+- Chart data recomputes only after the user stops dragging for 120ms
+- Avoids jank during fast slider drags
+
+---
+
+## 13. Scatter Chart Data Sampling for Large SKU Sets
+
+### The Problem
+
+The scatter chart (Volume vs Margin %) plots all 2,232 SKUs. Recharts ScatterChart with 2,000+ SVG elements causes:
+- Slow initial render (2-3 seconds)
+- Laggy tooltip hover
+- Large DOM size (hundreds of KB)
+
+### Solution: Smart Sampling with Top-K Preservation
+
+```typescript
+const MAX_POINTS = 500
+const needsSampling = validData.length > MAX_POINTS
+
+const sourceData = needsSampling
+  ? (() => {
+      const topSKUs = validData.slice(0, 200)        // Top 200 by revenue
+      const remaining = validData.slice(200)
+      const step = Math.ceil(remaining.length / (MAX_POINTS - 200))
+      return [...topSKUs, ...remaining.filter((_, i) => i % step === 0)]
+    })()
+  : validData
+```
+
+### Strategy Rationale
+
+| Group | Count | Why Preserve |
+|-------|-------|-------------|
+| Top 200 SKUs by revenue | 200 | High-revenue SKUs are the most important to see |
+| Every nth remaining | ~300 | Representative sample of the long tail |
+| **Total** | **~500** | Below Recharts perf threshold |
+
+### Result
+
+- Chart renders in < 200ms
+- Tooltip works smoothly
+- All high-value SKUs visible
+- "Showing X of Y SKUs (sampled)" label prevents misinterpretation
+
+---
+
+## 14. Threshold-Driven Visual Styling (Not Data Filtering)
+
+### The Pattern
+
+The global filters (Month, Transaction Type, Product Type) use `useMemo` to **subset the data** — rows are included or excluded.
+
+The threshold slider works differently: it controls **visual properties** (color, fill) based on threshold comparison, without removing any data points.
+
+### Scatter: Dot Color
+
+```typescript
+for (const s of sourceData) {
+  const point = { ...s, margin: s.avg_margin_pct }
+  if (s.avg_margin_pct < threshold) {
+    atRisk.push(point)   // Red dots
+  } else {
+    safe.push(point)     // Gray dots
+  }
+}
+
+<Scatter data={safe} fill="#94a3b8" fillOpacity={0.4} />
+<Scatter data={atRisk} fill="#ef4444" fillOpacity={0.6} />
+```
+
+### Histogram: Three-Tier Bar Coloring
+
+```typescript
+const fill = isBelow ? "#ef4444"        // Red — entirely below threshold
+  : crossesThreshold ? "#f59e0b"        // Amber — crosses threshold
+  : "#94a3b8"                           // Gray — above threshold
+```
+
+### Key Difference from Global Filters
+
+| Aspect | Global Filters | Threshold Slider |
+|--------|---------------|-----------------|
+| What changes | Data rows passed to components | Visual properties (color, fill) |
+| Data loss? | Yes — filtered rows excluded | No — all data visible |
+| UX message | "Show me only X" | "Highlight SKUs below Y%" |
+| Implementation | `useMemo` filtering | Color assignment in render |
+
+This is important: the slider never hides data. The scatter always shows all SKUs, and the histogram always shows all 30 bins. Only the coloring changes.
+
+---
+
+## 15. Pagination with Smart Ellipsis
+
+### The Problem
+
+The at-risk SKU table can have 1 to 100+ pages (25 per page). Showing `[1][2][3]...[99][100]` with all intermediate numbers is:
+- DOM-heavy (100+ button elements)
+- Visually noisy
+- Hard to navigate
+
+### Solution: Smart Page Number Filtering
+
+```typescript
+Array.from({ length: totalPages }, (_, i) => i + 1)
+  .filter((p) => {
+    if (totalPages <= 7) return true           // Small dataset: show all
+    if (p === 1 || p === totalPages) return true // Always show first + last
+    if (Math.abs(p - page) <= 1) return true   // Neighbors of current
+    return false
+  })
+  .reduce<(number | string)[]>((acc, p, i, arr) => {
+    if (i > 0 && p - (arr[i - 1] as number) > 1) acc.push("...")
+    acc.push(p)
+    return acc
+  }, [])
+```
+
+### Behavior by Page Count
+
+| Total Pages | Example Display |
+|-------------|----------------|
+| 1–7 | `[1][2][3][4][5][6][7]` — all shown |
+| 10, on page 4 | `[1]...[3][4][5]...[10]` — first, neighbors, last |
+| 30, on page 1 | `[1][2]...[30]` — first + neighbor + last |
+
+### Result
+
+- Max 7 page buttons rendered regardless of total page count
+- First + last pages always accessible
+- Current page + neighbors visible for context
+- Ellipsis reduces visual noise
+
+---
+
 ## Decision Log
 
 | Decision | Rationale |
@@ -373,6 +614,9 @@ When encountering issues:
 | In-memory cache over React Query | Simpler for static, session-scoped data. No need for caching, invalidation, or loading states beyond what we already had. |
 | Skeleton UI pattern | Consistent with existing Page 1. Allows all UI elements (including collapsible sections) to be present and interactive from first render. |
 | Route group pattern for shared layout | Clean separation between dashboard pages and utility pages (like `/_not-found`). Enables consistent sidebar across all dashboard routes. |
+| Data context over per-page fetch | Centralizes loading state, error handling, and data availability. Avoids 3x `useEffect` duplication. Partial failure resilience via per-fetch `.catch()`. |
+| Debounced threshold over raw state | Instant UI feedback (badge) + deferred expensive computation (chart data). 120ms matches perceptual "instant" threshold. |
+| Scatter sampling over full render | Top 200 preserved (high-revenue SKUs), every nth from tail. < 200ms render vs 2-3s for full 2,232 points. |
 
 ---
 

@@ -1,14 +1,20 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 
-import type { ProductsData } from "@/lib/data"
+import { MONTHS, formatCurrency } from "@/lib/data"
 
-import { formatCurrency, getProductsData } from "@/lib/data"
-
+import { useData } from "@/contexts/data-context"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Skeleton } from "@/components/ui/skeleton"
-import { OverviewFilters } from "@/components/page1/overview-filters"
+import { ChannelProductFilters } from "@/components/page2/channel-product-filters"
 import { InterpretationGuide } from "@/components/page2/interpretation-guide"
 import { MonthlyTrendChart } from "@/components/page2/monthly-trend-chart"
 import { RevenueBarChart } from "@/components/page2/revenue-bar-chart"
@@ -16,58 +22,56 @@ import { SKUQuadrantChart } from "@/components/page2/scatter-chart"
 import { Top20Table } from "@/components/page2/top-20-table"
 
 export default function ProductsPage() {
-  const [data, setData] = useState<ProductsData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const { products: data, loading } = useData()
   const [month, setMonth] = useState("all")
   const [transactionType, setTransactionType] = useState("all")
   const [productType, setProductType] = useState("all")
 
-  useEffect(() => {
-    getProductsData()
-      .then(setData)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false))
-  }, [])
-
-  const filtered = useMemo(() => {
+  const channelFiltered = useMemo(() => {
     if (!data) return null
 
     let productTypeRevenue = [...data.product_type_revenue]
     let monthlyTrend = [...data.monthly_trend]
-    const skuScatter = [...data.sku_scatter]
     let top20 = [...data.top_20]
 
     if (transactionType !== "all") {
       const isOutpatient = transactionType === "outpatient"
       const txnFilter = isOutpatient ? "Outpatient" : "Inpatient"
-      const filterByTxn = <T extends { transaction_type: string }>(arr: T[]) =>
-        arr.filter((item) => item.transaction_type === txnFilter)
-      productTypeRevenue = filterByTxn(productTypeRevenue)
-      monthlyTrend = filterByTxn(monthlyTrend)
+      productTypeRevenue = productTypeRevenue.filter(
+        (item) => item.transaction_type === txnFilter
+      )
+      monthlyTrend = monthlyTrend.filter(
+        (item) => item.transaction_type === txnFilter
+      )
     }
 
     if (productType !== "all") {
       const filterType = productType === "generic" ? "Generic" : "Branded"
-      const f1 = productTypeRevenue.filter((p) => p.product_type === filterType)
-      const f2 = monthlyTrend.filter((m) => m.product_type === filterType)
-      const f3 = top20.filter((t) => t.product_type === filterType)
-      productTypeRevenue = f1
-      monthlyTrend = f2
-      top20 = f3
-    }
-
-    if (month !== "all") {
-      monthlyTrend = monthlyTrend.filter((m) => m.year_month === month)
+      productTypeRevenue = productTypeRevenue.filter(
+        (p) => p.product_type === filterType
+      )
+      monthlyTrend = monthlyTrend.filter((m) => m.product_type === filterType)
+      top20 = top20.filter((t) => t.product_type === filterType)
     }
 
     return {
       product_type_revenue: productTypeRevenue,
       monthly_trend: monthlyTrend,
-      sku_scatter: skuScatter,
       top_20: top20,
     }
-  }, [data, month, productType, transactionType])
+  }, [data, productType, transactionType])
+
+  const monthlyTrendFiltered = useMemo(() => {
+    if (!channelFiltered) return channelFiltered
+    if (month === "all") return channelFiltered
+
+    return {
+      ...channelFiltered,
+      monthly_trend: channelFiltered.monthly_trend.filter(
+        (m) => m.year_month === month
+      ),
+    }
+  }, [channelFiltered, month])
 
   if (loading) {
     return (
@@ -93,27 +97,23 @@ export default function ProductsPage() {
     )
   }
 
-  if (error) {
-    return (
-      <div className="container p-4">
-        <div className="flex h-[400px] items-center justify-center">
-          <p className="text-destructive">Failed to load data: {error}</p>
-        </div>
-      </div>
-    )
-  }
+  if (!data || !channelFiltered) return null
 
-  const displayData = filtered || data
-  if (!displayData) return null
-
-  const typeRevenue = displayData.product_type_revenue.reduce(
+  const typeRevenue = channelFiltered.product_type_revenue.reduce(
     (acc, cur) => ({ ...acc, [cur.product_type]: cur.revenue }),
     {} as Record<string, number>
   )
   const generic = typeRevenue.Generic || 0
   const branded = typeRevenue.Branded || 0
   const total = generic + branded
-  const skuCount = displayData.sku_scatter.length
+  const skuCount =
+    productType === "all"
+      ? data.sku_scatter.length
+      : data.sku_scatter.filter(
+          (s) =>
+            s.product_type ===
+            (productType === "generic" ? "Generic" : "Branded")
+        ).length
 
   return (
     <div className="container p-4 space-y-6">
@@ -126,11 +126,9 @@ export default function ProductsPage() {
         </p>
       </div>
 
-      <OverviewFilters
-        month={month}
+      <ChannelProductFilters
         transactionType={transactionType}
         productType={productType}
-        onMonthChange={setMonth}
         onTransactionTypeChange={setTransactionType}
         onProductTypeChange={setProductType}
       />
@@ -161,13 +159,38 @@ export default function ProductsPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <RevenueBarChart data={displayData.product_type_revenue} />
-        <MonthlyTrendChart data={displayData.monthly_trend} />
+        <RevenueBarChart data={channelFiltered.product_type_revenue} />
+        <Card>
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">
+                Monthly Trend by Product Type
+              </CardTitle>
+              <Select value={month} onValueChange={setMonth}>
+                <SelectTrigger className="w-[140px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {MONTHS.map((m) => (
+                    <SelectItem key={m.value} value={m.value}>
+                      {m.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[250px]">
+              <MonthlyTrendChart data={monthlyTrendFiltered!.monthly_trend} />
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <SKUQuadrantChart data={displayData.sku_scatter} />
+      <SKUQuadrantChart data={data.sku_scatter} />
 
-      <Top20Table data={displayData.top_20} />
+      <Top20Table data={channelFiltered.top_20} />
 
       <InterpretationGuide />
     </div>

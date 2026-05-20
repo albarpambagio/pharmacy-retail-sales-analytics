@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import {
   CartesianGrid,
   Legend,
@@ -15,8 +16,6 @@ import type { MonthlyTrend } from "@/lib/data"
 
 import { formatCurrency } from "@/lib/data"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
 interface MonthlyTrendChartProps {
   data: MonthlyTrend[]
 }
@@ -29,7 +28,9 @@ const MONTH_LABELS: Record<string, string> = {
   "2015-09": "Sep",
 }
 
-export function MonthlyTrendChart({ data }: MonthlyTrendChartProps) {
+export const MonthlyTrendChart = React.memo(function MonthlyTrendChart({
+  data,
+}: MonthlyTrendChartProps) {
   const months = [...new Set(data.map((d) => d.year_month))].sort()
 
   const chartData = months.map((month) => {
@@ -47,54 +48,40 @@ export function MonthlyTrendChart({ data }: MonthlyTrendChartProps) {
   })
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-base">
-          Monthly Trend by Product Type
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-[250px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-              <YAxis
-                tickFormatter={(value) => formatCurrency(value)}
-                tick={{ fontSize: 12 }}
-              />
-              <Tooltip
-                formatter={(value) => [
-                  formatCurrency(Number(value) || 0),
-                  "Revenue",
-                ]}
-                contentStyle={{
-                  borderRadius: "8px",
-                  border: "1px solid #e2e8f0",
-                }}
-              />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="Generic"
-                stroke="#3b82f6"
-                strokeWidth={2}
-                dot={{ r: 4 }}
-                connectNulls
-              />
-              <Line
-                type="monotone"
-                dataKey="Branded"
-                stroke="#f59e0b"
-                strokeWidth={2}
-                strokeDasharray="5 5"
-                dot={{ r: 4 }}
-                connectNulls
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </CardContent>
-    </Card>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={chartData}>
+        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+        <YAxis
+          tickFormatter={(value) => formatCurrency(value)}
+          tick={{ fontSize: 12 }}
+        />
+        <Tooltip
+          formatter={(value) => [formatCurrency(Number(value) || 0), "Revenue"]}
+          contentStyle={{
+            borderRadius: "8px",
+            border: "1px solid #e2e8f0",
+          }}
+        />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="Generic"
+          stroke="#3b82f6"
+          strokeWidth={2}
+          dot={{ r: 4 }}
+          connectNulls
+        />
+        <Line
+          type="monotone"
+          dataKey="Branded"
+          stroke="#f59e0b"
+          strokeWidth={2}
+          strokeDasharray="5 5"
+          dot={{ r: 4 }}
+          connectNulls
+        />
+      </LineChart>
+    </ResponsiveContainer>
   )
-}
+})

@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import {
   Bar,
   BarChart,
@@ -23,7 +24,9 @@ interface RevenueBarChartProps {
 
 const COLORS = ["#3b82f6", "#f59e0b"]
 
-export function RevenueBarChart({ data }: RevenueBarChartProps) {
+export const RevenueBarChart = React.memo(function RevenueBarChart({
+  data,
+}: RevenueBarChartProps) {
   const chartData = data.map((item) => ({
     name: item.product_type,
     revenue: item.revenue,
@@ -83,4 +86,4 @@ export function RevenueBarChart({ data }: RevenueBarChartProps) {
       </CardContent>
     </Card>
   )
-}
+})

@@ -1,11 +1,12 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 
-import type { MonthlyData, OverviewData } from "@/lib/data"
+import type { MonthlyData } from "@/lib/data"
 
-import { formatCurrency, formatNumber, getOverviewData } from "@/lib/data"
+import { formatCurrency, formatNumber } from "@/lib/data"
 
+import { useData } from "@/contexts/data-context"
 import { InterpretationGuide } from "@/components/page1/interpretation-guide"
 import { KPICard } from "@/components/page1/kpi-card"
 import { MonthlyRevenueChart } from "@/components/page1/monthly-revenue-chart"
@@ -14,19 +15,10 @@ import { RevenueMixChart } from "@/components/page1/revenue-mix-chart"
 import { SummaryTable } from "@/components/page1/summary-table"
 
 export default function OverviewPage() {
-  const [data, setData] = useState<OverviewData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const { overview: data, loading } = useData()
   const [month, setMonth] = useState("all")
   const [transactionType, setTransactionType] = useState("all")
   const [productType, setProductType] = useState("all")
-
-  useEffect(() => {
-    getOverviewData()
-      .then(setData)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false))
-  }, [])
 
   const filtered = useMemo(() => {
     if (!data)
@@ -118,16 +110,6 @@ export default function OverviewPage() {
         </div>
         <div className="h-[280px] animate-pulse rounded-lg bg-muted" />
         <div className="h-[240px] animate-pulse rounded-lg bg-muted" />
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="container p-4">
-        <div className="flex h-[400px] items-center justify-center">
-          <p className="text-destructive">Failed to load data: {error}</p>
-        </div>
       </div>
     )
   }

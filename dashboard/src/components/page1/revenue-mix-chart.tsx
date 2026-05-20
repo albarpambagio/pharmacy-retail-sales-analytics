@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import {
   Area,
   AreaChart,
@@ -34,7 +35,9 @@ const MONTH_LABELS: Record<string, string> = {
   "2015-12": "Dec",
 }
 
-export function RevenueMixChart({ data }: RevenueMixChartProps) {
+export const RevenueMixChart = React.memo(function RevenueMixChart({
+  data,
+}: RevenueMixChartProps) {
   const chartData = data.map((d) => {
     const total = (d.revenue_outpatient ?? 0) + (d.revenue_inpatient ?? 0)
     return {
@@ -105,4 +108,4 @@ export function RevenueMixChart({ data }: RevenueMixChartProps) {
       </CardContent>
     </Card>
   )
-}
+})

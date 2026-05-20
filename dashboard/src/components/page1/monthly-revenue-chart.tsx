@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import {
   CartesianGrid,
   Line,
@@ -35,7 +36,9 @@ const MONTH_LABELS: Record<string, string> = {
   "2015-12": "Dec",
 }
 
-export function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) {
+export const MonthlyRevenueChart = React.memo(function MonthlyRevenueChart({
+  data,
+}: MonthlyRevenueChartProps) {
   const chartData = data.map((d) => ({
     month: MONTH_LABELS[d.year_month] || d.year_month,
     revenue: d.revenue,
@@ -90,4 +93,4 @@ export function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) {
       </CardContent>
     </Card>
   )
-}
+})

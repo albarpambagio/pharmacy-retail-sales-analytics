@@ -112,3 +112,37 @@ export async function getProductsData(): Promise<ProductsData> {
   dataCache.products = data
   return data
 }
+
+export interface MarginSKU {
+  kd_obat: string
+  product_type: string
+  total_qty: number
+  revenue: number
+  avg_margin_pct: number
+  avg_hna: number
+  avg_hj: number
+}
+
+export interface HistogramBin {
+  bin_start: number
+  bin_end: number
+  count: number
+}
+
+export interface MarginRiskData {
+  skus: MarginSKU[]
+  histogram: HistogramBin[]
+  min_margin: number
+  max_margin: number
+}
+
+export async function getMarginRiskData(): Promise<MarginRiskData> {
+  if (dataCache.marginRisk) {
+    return dataCache.marginRisk as MarginRiskData
+  }
+  const res = await fetch("/data/margin_risk.json")
+  if (!res.ok) throw new Error("Failed to fetch margin risk data")
+  const data = await res.json()
+  dataCache.marginRisk = data
+  return data
+}

@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import {
   CartesianGrid,
   ReferenceLine,
@@ -21,12 +22,30 @@ interface ScatterChartProps {
   data: SKUScatter[]
 }
 
-export function SKUQuadrantChart({ data }: ScatterChartProps) {
+export const SKUQuadrantChart = React.memo(function SKUQuadrantChart({
+  data,
+}: ScatterChartProps) {
   const validData = data.filter(
     (d) => d.avg_margin_pct !== null && d.revenue > 0
   )
 
-  const chartData = validData.map((d) => ({
+  const MAX_POINTS = 500
+  const needsSampling = validData.length > MAX_POINTS
+
+  const displayData = needsSampling
+    ? (() => {
+        const sortedByRevenue = [...validData].sort(
+          (a, b) => b.revenue - a.revenue
+        )
+        const topSKUs = sortedByRevenue.slice(0, 200)
+        const remaining = sortedByRevenue.slice(200)
+        const step = Math.ceil(remaining.length / (MAX_POINTS - 200))
+        const sampled = remaining.filter((_, i) => i % step === 0)
+        return [...topSKUs, ...sampled]
+      })()
+    : validData
+
+  const chartData = displayData.map((d) => ({
     x: d.revenue,
     y: d.avg_margin_pct,
     z: d.total_qty,
@@ -104,8 +123,15 @@ export function SKUQuadrantChart({ data }: ScatterChartProps) {
             <div className="w-3 h-3 bg-slate-400 rounded-sm" />
             <span>Median lines</span>
           </div>
+          {needsSampling && (
+            <div className="flex items-center gap-1">
+              <span>
+                Showing {chartData.length} of {validData.length} SKUs (sampled)
+              </span>
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
   )
-}
+})
