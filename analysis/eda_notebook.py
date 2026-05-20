@@ -554,6 +554,203 @@ def _(fmt_idr, fmt_pct, mo, px, query_df):
 
 
 @app.cell
+def _(fmt_idr, fmt_pct, go, mo, pd):
+    _df = pd.read_csv("analysis/summaries/revenue_decomposition.csv")
+
+    _fig = go.Figure()
+    for _txn_type in _df["transaction_type"].unique():
+        _df_type = _df[_df["transaction_type"] == _txn_type]
+        _fig.add_trace(go.Bar(
+            x=_df_type["year_month"], y=_df_type["transaction_count"],
+            name=f"{_txn_type} - Txn Count", yaxis="y2",
+            marker_color="rgba(100, 140, 255, 0.5)" if _txn_type == "Inpatient" else "rgba(255, 140, 100, 0.5)",
+            hovertemplate="%{y:,.0f} txns<extra></extra>",
+        ))
+        _fig.add_trace(go.Scatter(
+            x=_df_type["year_month"], y=_df_type["avg_revenue_per_txn"],
+            name=f"{_txn_type} - Avg Rev/Txn", yaxis="y",
+            mode="lines+markers",
+            line=dict(width=2, dash="solid" if _txn_type == "Inpatient" else "dash"),
+            marker=dict(size=8),
+            hovertemplate="Rp%{y:,.0f}<extra></extra>",
+        ))
+
+    _fig.update_layout(
+        title="Revenue Decomposition: Transaction Count × Avg Revenue per Transaction",
+        xaxis=dict(title="Month"),
+        yaxis=dict(title="Avg Revenue per Transaction (IDR)", side="left"),
+        yaxis2=dict(title="Transaction Count", overlaying="y", side="right"),
+        hovermode="x unified", template="plotly_white",
+        legend=dict(orientation="h", y=1.15),
+    )
+
+    _aug = _df[_df["year_month"] == "2015-08"]
+    _sep = _df[_df["year_month"] == "2015-09"]
+    _aug_txn, _sep_txn = _aug["transaction_count"].sum(), _sep["transaction_count"].sum()
+    _aug_rev, _sep_rev = _aug["total_revenue"].sum(), _sep["total_revenue"].sum()
+
+    mo.md(f"""
+    ## 09 -- Revenue Decomposition
+
+    Revenue = Transaction Count × Avg Revenue per Transaction.
+    This decomposition reveals whether growth comes from more customers or higher basket size.
+
+    - **Aug→Sep growth:** {_aug_txn:,} → {_sep_txn:,} transactions (+{(_sep_txn/_aug_txn-1)*100:.0f}%)
+    - **Revenue increase:** {fmt_idr(_aug_rev)} → {fmt_idr(_sep_rev)} (+{(_sep_rev/_aug_rev-1)*100:.0f}%)
+    - **Avg rev/txn:** Rp{_df['avg_revenue_per_txn'].mean():,.0f} (relatively stable)
+
+    > **Insight:** The 3x revenue increase from Aug→Sep was driven primarily by **3x more
+    > transactions**, not higher-value transactions. Focus on volume growth rather than
+    > basket size optimization -- the pharmacy serves high-volume, lower-value prescription
+    > patterns consistent with a hospital formulary.
+
+    {mo.as_html(_fig)}
+    """)
+    return
+
+
+@app.cell
+def _(fmt_idr, fmt_pct, go, mo, pd, px):
+    _df = pd.read_csv("analysis/summaries/risk_skus_crosscheck.csv")
+    _df_unique = _df.drop_duplicates(subset=["kd_obat"]).copy()
+
+    _fig = px.scatter(
+        _df_unique, x="avg_margin_pct", y="total_revenue",
+        color="product_type",
+        color_discrete_map={"Generic": "#f59e0b", "Branded": "#6366f1"},
+        hover_name="kd_obat",
+        hover_data={"txn_count": True, "transaction_type": True},
+        title="Margin Risk Cross-Check: SKU Margin % vs Revenue",
+        labels={"avg_margin_pct": "Margin %", "total_revenue": "Revenue (IDR)"},
+        template="plotly_white",
+    )
+    _fig.add_vline(x=10, line_dash="dash", line_color="red", opacity=0.7,
+                   annotation_text="10% threshold", annotation_position="top left")
+    _fig.add_vline(x=0, line_dash="dot", line_color="#444", opacity=0.7,
+                   annotation_text="0% (loss)", annotation_position="top right")
+    _fig.add_hrect(y0=0, y1=50000000, line_width=0, fillcolor="red", opacity=0.05,
+                   annotation_text="High-revenue risk zone", annotation_position="top left")
+
+    _risk = _df_unique[_df_unique["avg_margin_pct"] < 10].sort_values("total_revenue", ascending=False).head(5)
+    _neg = _df_unique[_df_unique["avg_margin_pct"] < 0].sort_values("total_revenue", ascending=False)
+
+    mo.md(f"""
+    ## 10 -- Margin Risk Cross-Check
+
+    Each dot = one SKU. X = margin %, Y = total revenue. Red zone = margin risk (<10%).
+    Critical insight: **All top 10 risk SKUs by revenue are generic medicines.**
+
+    - **SKUs below 10% margin:** {len(_df_unique[_df_unique['avg_margin_pct'] < 10])} ({(len(_df_unique[_df_unique['avg_margin_pct'] < 10])/len(_df_unique)*100):.1f}%)
+    - **Negative margin SKUs:** {len(_neg)} (selling at loss)
+    - **Highest-revenue risk SKU:** {_risk.iloc[0]['kd_obat']} ({fmt_idr(_risk.iloc[0]['total_revenue'])}, margin {fmt_pct(_risk.iloc[0]['avg_margin_pct'])})
+
+    **Top 5 at-risk by revenue:**
+    {chr(10).join([f"- **{r['kd_obat']}** ({r['product_type']}): {fmt_idr(r['total_revenue'])}, margin {fmt_pct(r['avg_margin_pct'])}" for _, r in _risk.iterrows()])}
+
+    > **Insight:** The pharmacy is accepting very thin margins on high-volume generic SKUs.
+    > AI-0634 carries only 4.7% margin on Rp37.5M revenue -- a clear candidate for price
+    > adjustment or supplier renegotiation. Negative-margin SKUs should be reviewed immediately.
+
+    {mo.as_html(_fig)}
+    """)
+    return
+
+
+@app.cell
+def _(fmt_idr, fmt_pct, go, mo, pd):
+    _df = pd.read_csv("analysis/summaries/product_transaction_crosstab.csv")
+
+    _pivot_rev = _df.pivot(index="product_type", columns="transaction_type", values="revenue")
+    _pivot_margin = _df.pivot(index="product_type", columns="transaction_type", values="avg_margin_pct")
+
+    _fig = go.Figure()
+    _fig.add_trace(go.Heatmap(
+        z=_pivot_rev.values, x=_pivot_rev.columns, y=_pivot_rev.index,
+        colorscale="Blues", text=_pivot_rev.values,
+        texttemplate="%{text:.2s}", showscale=False,
+        hovertemplate="Revenue: %{text:,.0f}<extra></extra>",
+    ))
+    for _i, _row in enumerate(_pivot_margin.index):
+        for _j, _col in enumerate(_pivot_margin.columns):
+            _val = _pivot_margin.iloc[_i, _j]
+            _fig.add_annotation(
+                x=_col, y=_row,
+                text=f"{_val:.1f}%",
+                showarrow=False,
+                font=dict(size=12, color="white" if _val < 30 else "black"),
+            )
+
+    _fig.update_layout(
+        title="Product × Transaction Crosstab: Revenue (size) + Margin % (label)",
+        xaxis=dict(title="Transaction Type"),
+        yaxis=dict(title="Product Type"),
+        template="plotly_white",
+    )
+
+    _top_cell = _df.loc[_df["revenue"].idxmax()]
+
+    mo.md(f"""
+    ## 11 -- Product × Transaction Crosstab
+
+    A 2×3 matrix showing revenue by product type (Generic/Branded) and transaction channel
+    (Inpatient/Outpatient/Unknown). This reveals the true growth engine.
+
+    - **Top cell:** {_top_cell['product_type']} + {_top_cell['transaction_type']} = {fmt_idr(_top_cell['revenue'])} ({_top_cell['revenue']/19100000000*100:.1f}% of total)
+    - **All cells margin range:** {fmt_pct(_df['avg_margin_pct'].min())} to {fmt_pct(_df['avg_margin_pct'].max())}
+
+    > **Insight:** **Generic Outpatient is the powerhouse** -- generating Rp9.58B (50.3% of
+    > total revenue), more than double the next highest cell. This channel should be the
+    > primary focus for procurement negotiations and inventory planning. Margins are
+    > consistent across all cells (34.5-35.4%), so growth strategy should prioritize
+    > volume expansion in Generic Outpatient.
+
+    {mo.as_html(_fig)}
+    """)
+    return
+
+
+@app.cell
+def _(fmt_idr, fmt_pct, mo, pd, px):
+    _df = pd.read_csv("analysis/summaries/monthly_stability.csv")
+
+    _df_agg = _df.groupby(["year_month", "product_type"])["revenue_pct_of_month"].sum().reset_index()
+
+    _fig = px.line(
+        _df_agg, x="year_month", y="revenue_pct_of_month",
+        color="product_type",
+        color_discrete_map={"Generic": "#f59e0b", "Branded": "#6366f1"},
+        markers=True, title="Monthly Product Mix Stability (% of Monthly Revenue)",
+        labels={"year_month": "Month", "revenue_pct_of_month": "% of Monthly Revenue", "product_type": "Product Type"},
+        template="plotly_white",
+    )
+    _fig.update_traces(line=dict(width=3), marker=dict(size=10))
+    _fig.update_layout(yaxis=dict(ticksuffix="%"))
+
+    _apr = _df[_df["year_month"] == "2015-04"].groupby("product_type")["revenue_pct_of_month"].sum()
+    _sep = _df[_df["year_month"] == "2015-09"].groupby("product_type")["revenue_pct_of_month"].sum()
+
+    mo.md(f"""
+    ## 12 -- Monthly Product Mix Stability
+
+    Tracks whether the generic vs branded revenue mix stays consistent or shifts over time.
+    Only 4 months have sufficient data for comparison (Apr, Aug, Sep).
+
+    - **April branded %:** {fmt_pct(_apr.get('Branded', 0))} | **September branded %:** {fmt_pct(_sep.get('Branded', 0))}
+    - **Mix shift:** Branded grew from ~30% to ~83% of monthly revenue in 5 months
+
+    > **Insight:** The branded mix increased dramatically from 30.4% (Apr) to 83.2% (Sep).
+    > This 53-percentage-point swing in 5 months is unusual and warrants investigation:
+    > - New branded contract mid-year?
+    > - Seasonal demand (cold/flu season branded preference)?
+    > - Generic supply shortage?
+    > Understanding the driver will inform 2016 procurement strategy.
+
+    {mo.as_html(_fig)}
+    """)
+    return
+
+
+@app.cell
 def _(mo):
     mo.md("""
     ---
@@ -569,11 +766,15 @@ def _(mo):
     | 5 | **Premium tier = 40.8% revenue, 12.5% SKUs** -- high-value, low-volume | Directional | Pharmacy Director, Procurement |
     | 6 | **92.4% rows lack valid dates** -- systemic data quality issue, limits trend analysis | Contextual | All |
     | 7 | **RL-/UM- prefixes = Rp1.4B (7.5%) revenue** -- undocumented transaction types | Investigation | Finance |
+    | 8 | **Generic Outpatient = 50% of total revenue** -- Rp9.6B, 2x any other cell in product×channel matrix | Actionable | Pharmacy Director, Procurement |
+    | 9 | **Top risk SKU AI-0634: 4.7% margin on Rp37.5M** -- all top 10 risk SKUs are generic (loss leaders) | Actionable | Finance, Procurement |
+    | 10 | **Branded mix grew from 30% to 83%** (Apr→Sep) -- investigate driver (contract/seasonal/supply) | Directional | Pharmacy Director, Procurement |
+    | 11 | **Revenue growth driven by volume** -- 3x more transactions, not higher basket size | Directional | Pharmacy Director, Finance |
 
     ---
 
-    **Next step:** Phase 3 -- Deep Dive (North Star Method) will answer the three
-    exec-driven questions with quantified, stakeholder-ready findings.
+    **Phase 3b Complete:** 4 new deep-dive charts added + 4 findings appended to table.
+    **Next step:** Phase 4 -- Dashboard (Shadboard + Next.js)
     """)
     return
 
