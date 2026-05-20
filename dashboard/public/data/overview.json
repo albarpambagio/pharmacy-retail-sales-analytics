@@ -1,7 +1,7 @@
 {
-  "total_revenue": 1447721724.652084,
+  "total_revenue": 1447721724.6520848,
   "total_transactions": 38953,
-  "avg_margin_pct": 33.89110542749988,
+  "avg_margin_pct": 33.89110542749987,
   "monthly": [
     {
       "year_month": "2015-01",
@@ -9,15 +9,19 @@
       "transactions": 6,
       "avg_margin_pct": 22.347408712558188,
       "revenue_outpatient": null,
-      "revenue_inpatient": 194780.0
+      "revenue_inpatient": 194780.0,
+      "revenue_generic": 191414.0,
+      "revenue_branded": 3366.0
     },
     {
       "year_month": "2015-03",
       "revenue": 37795601.8064,
       "transactions": 393,
-      "avg_margin_pct": 36.6391999795538,
+      "avg_margin_pct": 36.639199979553815,
       "revenue_outpatient": 32414657.8064,
-      "revenue_inpatient": 5380944.0
+      "revenue_inpatient": 5380944.0,
+      "revenue_generic": 16325166.48,
+      "revenue_branded": 21470435.3264
     },
     {
       "year_month": "2015-04",
@@ -25,23 +29,29 @@
       "transactions": 641,
       "avg_margin_pct": 37.27285295279304,
       "revenue_outpatient": 14620431.349999998,
-      "revenue_inpatient": 4008223.695
+      "revenue_inpatient": 4008223.695,
+      "revenue_generic": 12960332.649999999,
+      "revenue_branded": 5668322.395
     },
     {
       "year_month": "2015-08",
-      "revenue": 445268789.43274844,
+      "revenue": 445268789.4327489,
       "transactions": 18589,
-      "avg_margin_pct": 39.75337455851596,
-      "revenue_outpatient": 208549099.2900359,
-      "revenue_inpatient": 236719690.14271247
+      "avg_margin_pct": 39.75337455851595,
+      "revenue_outpatient": 208549099.290036,
+      "revenue_inpatient": 236719690.14271238,
+      "revenue_generic": 216371971.54999995,
+      "revenue_branded": 228896817.88274837
     },
     {
       "year_month": "2015-09",
-      "revenue": 945833898.3679357,
+      "revenue": 945833898.3679359,
       "transactions": 19324,
-      "avg_margin_pct": 33.44269093407839,
-      "revenue_outpatient": 513130760.32596815,
-      "revenue_inpatient": 432703138.0419673
+      "avg_margin_pct": 33.442690934078364,
+      "revenue_outpatient": 513130760.32596827,
+      "revenue_inpatient": 432703138.0419673,
+      "revenue_generic": 159106925.66149998,
+      "revenue_branded": 786726972.7064357
     }
   ]
 }

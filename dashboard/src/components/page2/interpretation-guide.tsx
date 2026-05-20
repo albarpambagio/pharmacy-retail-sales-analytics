@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ChevronDown, ChevronUp, Info } from "lucide-react"
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const items = [
   {
@@ -36,23 +36,13 @@ const items = [
 export function InterpretationGuide() {
   const [open, setOpen] = useState(false)
 
-  const toggle = () => setOpen((prev) => !prev)
-
   return (
     <Card>
-      <div
-        className="cursor-pointer select-none p-6 pb-0"
-        onClick={toggle}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault()
-            toggle()
-          }
-        }}
+      <CardHeader
+        className="cursor-pointer select-none"
+        onClick={() => setOpen(!open)}
       >
-        <div className="flex items-center gap-2 text-base font-medium">
+        <CardTitle className="flex items-center gap-2 text-base font-medium">
           <Info className="h-4 w-4 text-muted-foreground" />
           About This Dashboard
           <span className="ml-auto text-muted-foreground">
@@ -62,8 +52,8 @@ export function InterpretationGuide() {
               <ChevronDown className="h-4 w-4" />
             )}
           </span>
-        </div>
-      </div>
+        </CardTitle>
+      </CardHeader>
       {open && (
         <CardContent className="space-y-4 pt-0">
           {items.map((item) => (

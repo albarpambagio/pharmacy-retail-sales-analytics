@@ -2,77 +2,173 @@
   "product_type_revenue": [
     {
       "product_type": "Branded",
-      "revenue": 5657958315.294267,
-      "transactions": 136141,
-      "avg_margin_pct": 34.990494766081966
+      "transaction_type": "Inpatient",
+      "revenue": 1857480578.5285,
+      "transactions": 40079,
+      "avg_margin_pct": 34.652026261816545
+    },
+    {
+      "product_type": "Branded",
+      "transaction_type": "Outpatient",
+      "revenue": 2569085696.8907423,
+      "transactions": 76433,
+      "avg_margin_pct": 35.443464674341435
+    },
+    {
+      "product_type": "Branded",
+      "transaction_type": "Unknown",
+      "revenue": 1231392039.8749998,
+      "transactions": 19629,
+      "avg_margin_pct": 33.91845639553715
     },
     {
       "product_type": "Generic",
-      "revenue": 13395974161.27556,
-      "transactions": 378195,
-      "avg_margin_pct": 34.58027871184643
+      "transaction_type": "Inpatient",
+      "revenue": 3619933441.0449977,
+      "transactions": 118102,
+      "avg_margin_pct": 34.53498453448901
+    },
+    {
+      "product_type": "Generic",
+      "transaction_type": "Outpatient",
+      "revenue": 9580107880.985518,
+      "transactions": 250416,
+      "avg_margin_pct": 34.69381555149513
+    },
+    {
+      "product_type": "Generic",
+      "transaction_type": "Unknown",
+      "revenue": 195932839.245,
+      "transactions": 9677,
+      "avg_margin_pct": 32.195082822892175
     }
   ],
   "monthly_trend": [
     {
       "year_month": "2015-01",
       "product_type": "Branded",
+      "transaction_type": "Inpatient",
       "revenue": 3366.0,
       "transactions": 1
     },
     {
       "year_month": "2015-01",
       "product_type": "Generic",
+      "transaction_type": "Inpatient",
       "revenue": 191414.0,
       "transactions": 5
     },
     {
       "year_month": "2015-03",
       "product_type": "Branded",
-      "revenue": 21470435.3264,
-      "transactions": 144
+      "transaction_type": "Inpatient",
+      "revenue": 2125570.0,
+      "transactions": 50
+    },
+    {
+      "year_month": "2015-03",
+      "product_type": "Branded",
+      "transaction_type": "Outpatient",
+      "revenue": 19344865.326400004,
+      "transactions": 94
     },
     {
       "year_month": "2015-03",
       "product_type": "Generic",
-      "revenue": 16325166.48,
-      "transactions": 249
+      "transaction_type": "Inpatient",
+      "revenue": 3255374.0,
+      "transactions": 95
+    },
+    {
+      "year_month": "2015-03",
+      "product_type": "Generic",
+      "transaction_type": "Outpatient",
+      "revenue": 13069792.48,
+      "transactions": 154
     },
     {
       "year_month": "2015-04",
       "product_type": "Branded",
-      "revenue": 5668322.395,
-      "transactions": 125
+      "transaction_type": "Inpatient",
+      "revenue": 3432528.245,
+      "transactions": 25
+    },
+    {
+      "year_month": "2015-04",
+      "product_type": "Branded",
+      "transaction_type": "Outpatient",
+      "revenue": 2235794.1500000004,
+      "transactions": 100
     },
     {
       "year_month": "2015-04",
       "product_type": "Generic",
-      "revenue": 12960332.649999999,
-      "transactions": 516
+      "transaction_type": "Inpatient",
+      "revenue": 575695.45,
+      "transactions": 16
+    },
+    {
+      "year_month": "2015-04",
+      "product_type": "Generic",
+      "transaction_type": "Outpatient",
+      "revenue": 12384637.2,
+      "transactions": 500
     },
     {
       "year_month": "2015-08",
       "product_type": "Branded",
-      "revenue": 228896817.88274887,
-      "transactions": 4337
+      "transaction_type": "Inpatient",
+      "revenue": 137015130.09271252,
+      "transactions": 2053
+    },
+    {
+      "year_month": "2015-08",
+      "product_type": "Branded",
+      "transaction_type": "Outpatient",
+      "revenue": 91881687.79003595,
+      "transactions": 2284
     },
     {
       "year_month": "2015-08",
       "product_type": "Generic",
-      "revenue": 216371971.55000016,
-      "transactions": 14252
+      "transaction_type": "Inpatient",
+      "revenue": 99704560.05000001,
+      "transactions": 4409
+    },
+    {
+      "year_month": "2015-08",
+      "product_type": "Generic",
+      "transaction_type": "Outpatient",
+      "revenue": 116667411.50000004,
+      "transactions": 9843
     },
     {
       "year_month": "2015-09",
       "product_type": "Branded",
-      "revenue": 786726972.7064354,
-      "transactions": 11316
+      "transaction_type": "Inpatient",
+      "revenue": 338432586.55196726,
+      "transactions": 4726
+    },
+    {
+      "year_month": "2015-09",
+      "product_type": "Branded",
+      "transaction_type": "Outpatient",
+      "revenue": 448294386.15446806,
+      "transactions": 6590
     },
     {
       "year_month": "2015-09",
       "product_type": "Generic",
-      "revenue": 159106925.66150007,
-      "transactions": 8008
+      "transaction_type": "Inpatient",
+      "revenue": 94270551.49000001,
+      "transactions": 3384
+    },
+    {
+      "year_month": "2015-09",
+      "product_type": "Generic",
+      "transaction_type": "Outpatient",
+      "revenue": 64836374.17149998,
+      "transactions": 4624
     }
   ],
   "sku_scatter": [
@@ -87,8 +183,8 @@
     {
       "kd_obat": "AI-0165",
       "product_type": "Generic",
-      "revenue": 700495766.09,
-      "avg_margin_pct": 36.51064056028355,
+      "revenue": 700495766.0899999,
+      "avg_margin_pct": 36.51064056028354,
       "total_qty": 142.0,
       "transaction_count": 141
     },
@@ -96,15 +192,15 @@
       "kd_obat": "AI-0190",
       "product_type": "Generic",
       "revenue": 652803605.8199999,
-      "avg_margin_pct": 36.09109995098402,
+      "avg_margin_pct": 36.0910999509843,
       "total_qty": 160495.0,
       "transaction_count": 8509
     },
     {
       "kd_obat": "AI-0958",
       "product_type": "Generic",
-      "revenue": 384275316.6499999,
-      "avg_margin_pct": 35.062207273439725,
+      "revenue": 384275316.65,
+      "avg_margin_pct": 35.0622072734399,
       "total_qty": 138159.0,
       "transaction_count": 3935
     },
@@ -144,7 +240,7 @@
       "kd_obat": "AI-1187",
       "product_type": "Generic",
       "revenue": 241605973.365,
-      "avg_margin_pct": 36.51793602591076,
+      "avg_margin_pct": 36.517936025910764,
       "total_qty": 36007.0,
       "transaction_count": 12176
     },
@@ -152,14 +248,14 @@
       "kd_obat": "AI-0634",
       "product_type": "Generic",
       "revenue": 224012307.75,
-      "avg_margin_pct": 30.758830963426313,
+      "avg_margin_pct": 30.758830963426316,
       "total_qty": 214.0,
       "transaction_count": 173
     },
     {
       "kd_obat": "AI-1311",
       "product_type": "Generic",
-      "revenue": 202945003.75999993,
+      "revenue": 202945003.76,
       "avg_margin_pct": 32.688535928707616,
       "total_qty": 923.0,
       "transaction_count": 873
@@ -168,7 +264,7 @@
       "kd_obat": "AI-0189",
       "product_type": "Generic",
       "revenue": 174184929.075,
-      "avg_margin_pct": 35.66210542878616,
+      "avg_margin_pct": 35.66210542878612,
       "total_qty": 25276.0,
       "transaction_count": 1310
     },
@@ -184,7 +280,7 @@
       "kd_obat": "R-2754",
       "product_type": "Branded",
       "revenue": 167466393.82143986,
-      "avg_margin_pct": 77.1789978184206,
+      "avg_margin_pct": 77.17899781842057,
       "total_qty": 24994.0,
       "transaction_count": 1041
     },
@@ -200,7 +296,7 @@
       "kd_obat": "AI-0110",
       "product_type": "Generic",
       "revenue": 162270373.45999998,
-      "avg_margin_pct": 32.42320376778529,
+      "avg_margin_pct": 32.42320376778528,
       "total_qty": 14163.0,
       "transaction_count": 4610
     },
@@ -216,15 +312,15 @@
       "kd_obat": "AI-0484",
       "product_type": "Generic",
       "revenue": 155261542.75,
-      "avg_margin_pct": 35.74993996330221,
+      "avg_margin_pct": 35.749939963302225,
       "total_qty": 3760.0,
       "transaction_count": 132
     },
     {
       "kd_obat": "AI-0406",
       "product_type": "Generic",
-      "revenue": 148531250.415,
-      "avg_margin_pct": 35.14630321478058,
+      "revenue": 148531250.41500002,
+      "avg_margin_pct": 35.146303214780545,
       "total_qty": 133644.0,
       "transaction_count": 3030
     },
@@ -232,7 +328,7 @@
       "kd_obat": "AI-1324",
       "product_type": "Generic",
       "revenue": 137048471.845,
-      "avg_margin_pct": 34.724640579071874,
+      "avg_margin_pct": 34.72464057907187,
       "total_qty": 96.0,
       "transaction_count": 69
     },
@@ -247,7 +343,7 @@
     {
       "kd_obat": "AI-0539",
       "product_type": "Generic",
-      "revenue": 128932734.9,
+      "revenue": 128932734.89999999,
       "avg_margin_pct": 34.09467908289927,
       "total_qty": 1915.0,
       "transaction_count": 727
@@ -263,16 +359,16 @@
     {
       "kd_obat": "AI-0973",
       "product_type": "Generic",
-      "revenue": 123188263.73999995,
-      "avg_margin_pct": 29.247869561018337,
+      "revenue": 123188263.73999998,
+      "avg_margin_pct": 29.247869561018327,
       "total_qty": 37953.0,
       "transaction_count": 914
     },
     {
       "kd_obat": "AI-1570",
       "product_type": "Generic",
-      "revenue": 120453232.95,
-      "avg_margin_pct": 35.22740312208649,
+      "revenue": 120453232.94999999,
+      "avg_margin_pct": 35.22740312208647,
       "total_qty": 25406.0,
       "transaction_count": 944
     },
@@ -287,16 +383,16 @@
     {
       "kd_obat": "AI-0120",
       "product_type": "Generic",
-      "revenue": 114411616.605,
-      "avg_margin_pct": 25.65819931233687,
+      "revenue": 114411616.60500002,
+      "avg_margin_pct": 25.65819931233689,
       "total_qty": 27952.0,
       "transaction_count": 1384
     },
     {
       "kd_obat": "AI-1338",
       "product_type": "Generic",
-      "revenue": 112678818.91500002,
-      "avg_margin_pct": 33.16312916620843,
+      "revenue": 112678818.91500005,
+      "avg_margin_pct": 33.16312916620842,
       "total_qty": 552.0,
       "transaction_count": 550
     },
@@ -304,15 +400,15 @@
       "kd_obat": "AI-0609",
       "product_type": "Generic",
       "revenue": 111481480.25,
-      "avg_margin_pct": 36.136167253739465,
+      "avg_margin_pct": 36.13616725373944,
       "total_qty": 10976.0,
       "transaction_count": 479
     },
     {
       "kd_obat": "AI-0789",
       "product_type": "Generic",
-      "revenue": 111324594.07000001,
-      "avg_margin_pct": 32.8216044545838,
+      "revenue": 111324594.07,
+      "avg_margin_pct": 32.82160445458379,
       "total_qty": 815.0,
       "transaction_count": 558
     },
@@ -320,7 +416,7 @@
       "kd_obat": "R-0753",
       "product_type": "Branded",
       "revenue": 106721922.4,
-      "avg_margin_pct": 28.378036530604522,
+      "avg_margin_pct": 28.378036530604515,
       "total_qty": 165.0,
       "transaction_count": 41
     },
@@ -328,7 +424,7 @@
       "kd_obat": "AI-0772",
       "product_type": "Generic",
       "revenue": 106518455.755,
-      "avg_margin_pct": 32.7284275049056,
+      "avg_margin_pct": 32.728427504905596,
       "total_qty": 830.0,
       "transaction_count": 548
     },
@@ -336,7 +432,7 @@
       "kd_obat": "R-0701",
       "product_type": "Branded",
       "revenue": 101227576.0,
-      "avg_margin_pct": 23.809906160750717,
+      "avg_margin_pct": 23.809906160750714,
       "total_qty": 44.0,
       "transaction_count": 43
     },
@@ -344,15 +440,15 @@
       "kd_obat": "R-3070",
       "product_type": "Branded",
       "revenue": 99720860.38,
-      "avg_margin_pct": 28.80971605415373,
+      "avg_margin_pct": 28.809716054153732,
       "total_qty": 14224.0,
       "transaction_count": 174
     },
     {
       "kd_obat": "AI-0903",
       "product_type": "Generic",
-      "revenue": 99391601.57999997,
-      "avg_margin_pct": 34.617643742925566,
+      "revenue": 99391601.57999992,
+      "avg_margin_pct": 34.6176437429256,
       "total_qty": 3538.0,
       "transaction_count": 3412
     },
@@ -360,7 +456,7 @@
       "kd_obat": "R-0828",
       "product_type": "Branded",
       "revenue": 96954965.055,
-      "avg_margin_pct": 36.213408156816946,
+      "avg_margin_pct": 36.21340815681697,
       "total_qty": 1861.0,
       "transaction_count": 1017
     },
@@ -368,7 +464,7 @@
       "kd_obat": "R-0617",
       "product_type": "Branded",
       "revenue": 96645095.25,
-      "avg_margin_pct": 34.84820697585652,
+      "avg_margin_pct": 34.84820697585654,
       "total_qty": 7189.0,
       "transaction_count": 3015
     },
@@ -376,14 +472,14 @@
       "kd_obat": "R-1228",
       "product_type": "Branded",
       "revenue": 94275259.03999999,
-      "avg_margin_pct": 29.397757082977375,
+      "avg_margin_pct": 29.397757082977392,
       "total_qty": 11517.0,
       "transaction_count": 150
     },
     {
       "kd_obat": "AI-1000",
       "product_type": "Generic",
-      "revenue": 92973877.8,
+      "revenue": 92973877.79999998,
       "avg_margin_pct": 29.64047089855435,
       "total_qty": 7488.0,
       "transaction_count": 107
@@ -392,7 +488,7 @@
       "kd_obat": "R-0752",
       "product_type": "Branded",
       "revenue": 90318878.64,
-      "avg_margin_pct": 27.66199896321656,
+      "avg_margin_pct": 27.661998963216558,
       "total_qty": 278.0,
       "transaction_count": 71
     },
@@ -400,7 +496,7 @@
       "kd_obat": "AI-0274",
       "product_type": "Generic",
       "revenue": 89961982.89,
-      "avg_margin_pct": 33.656309078075274,
+      "avg_margin_pct": 33.65630907807524,
       "total_qty": 18483.0,
       "transaction_count": 1352
     },
@@ -408,7 +504,7 @@
       "kd_obat": "AI-0771",
       "product_type": "Generic",
       "revenue": 87978821.60499997,
-      "avg_margin_pct": 34.41886206829303,
+      "avg_margin_pct": 34.4188620682931,
       "total_qty": 132449.0,
       "transaction_count": 19521
     },
@@ -424,7 +520,7 @@
       "kd_obat": "R-3244",
       "product_type": "Branded",
       "revenue": 83922832.5,
-      "avg_margin_pct": 36.89717080964377,
+      "avg_margin_pct": 36.89717080964378,
       "total_qty": 195.0,
       "transaction_count": 73
     },
@@ -432,7 +528,7 @@
       "kd_obat": "R-2258",
       "product_type": "Branded",
       "revenue": 81435185.97,
-      "avg_margin_pct": 36.532566015506944,
+      "avg_margin_pct": 36.53256601550695,
       "total_qty": 345.0,
       "transaction_count": 199
     },
@@ -448,7 +544,7 @@
       "kd_obat": "R-0652",
       "product_type": "Branded",
       "revenue": 71573680.04091999,
-      "avg_margin_pct": 57.996606768570345,
+      "avg_margin_pct": 57.99660676857039,
       "total_qty": 7958.0,
       "transaction_count": 331
     },
@@ -464,14 +560,14 @@
       "kd_obat": "AI-0222",
       "product_type": "Generic",
       "revenue": 68669379.9,
-      "avg_margin_pct": 35.45105625857052,
+      "avg_margin_pct": 35.45105625857047,
       "total_qty": 14555.0,
       "transaction_count": 4946
     },
     {
       "kd_obat": "AI-0999",
       "product_type": "Generic",
-      "revenue": 68361014.67999999,
+      "revenue": 68361014.68,
       "avg_margin_pct": 23.67472163749555,
       "total_qty": 6725.0,
       "transaction_count": 215
@@ -480,7 +576,7 @@
       "kd_obat": "R-1027",
       "product_type": "Branded",
       "revenue": 68003192.25,
-      "avg_margin_pct": 31.946482773951285,
+      "avg_margin_pct": 31.94648277395128,
       "total_qty": 250.0,
       "transaction_count": 103
     },
@@ -496,7 +592,7 @@
       "kd_obat": "R-0358",
       "product_type": "Branded",
       "revenue": 64453604.625,
-      "avg_margin_pct": 35.37103274314821,
+      "avg_margin_pct": 35.37103274314822,
       "total_qty": 286.0,
       "transaction_count": 155
     },
@@ -520,7 +616,7 @@
       "kd_obat": "AI-1193",
       "product_type": "Generic",
       "revenue": 62945143.0,
-      "avg_margin_pct": 33.876438863398526,
+      "avg_margin_pct": 33.87643886339854,
       "total_qty": 509.0,
       "transaction_count": 123
     },
@@ -536,15 +632,15 @@
       "kd_obat": "AI-0336",
       "product_type": "Generic",
       "revenue": 61263995.35,
-      "avg_margin_pct": 33.16187468467665,
+      "avg_margin_pct": 33.16187468467663,
       "total_qty": 13450.0,
       "transaction_count": 566
     },
     {
       "kd_obat": "AI-1174",
       "product_type": "Generic",
-      "revenue": 60858911.375,
-      "avg_margin_pct": 35.94349880775594,
+      "revenue": 60858911.374999985,
+      "avg_margin_pct": 35.9434988077561,
       "total_qty": 41768.5,
       "transaction_count": 2927
     },
@@ -560,7 +656,7 @@
       "kd_obat": "AI-1289",
       "product_type": "Generic",
       "revenue": 59329963.875,
-      "avg_margin_pct": 31.232316126285717,
+      "avg_margin_pct": 31.23231612628572,
       "total_qty": 4683.0,
       "transaction_count": 63
     },
@@ -584,7 +680,7 @@
       "kd_obat": "AI-1572",
       "product_type": "Generic",
       "revenue": 56692682.16,
-      "avg_margin_pct": 34.831441174266324,
+      "avg_margin_pct": 34.83144117426633,
       "total_qty": 7362.0,
       "transaction_count": 282
     },
@@ -607,15 +703,15 @@
     {
       "kd_obat": "AI-0292",
       "product_type": "Generic",
-      "revenue": 54058757.52000001,
-      "avg_margin_pct": 33.22904548273131,
+      "revenue": 54058757.519999996,
+      "avg_margin_pct": 33.22904548273135,
       "total_qty": 29390.0,
       "transaction_count": 1522
     },
     {
       "kd_obat": "AI-0337",
       "product_type": "Generic",
-      "revenue": 53446200.690000005,
+      "revenue": 53446200.69,
       "avg_margin_pct": 31.867996440921505,
       "total_qty": 8093.0,
       "transaction_count": 345
@@ -624,7 +720,7 @@
       "kd_obat": "R-2125",
       "product_type": "Branded",
       "revenue": 51823719.44,
-      "avg_margin_pct": 25.320235167120767,
+      "avg_margin_pct": 25.320235167120764,
       "total_qty": 5695.5,
       "transaction_count": 454
     },
@@ -632,7 +728,7 @@
       "kd_obat": "AI-0577",
       "product_type": "Generic",
       "revenue": 51708224.07,
-      "avg_margin_pct": 36.15639477816012,
+      "avg_margin_pct": 36.1563947781601,
       "total_qty": 45776.0,
       "transaction_count": 1044
     },
@@ -648,7 +744,7 @@
       "kd_obat": "R-1672",
       "product_type": "Branded",
       "revenue": 50110218.12,
-      "avg_margin_pct": 36.50407187402936,
+      "avg_margin_pct": 36.50407187402935,
       "total_qty": 7555.0,
       "transaction_count": 286
     },
@@ -663,8 +759,8 @@
     {
       "kd_obat": "AI-0943",
       "product_type": "Generic",
-      "revenue": 47809643.89500001,
-      "avg_margin_pct": 34.080582890190655,
+      "revenue": 47809643.89500004,
+      "avg_margin_pct": 34.08058289019012,
       "total_qty": 168024.0,
       "transaction_count": 19722
     },
@@ -680,15 +776,15 @@
       "kd_obat": "AI-0957",
       "product_type": "Generic",
       "revenue": 47033356.51,
-      "avg_margin_pct": 32.272291630946675,
+      "avg_margin_pct": 32.27229163094667,
       "total_qty": 26927.0,
       "transaction_count": 649
     },
     {
       "kd_obat": "AI-1403",
       "product_type": "Generic",
-      "revenue": 46072777.64000001,
-      "avg_margin_pct": 33.8708559886872,
+      "revenue": 46072777.64,
+      "avg_margin_pct": 33.87085598868718,
       "total_qty": 9744.0,
       "transaction_count": 939
     },
@@ -720,7 +816,7 @@
       "kd_obat": "AI-0143",
       "product_type": "Generic",
       "revenue": 45038135.74,
-      "avg_margin_pct": 35.59325076827959,
+      "avg_margin_pct": 35.593250768279596,
       "total_qty": 483.0,
       "transaction_count": 448
     },
@@ -728,7 +824,7 @@
       "kd_obat": "R-0154",
       "product_type": "Branded",
       "revenue": 44329396.75,
-      "avg_margin_pct": 37.12003633397868,
+      "avg_margin_pct": 37.12003633397869,
       "total_qty": 280.0,
       "transaction_count": 275
     },
@@ -752,15 +848,15 @@
       "kd_obat": "AI-0392",
       "product_type": "Generic",
       "revenue": 43701057.8,
-      "avg_margin_pct": 36.24254203582237,
+      "avg_margin_pct": 36.242542035822396,
       "total_qty": 7430.0,
       "transaction_count": 262
     },
     {
       "kd_obat": "AI-0027",
       "product_type": "Generic",
-      "revenue": 43090557.879999995,
-      "avg_margin_pct": 35.053282129234674,
+      "revenue": 43090557.88,
+      "avg_margin_pct": 35.05328212923468,
       "total_qty": 10080.0,
       "transaction_count": 423
     },
@@ -768,7 +864,7 @@
       "kd_obat": "R-0455",
       "product_type": "Branded",
       "revenue": 42819602.065,
-      "avg_margin_pct": 35.92587800339707,
+      "avg_margin_pct": 35.92587800339711,
       "total_qty": 4033.0,
       "transaction_count": 622
     },
@@ -776,7 +872,7 @@
       "kd_obat": "AI-0611",
       "product_type": "Generic",
       "revenue": 41761104.75,
-      "avg_margin_pct": 34.81708169521949,
+      "avg_margin_pct": 34.817081695219485,
       "total_qty": 242.0,
       "transaction_count": 123
     },
@@ -791,8 +887,8 @@
     {
       "kd_obat": "AI-0067",
       "product_type": "Generic",
-      "revenue": 40733446.54000001,
-      "avg_margin_pct": 37.947123297641724,
+      "revenue": 40733446.54,
+      "avg_margin_pct": 37.947123297641404,
       "total_qty": 66768.0,
       "transaction_count": 3783
     },
@@ -823,7 +919,7 @@
     {
       "kd_obat": "R-1116",
       "product_type": "Branded",
-      "revenue": 39784444.68,
+      "revenue": 39784444.68000001,
       "avg_margin_pct": 35.39372198181267,
       "total_qty": 2019.0,
       "transaction_count": 772
@@ -832,14 +928,14 @@
       "kd_obat": "AI-1028",
       "product_type": "Generic",
       "revenue": 39367012.447,
-      "avg_margin_pct": 35.92478206686256,
+      "avg_margin_pct": 35.92478206686225,
       "total_qty": 57740.0,
       "transaction_count": 5081
     },
     {
       "kd_obat": "AI-0981",
       "product_type": "Generic",
-      "revenue": 38700600.6,
+      "revenue": 38700600.599999994,
       "avg_margin_pct": 31.936249170964707,
       "total_qty": 275.0,
       "transaction_count": 95
@@ -848,7 +944,7 @@
       "kd_obat": "AI-0216",
       "product_type": "Generic",
       "revenue": 38562747.83999999,
-      "avg_margin_pct": 34.5105705500946,
+      "avg_margin_pct": 34.51057055009449,
       "total_qty": 35051.5,
       "transaction_count": 3331
     },
@@ -872,7 +968,7 @@
       "kd_obat": "AI-0156",
       "product_type": "Generic",
       "revenue": 36895739.97,
-      "avg_margin_pct": 42.70883031263044,
+      "avg_margin_pct": 42.70883031263032,
       "total_qty": 43989.0,
       "transaction_count": 2960
     },
@@ -903,8 +999,8 @@
     {
       "kd_obat": "AI-0226",
       "product_type": "Generic",
-      "revenue": 35131568.93,
-      "avg_margin_pct": 32.82386882434806,
+      "revenue": 35131568.93000001,
+      "avg_margin_pct": 32.823868824348054,
       "total_qty": 1695.0,
       "transaction_count": 1605
     },
@@ -920,7 +1016,7 @@
       "kd_obat": "AI-0096",
       "product_type": "Generic",
       "revenue": 34928467.78,
-      "avg_margin_pct": 32.71087133800934,
+      "avg_margin_pct": 32.71087133800935,
       "total_qty": 289.0,
       "transaction_count": 177
     },
@@ -944,7 +1040,7 @@
       "kd_obat": "AI-1397",
       "product_type": "Generic",
       "revenue": 33537447.875,
-      "avg_margin_pct": 32.61928222594724,
+      "avg_margin_pct": 32.61928222594725,
       "total_qty": 7015.0,
       "transaction_count": 379
     },
@@ -975,7 +1071,7 @@
     {
       "kd_obat": "AI-1554",
       "product_type": "Generic",
-      "revenue": 32123960.200000003,
+      "revenue": 32123960.2,
       "avg_margin_pct": 24.835702873855166,
       "total_qty": 316.0,
       "transaction_count": 106
@@ -984,23 +1080,23 @@
       "kd_obat": "AI-0052",
       "product_type": "Generic",
       "revenue": 32082267.72,
-      "avg_margin_pct": 26.383009435871813,
+      "avg_margin_pct": 26.383009435871806,
       "total_qty": 24920.0,
       "transaction_count": 1210
     },
     {
       "kd_obat": "AI-0822",
       "product_type": "Generic",
-      "revenue": 31679118.05,
-      "avg_margin_pct": 33.51945060156781,
+      "revenue": 31679118.049999997,
+      "avg_margin_pct": 33.519450601567804,
       "total_qty": 10155.0,
       "transaction_count": 161
     },
     {
       "kd_obat": "AI-0500",
       "product_type": "Generic",
-      "revenue": 30620959.339999996,
-      "avg_margin_pct": 29.982159167450913,
+      "revenue": 30620959.340000004,
+      "avg_margin_pct": 29.98215916745091,
       "total_qty": 31304.0,
       "transaction_count": 1770
     },
@@ -1032,7 +1128,7 @@
       "kd_obat": "R-1390",
       "product_type": "Branded",
       "revenue": 30303561.75,
-      "avg_margin_pct": 35.68433418286076,
+      "avg_margin_pct": 35.68433418286078,
       "total_qty": 5185.0,
       "transaction_count": 292
     },
@@ -1040,22 +1136,22 @@
       "kd_obat": "R-4929",
       "product_type": "Branded",
       "revenue": 29725690.875,
-      "avg_margin_pct": 15.44152308458472,
+      "avg_margin_pct": 15.441523084584714,
       "total_qty": 4911.0,
       "transaction_count": 499
     },
     {
       "kd_obat": "AI-0654",
       "product_type": "Generic",
-      "revenue": 29463158.275000002,
-      "avg_margin_pct": 35.547850943356345,
+      "revenue": 29463158.275,
+      "avg_margin_pct": 35.54785094335634,
       "total_qty": 5551.0,
       "transaction_count": 288
     },
     {
       "kd_obat": "AI-0518",
       "product_type": "Generic",
-      "revenue": 29409972.5,
+      "revenue": 29409972.499999996,
       "avg_margin_pct": 35.35580750238448,
       "total_qty": 531.0,
       "transaction_count": 517
@@ -1064,7 +1160,7 @@
       "kd_obat": "R-2694",
       "product_type": "Branded",
       "revenue": 29239113.45,
-      "avg_margin_pct": 36.30424167597077,
+      "avg_margin_pct": 36.30424167597078,
       "total_qty": 2502.0,
       "transaction_count": 649
     },
@@ -1080,7 +1176,7 @@
       "kd_obat": "AI-0220",
       "product_type": "Generic",
       "revenue": 28775012.65,
-      "avg_margin_pct": 36.005182017123865,
+      "avg_margin_pct": 36.00518201712379,
       "total_qty": 6333.0,
       "transaction_count": 1821
     },
@@ -1088,7 +1184,7 @@
       "kd_obat": "AI-1241",
       "product_type": "Generic",
       "revenue": 28688658.25,
-      "avg_margin_pct": 35.16715270623648,
+      "avg_margin_pct": 35.16715270623649,
       "total_qty": 1941.0,
       "transaction_count": 85
     },
@@ -1096,7 +1192,7 @@
       "kd_obat": "R-0742",
       "product_type": "Branded",
       "revenue": 28652909.0,
-      "avg_margin_pct": 36.13149033141508,
+      "avg_margin_pct": 36.13149033141509,
       "total_qty": 21169.0,
       "transaction_count": 1863
     },
@@ -1104,7 +1200,7 @@
       "kd_obat": "AI-0068",
       "product_type": "Generic",
       "revenue": 28641451.339999996,
-      "avg_margin_pct": 41.228087424679714,
+      "avg_margin_pct": 41.22808742467969,
       "total_qty": 80945.0,
       "transaction_count": 5470
     },
@@ -1112,7 +1208,7 @@
       "kd_obat": "R-1091",
       "product_type": "Branded",
       "revenue": 28240650.355,
-      "avg_margin_pct": 35.35319367536996,
+      "avg_margin_pct": 35.35319367536995,
       "total_qty": 4236.0,
       "transaction_count": 801
     },
@@ -1120,7 +1216,7 @@
       "kd_obat": "AI-1260",
       "product_type": "Generic",
       "revenue": 27934793.715,
-      "avg_margin_pct": 34.95210372340706,
+      "avg_margin_pct": 34.95210372340703,
       "total_qty": 4564.0,
       "transaction_count": 1700
     },
@@ -1128,7 +1224,7 @@
       "kd_obat": "AI-1046",
       "product_type": "Generic",
       "revenue": 27537149.625,
-      "avg_margin_pct": 37.451050488538236,
+      "avg_margin_pct": 37.451050488538264,
       "total_qty": 492.0,
       "transaction_count": 180
     },
@@ -1144,7 +1240,7 @@
       "kd_obat": "R-4111",
       "product_type": "Branded",
       "revenue": 27480192.4,
-      "avg_margin_pct": 36.97989446907011,
+      "avg_margin_pct": 36.97989446907012,
       "total_qty": 705.0,
       "transaction_count": 698
     },
@@ -1152,7 +1248,7 @@
       "kd_obat": "AI-0293",
       "product_type": "Generic",
       "revenue": 27243183.79,
-      "avg_margin_pct": 35.92974592149074,
+      "avg_margin_pct": 35.929745921490756,
       "total_qty": 14415.0,
       "transaction_count": 531
     },
@@ -1160,7 +1256,7 @@
       "kd_obat": "AI-1529",
       "product_type": "Generic",
       "revenue": 27200122.45,
-      "avg_margin_pct": 25.597186658321004,
+      "avg_margin_pct": 25.597186658321007,
       "total_qty": 4788.0,
       "transaction_count": 232
     },
@@ -1168,15 +1264,15 @@
       "kd_obat": "AI-0860",
       "product_type": "Generic",
       "revenue": 26968142.8275,
-      "avg_margin_pct": 38.200011083692914,
+      "avg_margin_pct": 38.200011083692985,
       "total_qty": 89486.75,
       "transaction_count": 8977
     },
     {
       "kd_obat": "AI-1532",
       "product_type": "Generic",
-      "revenue": 26670721.374999996,
-      "avg_margin_pct": 28.68835984452775,
+      "revenue": 26670721.375,
+      "avg_margin_pct": 28.688359844527756,
       "total_qty": 3081.0,
       "transaction_count": 352
     },
@@ -1184,7 +1280,7 @@
       "kd_obat": "AI-0763",
       "product_type": "Generic",
       "revenue": 26353121.895000003,
-      "avg_margin_pct": 34.37986550226648,
+      "avg_margin_pct": 34.37986550226652,
       "total_qty": 11051.0,
       "transaction_count": 1209
     },
@@ -1207,7 +1303,7 @@
     {
       "kd_obat": "AI-0371",
       "product_type": "Generic",
-      "revenue": 25989468.699999996,
+      "revenue": 25989468.7,
       "avg_margin_pct": 35.235919114960694,
       "total_qty": 2664.0,
       "transaction_count": 939
@@ -1216,15 +1312,15 @@
       "kd_obat": "AI-0405",
       "product_type": "Generic",
       "revenue": 25938881.080000002,
-      "avg_margin_pct": 34.35144152035653,
+      "avg_margin_pct": 34.35144152035654,
       "total_qty": 14337.0,
       "transaction_count": 385
     },
     {
       "kd_obat": "AI-0135",
       "product_type": "Generic",
-      "revenue": 25583439.174999997,
-      "avg_margin_pct": 35.00354413309678,
+      "revenue": 25583439.175,
+      "avg_margin_pct": 35.00354413309679,
       "total_qty": 2964.0,
       "transaction_count": 980
     },
@@ -1232,7 +1328,7 @@
       "kd_obat": "AI-0851",
       "product_type": "Generic",
       "revenue": 25329475.375,
-      "avg_margin_pct": 25.128519080111193,
+      "avg_margin_pct": 25.12851908011119,
       "total_qty": 3105.0,
       "transaction_count": 30
     },
@@ -1256,7 +1352,7 @@
       "kd_obat": "AI-0853",
       "product_type": "Generic",
       "revenue": 24733406.2,
-      "avg_margin_pct": 35.68826753342715,
+      "avg_margin_pct": 35.68826753342711,
       "total_qty": 173170.0,
       "transaction_count": 3588
     },
@@ -1264,7 +1360,7 @@
       "kd_obat": "AI-0744",
       "product_type": "Generic",
       "revenue": 24639939.585,
-      "avg_margin_pct": 34.99514606615447,
+      "avg_margin_pct": 34.9951460661544,
       "total_qty": 3931.0,
       "transaction_count": 1560
     },
@@ -1272,7 +1368,7 @@
       "kd_obat": "R-1092",
       "product_type": "Branded",
       "revenue": 24532684.240000002,
-      "avg_margin_pct": 33.99535523158028,
+      "avg_margin_pct": 33.99535523158026,
       "total_qty": 377.0,
       "transaction_count": 377
     },
@@ -1288,38 +1384,38 @@
       "kd_obat": "AI-0565",
       "product_type": "Generic",
       "revenue": 23498515.325,
-      "avg_margin_pct": 37.119739345889116,
+      "avg_margin_pct": 37.11973934588917,
       "total_qty": 40460.0,
       "transaction_count": 2183
     },
     {
       "kd_obat": "AI-1416",
       "product_type": "Generic",
-      "revenue": 23312189.835,
-      "avg_margin_pct": 34.6370418501607,
+      "revenue": 23312189.834999997,
+      "avg_margin_pct": 34.637041850160706,
       "total_qty": 2595.0,
       "transaction_count": 1452
     },
     {
       "kd_obat": "AI-1409",
       "product_type": "Generic",
-      "revenue": 23134584.64649999,
-      "avg_margin_pct": 34.444984067882345,
+      "revenue": 23134584.6465,
+      "avg_margin_pct": 34.44498406788237,
       "total_qty": 54048.3,
       "transaction_count": 5270
     },
     {
       "kd_obat": "AI-0254",
       "product_type": "Generic",
-      "revenue": 23066997.839999996,
-      "avg_margin_pct": 34.24737895716447,
+      "revenue": 23066997.84,
+      "avg_margin_pct": 34.24737895716446,
       "total_qty": 1249.0,
       "transaction_count": 410
     },
     {
       "kd_obat": "AI-0051",
       "product_type": "Generic",
-      "revenue": 23037996.435,
+      "revenue": 23037996.435000002,
       "avg_margin_pct": 32.02197920132404,
       "total_qty": 10262.0,
       "transaction_count": 592
@@ -1328,7 +1424,7 @@
       "kd_obat": "R-1561",
       "product_type": "Branded",
       "revenue": 22999428.0,
-      "avg_margin_pct": 32.30100545820487,
+      "avg_margin_pct": 32.30100545820486,
       "total_qty": 1797.0,
       "transaction_count": 721
     },
@@ -1336,7 +1432,7 @@
       "kd_obat": "AI-0652",
       "product_type": "Generic",
       "revenue": 22927729.799999997,
-      "avg_margin_pct": 32.790960568272,
+      "avg_margin_pct": 32.79096056827203,
       "total_qty": 3699.0,
       "transaction_count": 144
     },
@@ -1352,7 +1448,7 @@
       "kd_obat": "AI-1387",
       "product_type": "Generic",
       "revenue": 22730609.03000001,
-      "avg_margin_pct": 34.100662835053235,
+      "avg_margin_pct": 34.100662835053335,
       "total_qty": 931.0,
       "transaction_count": 925
     },
@@ -1368,7 +1464,7 @@
       "kd_obat": "R-0168",
       "product_type": "Branded",
       "revenue": 22598567.84,
-      "avg_margin_pct": 34.92960422654828,
+      "avg_margin_pct": 34.929604226548285,
       "total_qty": 1475.0,
       "transaction_count": 180
     },
@@ -1384,7 +1480,7 @@
       "kd_obat": "AI-0777",
       "product_type": "Generic",
       "revenue": 22393069.81,
-      "avg_margin_pct": 34.92463408416457,
+      "avg_margin_pct": 34.92463408416456,
       "total_qty": 1431.0,
       "transaction_count": 1403
     },
@@ -1392,7 +1488,7 @@
       "kd_obat": "AI-0214",
       "product_type": "Generic",
       "revenue": 22377509.455,
-      "avg_margin_pct": 32.813866124385,
+      "avg_margin_pct": 32.81386612438501,
       "total_qty": 33741.2,
       "transaction_count": 4914
     },
@@ -1400,7 +1496,7 @@
       "kd_obat": "AI-1036",
       "product_type": "Generic",
       "revenue": 22363659.300000016,
-      "avg_margin_pct": 32.47519284263235,
+      "avg_margin_pct": 32.4751928426324,
       "total_qty": 10466.0,
       "transaction_count": 4041
     },
@@ -1416,7 +1512,7 @@
       "kd_obat": "AI-1461",
       "product_type": "Generic",
       "revenue": 22239705.0,
-      "avg_margin_pct": 25.96917035927521,
+      "avg_margin_pct": 25.969170359275207,
       "total_qty": 783.0,
       "transaction_count": 32
     },
@@ -1432,7 +1528,7 @@
       "kd_obat": "AI-0347",
       "product_type": "Generic",
       "revenue": 22063918.9,
-      "avg_margin_pct": 36.84976453734664,
+      "avg_margin_pct": 36.84976453734662,
       "total_qty": 3144.0,
       "transaction_count": 156
     },
@@ -1440,7 +1536,7 @@
       "kd_obat": "AI-0651",
       "product_type": "Generic",
       "revenue": 22029197.14,
-      "avg_margin_pct": 32.05556452556523,
+      "avg_margin_pct": 32.05556452556522,
       "total_qty": 6311.0,
       "transaction_count": 334
     },
@@ -1448,15 +1544,15 @@
       "kd_obat": "AI-1402",
       "product_type": "Generic",
       "revenue": 21892656.5,
-      "avg_margin_pct": 34.817173737367455,
+      "avg_margin_pct": 34.81717373736747,
       "total_qty": 2994.0,
       "transaction_count": 289
     },
     {
       "kd_obat": "AI-0836",
       "product_type": "Generic",
-      "revenue": 21627962.545,
-      "avg_margin_pct": 38.6669201992555,
+      "revenue": 21627962.544999998,
+      "avg_margin_pct": 38.666920199255244,
       "total_qty": 45289.0,
       "transaction_count": 5492
     },
@@ -1464,7 +1560,7 @@
       "kd_obat": "AI-1281",
       "product_type": "Generic",
       "revenue": 21396104.75,
-      "avg_margin_pct": 34.34678264819692,
+      "avg_margin_pct": 34.346782648196914,
       "total_qty": 1208.0,
       "transaction_count": 44
     },
@@ -1480,7 +1576,7 @@
       "kd_obat": "AI-1240",
       "product_type": "Generic",
       "revenue": 21265963.375,
-      "avg_margin_pct": 34.702381539968314,
+      "avg_margin_pct": 34.70238153996832,
       "total_qty": 2234.0,
       "transaction_count": 98
     },
@@ -1488,7 +1584,7 @@
       "kd_obat": "AI-0075",
       "product_type": "Generic",
       "revenue": 21232714.354999997,
-      "avg_margin_pct": 36.58047553343121,
+      "avg_margin_pct": 36.58047553343118,
       "total_qty": 58060.75,
       "transaction_count": 4993
     },
@@ -1512,15 +1608,15 @@
       "kd_obat": "R-0340",
       "product_type": "Branded",
       "revenue": 20847702.439999998,
-      "avg_margin_pct": 33.22430486108793,
+      "avg_margin_pct": 33.22430486108794,
       "total_qty": 1775.4,
       "transaction_count": 212
     },
     {
       "kd_obat": "AI-1018",
       "product_type": "Generic",
-      "revenue": 20784339.104999997,
-      "avg_margin_pct": 34.73654253827574,
+      "revenue": 20784339.105000004,
+      "avg_margin_pct": 34.736542538275664,
       "total_qty": 4921.0,
       "transaction_count": 2188
     },
@@ -1599,7 +1695,7 @@
     {
       "kd_obat": "AI-0978",
       "product_type": "Generic",
-      "revenue": 19133493.980000004,
+      "revenue": 19133493.98,
       "avg_margin_pct": 36.05581759388945,
       "total_qty": 2531.0,
       "transaction_count": 743
@@ -1608,7 +1704,7 @@
       "kd_obat": "AI-0097",
       "product_type": "Generic",
       "revenue": 19093258.165,
-      "avg_margin_pct": 34.549855108048256,
+      "avg_margin_pct": 34.54985510804809,
       "total_qty": 100113.0,
       "transaction_count": 4614
     },
@@ -1623,8 +1719,8 @@
     {
       "kd_obat": "R-1115",
       "product_type": "Branded",
-      "revenue": 18790363.975,
-      "avg_margin_pct": 35.517440075401105,
+      "revenue": 18790363.974999998,
+      "avg_margin_pct": 35.5174400754011,
       "total_qty": 852.0,
       "transaction_count": 172
     },
@@ -1632,7 +1728,7 @@
       "kd_obat": "R-4492",
       "product_type": "Branded",
       "revenue": 18588954.025,
-      "avg_margin_pct": 34.71961641717217,
+      "avg_margin_pct": 34.71961641717218,
       "total_qty": 3375.0,
       "transaction_count": 562
     },
@@ -1655,8 +1751,8 @@
     {
       "kd_obat": "AI-1439",
       "product_type": "Generic",
-      "revenue": 18457694.091999967,
-      "avg_margin_pct": 34.089462448354844,
+      "revenue": 18457694.09199996,
+      "avg_margin_pct": 34.089462448354794,
       "total_qty": 1265.0,
       "transaction_count": 953
     },
@@ -1664,7 +1760,7 @@
       "kd_obat": "R-0251",
       "product_type": "Branded",
       "revenue": 18394824.75,
-      "avg_margin_pct": 36.33092476532061,
+      "avg_margin_pct": 36.3309247653206,
       "total_qty": 506.0,
       "transaction_count": 71
     },
@@ -1672,7 +1768,7 @@
       "kd_obat": "R-5164",
       "product_type": "Branded",
       "revenue": 18360920.0,
-      "avg_margin_pct": 34.2193769674364,
+      "avg_margin_pct": 34.21937696743639,
       "total_qty": 2364.0,
       "transaction_count": 91
     },
@@ -1688,7 +1784,7 @@
       "kd_obat": "AI-0537",
       "product_type": "Generic",
       "revenue": 18307929.23,
-      "avg_margin_pct": 35.331107759734124,
+      "avg_margin_pct": 35.33110775973412,
       "total_qty": 5567.0,
       "transaction_count": 574
     },
@@ -1696,7 +1792,7 @@
       "kd_obat": "R-0231",
       "product_type": "Branded",
       "revenue": 18003342.055,
-      "avg_margin_pct": 35.6900960148319,
+      "avg_margin_pct": 35.69009601483192,
       "total_qty": 371.0,
       "transaction_count": 79
     },
@@ -1736,7 +1832,7 @@
       "kd_obat": "R-3942",
       "product_type": "Branded",
       "revenue": 17814417.6,
-      "avg_margin_pct": 36.95668723099332,
+      "avg_margin_pct": 36.95668723099326,
       "total_qty": 558.0,
       "transaction_count": 495
     },
@@ -1744,7 +1840,7 @@
       "kd_obat": "R-1432",
       "product_type": "Branded",
       "revenue": 17799516.0,
-      "avg_margin_pct": 34.83318756073859,
+      "avg_margin_pct": 34.83318756073858,
       "total_qty": 1855.0,
       "transaction_count": 490
     },
@@ -1768,7 +1864,7 @@
       "kd_obat": "AI-1134",
       "product_type": "Generic",
       "revenue": 17445733.0,
-      "avg_margin_pct": 27.72425761037274,
+      "avg_margin_pct": 27.724257610372742,
       "total_qty": 176.0,
       "transaction_count": 66
     },
@@ -1776,7 +1872,7 @@
       "kd_obat": "AI-1410",
       "product_type": "Generic",
       "revenue": 17380566.375,
-      "avg_margin_pct": 34.37080492558782,
+      "avg_margin_pct": 34.370804925587834,
       "total_qty": 12895.0,
       "transaction_count": 718
     },
@@ -1824,7 +1920,7 @@
       "kd_obat": "R-0481",
       "product_type": "Branded",
       "revenue": 16913525.67,
-      "avg_margin_pct": 36.04097825339715,
+      "avg_margin_pct": 36.04097825339717,
       "total_qty": 15271.0,
       "transaction_count": 2567
     },
@@ -1840,7 +1936,7 @@
       "kd_obat": "R-1431",
       "product_type": "Branded",
       "revenue": 16712597.035,
-      "avg_margin_pct": 35.024346270187046,
+      "avg_margin_pct": 35.024346270186946,
       "total_qty": 21510.0,
       "transaction_count": 1641
     },
@@ -1855,8 +1951,8 @@
     {
       "kd_obat": "AI-1284",
       "product_type": "Generic",
-      "revenue": 16458179.494999997,
-      "avg_margin_pct": 35.52495183373408,
+      "revenue": 16458179.495000001,
+      "avg_margin_pct": 35.524951833734164,
       "total_qty": 43121.0,
       "transaction_count": 2638
     },
@@ -1871,8 +1967,8 @@
     {
       "kd_obat": "AI-0255",
       "product_type": "Generic",
-      "revenue": 15925578.850000005,
-      "avg_margin_pct": 34.158796624606495,
+      "revenue": 15925578.850000001,
+      "avg_margin_pct": 34.1587966246065,
       "total_qty": 46793.0,
       "transaction_count": 6338
     },
@@ -1888,7 +1984,7 @@
       "kd_obat": "AI-0197",
       "product_type": "Generic",
       "revenue": 15735919.5,
-      "avg_margin_pct": 29.405046771886173,
+      "avg_margin_pct": 29.40504677188618,
       "total_qty": 20.0,
       "transaction_count": 20
     },
@@ -1919,8 +2015,8 @@
     {
       "kd_obat": "AI-1035",
       "product_type": "Generic",
-      "revenue": 15536959.619999992,
-      "avg_margin_pct": 15.504106317281058,
+      "revenue": 15536959.620000001,
+      "avg_margin_pct": 15.504106317281055,
       "total_qty": 2393.0,
       "transaction_count": 818
     },
@@ -1944,23 +2040,23 @@
       "kd_obat": "AI-1017",
       "product_type": "Generic",
       "revenue": 14970637.83,
-      "avg_margin_pct": 34.96574858632725,
+      "avg_margin_pct": 34.96574858632724,
       "total_qty": 13591.0,
       "transaction_count": 1707
     },
     {
       "kd_obat": "AI-1524",
       "product_type": "Generic",
-      "revenue": 14902936.760000002,
-      "avg_margin_pct": 34.62857894450981,
+      "revenue": 14902936.76,
+      "avg_margin_pct": 34.62857894450975,
       "total_qty": 41453.0,
       "transaction_count": 2067
     },
     {
       "kd_obat": "AI-0533",
       "product_type": "Generic",
-      "revenue": 14727728.950000001,
-      "avg_margin_pct": 33.72203602021444,
+      "revenue": 14727728.95,
+      "avg_margin_pct": 33.72203602021443,
       "total_qty": 1471.0,
       "transaction_count": 1411
     },
@@ -1975,8 +2071,8 @@
     {
       "kd_obat": "R-1416",
       "product_type": "Branded",
-      "revenue": 14557775.600000001,
-      "avg_margin_pct": 33.26614854443802,
+      "revenue": 14557775.6,
+      "avg_margin_pct": 33.26614854443801,
       "total_qty": 147.0,
       "transaction_count": 56
     },
@@ -1984,7 +2080,7 @@
       "kd_obat": "AI-0858",
       "product_type": "Generic",
       "revenue": 14429788.02,
-      "avg_margin_pct": 34.369267219495704,
+      "avg_margin_pct": 34.36926721949571,
       "total_qty": 454.0,
       "transaction_count": 131
     },
@@ -1992,7 +2088,7 @@
       "kd_obat": "R-2511",
       "product_type": "Branded",
       "revenue": 14395123.835,
-      "avg_margin_pct": 34.74031944556543,
+      "avg_margin_pct": 34.74031944556542,
       "total_qty": 205.0,
       "transaction_count": 202
     },
@@ -2000,7 +2096,7 @@
       "kd_obat": "AI-0353",
       "product_type": "Generic",
       "revenue": 14225230.57,
-      "avg_margin_pct": 32.536564407022944,
+      "avg_margin_pct": 32.53656440702294,
       "total_qty": 2137.0,
       "transaction_count": 1970
     },
@@ -2008,15 +2104,15 @@
       "kd_obat": "R-2782",
       "product_type": "Branded",
       "revenue": 14127088.92,
-      "avg_margin_pct": 35.53148844975471,
+      "avg_margin_pct": 35.531488449754704,
       "total_qty": 102.0,
       "transaction_count": 100
     },
     {
       "kd_obat": "AI-0672",
       "product_type": "Generic",
-      "revenue": 13839070.365000013,
-      "avg_margin_pct": 30.099129225002052,
+      "revenue": 13839070.365000017,
+      "avg_margin_pct": 30.09912922500207,
       "total_qty": 782.0,
       "transaction_count": 751
     },
@@ -2032,7 +2128,7 @@
       "kd_obat": "AI-1297",
       "product_type": "Generic",
       "revenue": 13697898.425,
-      "avg_margin_pct": 36.28635544422336,
+      "avg_margin_pct": 36.286355444223354,
       "total_qty": 220.0,
       "transaction_count": 83
     },
@@ -2056,7 +2152,7 @@
       "kd_obat": "AI-1394",
       "product_type": "Generic",
       "revenue": 13329985.65,
-      "avg_margin_pct": 33.93350109303356,
+      "avg_margin_pct": 33.93350109303357,
       "total_qty": 3724.0,
       "transaction_count": 447
     },
@@ -2095,7 +2191,7 @@
     {
       "kd_obat": "AI-0711",
       "product_type": "Generic",
-      "revenue": 13013362.9,
+      "revenue": 13013362.899999999,
       "avg_margin_pct": 34.86054361577541,
       "total_qty": 1054.0,
       "transaction_count": 420
@@ -2135,8 +2231,8 @@
     {
       "kd_obat": "AI-1157",
       "product_type": "Generic",
-      "revenue": 12606430.565000001,
-      "avg_margin_pct": 35.3716439145201,
+      "revenue": 12606430.565,
+      "avg_margin_pct": 35.37164391451997,
       "total_qty": 6907.0,
       "transaction_count": 3320
     },
@@ -2152,7 +2248,7 @@
       "kd_obat": "R-2079",
       "product_type": "Branded",
       "revenue": 12356058.300000004,
-      "avg_margin_pct": 33.65162986315153,
+      "avg_margin_pct": 33.65162986315151,
       "total_qty": 967.0,
       "transaction_count": 957
     },
@@ -2168,15 +2264,15 @@
       "kd_obat": "AI-1247",
       "product_type": "Generic",
       "revenue": 12297569.65,
-      "avg_margin_pct": 36.60708566856721,
+      "avg_margin_pct": 36.607085668567194,
       "total_qty": 21720.0,
       "transaction_count": 1975
     },
     {
       "kd_obat": "AI-0114",
       "product_type": "Generic",
-      "revenue": 12218062.190000001,
-      "avg_margin_pct": 33.52157203832094,
+      "revenue": 12218062.189999998,
+      "avg_margin_pct": 33.521572038321004,
       "total_qty": 49257.0,
       "transaction_count": 3085
     },
@@ -2192,7 +2288,7 @@
       "kd_obat": "AI-0344",
       "product_type": "Generic",
       "revenue": 12142595.370000001,
-      "avg_margin_pct": 35.27365342705269,
+      "avg_margin_pct": 35.2736534270527,
       "total_qty": 164.0,
       "transaction_count": 84
     },
@@ -2200,7 +2296,7 @@
       "kd_obat": "R-2493",
       "product_type": "Branded",
       "revenue": 12101456.805,
-      "avg_margin_pct": 35.82219222222224,
+      "avg_margin_pct": 35.822192222222256,
       "total_qty": 240.0,
       "transaction_count": 240
     },
@@ -2216,7 +2312,7 @@
       "kd_obat": "AI-0242",
       "product_type": "Generic",
       "revenue": 12095309.069999997,
-      "avg_margin_pct": 30.61163448291893,
+      "avg_margin_pct": 30.611634482918912,
       "total_qty": 421.0,
       "transaction_count": 418
     },
@@ -2232,7 +2328,7 @@
       "kd_obat": "R-1165",
       "product_type": "Branded",
       "revenue": 12062875.33,
-      "avg_margin_pct": 35.864570328759164,
+      "avg_margin_pct": 35.86457032875914,
       "total_qty": 676.0,
       "transaction_count": 308
     },
@@ -2248,7 +2344,7 @@
       "kd_obat": "R-0865",
       "product_type": "Branded",
       "revenue": 12000238.350000005,
-      "avg_margin_pct": 31.637524921305985,
+      "avg_margin_pct": 31.637524921305964,
       "total_qty": 15772.5,
       "transaction_count": 1581
     },
@@ -2279,8 +2375,8 @@
     {
       "kd_obat": "AI-0694",
       "product_type": "Generic",
-      "revenue": 11660227.345,
-      "avg_margin_pct": 44.4874789676235,
+      "revenue": 11660227.344999999,
+      "avg_margin_pct": 44.48747896762349,
       "total_qty": 4614.0,
       "transaction_count": 144
     },
@@ -2296,7 +2392,7 @@
       "kd_obat": "AI-1538",
       "product_type": "Generic",
       "revenue": 11476010.1,
-      "avg_margin_pct": 28.28886097838399,
+      "avg_margin_pct": 28.288860978383994,
       "total_qty": 837.0,
       "transaction_count": 118
     },
@@ -2304,7 +2400,7 @@
       "kd_obat": "AI-1144",
       "product_type": "Generic",
       "revenue": 11430305.475,
-      "avg_margin_pct": 31.308612983805507,
+      "avg_margin_pct": 31.308612983805503,
       "total_qty": 146.0,
       "transaction_count": 54
     },
@@ -2336,7 +2432,7 @@
       "kd_obat": "R-2786",
       "product_type": "Branded",
       "revenue": 11288238.0,
-      "avg_margin_pct": 36.96508862385636,
+      "avg_margin_pct": 36.96508862385637,
       "total_qty": 7545.0,
       "transaction_count": 211
     },
@@ -2344,23 +2440,23 @@
       "kd_obat": "AI-1475",
       "product_type": "Generic",
       "revenue": 11205265.190000001,
-      "avg_margin_pct": 32.93092135251796,
+      "avg_margin_pct": 32.930921352517956,
       "total_qty": 470.0,
       "transaction_count": 469
     },
     {
       "kd_obat": "AI-1178",
       "product_type": "Generic",
-      "revenue": 11108641.575,
-      "avg_margin_pct": 30.046930598892942,
+      "revenue": 11108641.575000001,
+      "avg_margin_pct": 30.046930598892946,
       "total_qty": 7489.0,
       "transaction_count": 891
     },
     {
       "kd_obat": "R-0073",
       "product_type": "Branded",
-      "revenue": 11105351.214999987,
-      "avg_margin_pct": 33.094602638725355,
+      "revenue": 11105351.214999989,
+      "avg_margin_pct": 33.09460263872536,
       "total_qty": 3121.0,
       "transaction_count": 2957
     },
@@ -2392,7 +2488,7 @@
       "kd_obat": "AI-0503",
       "product_type": "Generic",
       "revenue": 10937279.3,
-      "avg_margin_pct": 35.8358418141089,
+      "avg_margin_pct": 35.835841814108896,
       "total_qty": 195.0,
       "transaction_count": 193
     },
@@ -2400,14 +2496,14 @@
       "kd_obat": "AI-1345",
       "product_type": "Generic",
       "revenue": 10793412.33,
-      "avg_margin_pct": 34.24487756526494,
+      "avg_margin_pct": 34.24487756526496,
       "total_qty": 13377.0,
       "transaction_count": 333
     },
     {
       "kd_obat": "AI-0241",
       "product_type": "Generic",
-      "revenue": 10694098.467500005,
+      "revenue": 10694098.467500001,
       "avg_margin_pct": 31.767436505929815,
       "total_qty": 44727.5,
       "transaction_count": 6526
@@ -2416,15 +2512,15 @@
       "kd_obat": "AI-0910",
       "product_type": "Generic",
       "revenue": 10681046.83,
-      "avg_margin_pct": 33.24078415859416,
+      "avg_margin_pct": 33.24078415859415,
       "total_qty": 465.0,
       "transaction_count": 144
     },
     {
       "kd_obat": "R-2216",
       "product_type": "Branded",
-      "revenue": 10644885.48,
-      "avg_margin_pct": 36.3087239213694,
+      "revenue": 10644885.479999999,
+      "avg_margin_pct": 36.30872392136939,
       "total_qty": 638.0,
       "transaction_count": 254
     },
@@ -2440,7 +2536,7 @@
       "kd_obat": "AI-1372",
       "product_type": "Generic",
       "revenue": 10582316.499999996,
-      "avg_margin_pct": 32.7159150148166,
+      "avg_margin_pct": 32.715915014816595,
       "total_qty": 835.0,
       "transaction_count": 828
     },
@@ -2448,7 +2544,7 @@
       "kd_obat": "R-0216",
       "product_type": "Branded",
       "revenue": 10545147.0,
-      "avg_margin_pct": 35.850397857291455,
+      "avg_margin_pct": 35.85039785729147,
       "total_qty": 81.0,
       "transaction_count": 80
     },
@@ -2463,8 +2559,8 @@
     {
       "kd_obat": "AI-0106",
       "product_type": "Generic",
-      "revenue": 10463944.185000002,
-      "avg_margin_pct": 34.874179979932975,
+      "revenue": 10463944.185000004,
+      "avg_margin_pct": 34.874179979932954,
       "total_qty": 73366.0,
       "transaction_count": 7404
     },
@@ -2480,7 +2576,7 @@
       "kd_obat": "AI-0566",
       "product_type": "Generic",
       "revenue": 10340572.025,
-      "avg_margin_pct": 38.47769629644951,
+      "avg_margin_pct": 38.47769629644955,
       "total_qty": 12041.0,
       "transaction_count": 653
     },
@@ -2488,7 +2584,7 @@
       "kd_obat": "AI-0449",
       "product_type": "Generic",
       "revenue": 10286741.174999999,
-      "avg_margin_pct": 35.35000801203841,
+      "avg_margin_pct": 35.35000801203842,
       "total_qty": 17513.0,
       "transaction_count": 961
     },
@@ -2504,7 +2600,7 @@
       "kd_obat": "R-0094",
       "product_type": "Branded",
       "revenue": 10012268.375,
-      "avg_margin_pct": 34.80460878783854,
+      "avg_margin_pct": 34.804608787838546,
       "total_qty": 2712.0,
       "transaction_count": 273
     },
@@ -2527,15 +2623,15 @@
     {
       "kd_obat": "AI-0339",
       "product_type": "Generic",
-      "revenue": 9739541.264999997,
-      "avg_margin_pct": 34.381455043945635,
+      "revenue": 9739541.264999999,
+      "avg_margin_pct": 34.38145504394554,
       "total_qty": 5144.0,
       "transaction_count": 1723
     },
     {
       "kd_obat": "R-1267",
       "product_type": "Branded",
-      "revenue": 9727397.310000002,
+      "revenue": 9727397.309999999,
       "avg_margin_pct": 34.00953465392642,
       "total_qty": 2842.5,
       "transaction_count": 308
@@ -2543,8 +2639,8 @@
     {
       "kd_obat": "AI-0221",
       "product_type": "Generic",
-      "revenue": 9697179.665000001,
-      "avg_margin_pct": 37.87207750039844,
+      "revenue": 9697179.665,
+      "avg_margin_pct": 37.872077500398454,
       "total_qty": 481.0,
       "transaction_count": 313
     },
@@ -2568,7 +2664,7 @@
       "kd_obat": "AI-0718",
       "product_type": "Generic",
       "revenue": 9558647.875,
-      "avg_margin_pct": 35.84884558502161,
+      "avg_margin_pct": 35.848845585021614,
       "total_qty": 2502.0,
       "transaction_count": 619
     },
@@ -2576,7 +2672,7 @@
       "kd_obat": "AI-0513",
       "product_type": "Generic",
       "revenue": 9539694.285,
-      "avg_margin_pct": 33.47910819472551,
+      "avg_margin_pct": 33.47910819472549,
       "total_qty": 9337.0,
       "transaction_count": 1407
     },
@@ -2592,7 +2688,7 @@
       "kd_obat": "AI-0538",
       "product_type": "Generic",
       "revenue": 9442769.5,
-      "avg_margin_pct": 36.33688263230745,
+      "avg_margin_pct": 36.336882632307464,
       "total_qty": 2915.0,
       "transaction_count": 415
     },
@@ -2632,7 +2728,7 @@
       "kd_obat": "AI-1168",
       "product_type": "Generic",
       "revenue": 9312192.415,
-      "avg_margin_pct": 32.039817463908264,
+      "avg_margin_pct": 32.03981746390828,
       "total_qty": 57872.0,
       "transaction_count": 4653
     },
@@ -2640,7 +2736,7 @@
       "kd_obat": "AI-0536",
       "product_type": "Generic",
       "revenue": 9302557.75,
-      "avg_margin_pct": 32.57792182805589,
+      "avg_margin_pct": 32.577921828055885,
       "total_qty": 3119.0,
       "transaction_count": 250
     },
@@ -2648,7 +2744,7 @@
       "kd_obat": "AI-1455",
       "product_type": "Generic",
       "revenue": 9286866.175,
-      "avg_margin_pct": 35.32310231686763,
+      "avg_margin_pct": 35.323102316867626,
       "total_qty": 942.0,
       "transaction_count": 51
     },
@@ -2656,14 +2752,14 @@
       "kd_obat": "R-1741",
       "product_type": "Branded",
       "revenue": 9221628.28,
-      "avg_margin_pct": 37.287135500945574,
+      "avg_margin_pct": 37.28713550094558,
       "total_qty": 13208.0,
       "transaction_count": 1066
     },
     {
       "kd_obat": "R-0406",
       "product_type": "Branded",
-      "revenue": 9164773.76,
+      "revenue": 9164773.759999998,
       "avg_margin_pct": 31.792222332299794,
       "total_qty": 263.0,
       "transaction_count": 263
@@ -2672,7 +2768,7 @@
       "kd_obat": "AI-1359",
       "product_type": "Generic",
       "revenue": 9159147.52,
-      "avg_margin_pct": 34.73551936368848,
+      "avg_margin_pct": 34.73551936368867,
       "total_qty": 32233.2,
       "transaction_count": 3503
     },
@@ -2719,8 +2815,8 @@
     {
       "kd_obat": "R-1442",
       "product_type": "Branded",
-      "revenue": 9007901.72,
-      "avg_margin_pct": 35.12599795732358,
+      "revenue": 9007901.719999999,
+      "avg_margin_pct": 35.12599795732357,
       "total_qty": 6141.5,
       "transaction_count": 622
     },
@@ -2736,7 +2832,7 @@
       "kd_obat": "AI-0202",
       "product_type": "Generic",
       "revenue": 8890075.98,
-      "avg_margin_pct": 31.644417656071454,
+      "avg_margin_pct": 31.644417656071447,
       "total_qty": 3957.0,
       "transaction_count": 226
     },
@@ -2744,15 +2840,15 @@
       "kd_obat": "AI-1243",
       "product_type": "Generic",
       "revenue": 8877098.549999999,
-      "avg_margin_pct": 33.83503103169975,
+      "avg_margin_pct": 33.83503103169974,
       "total_qty": 11041.0,
       "transaction_count": 531
     },
     {
       "kd_obat": "AI-1347",
       "product_type": "Generic",
-      "revenue": 8868087.450000001,
-      "avg_margin_pct": 34.11560433945941,
+      "revenue": 8868087.45,
+      "avg_margin_pct": 34.11560433945938,
       "total_qty": 4351.0,
       "transaction_count": 385
     },
@@ -2760,7 +2856,7 @@
       "kd_obat": "R-1504",
       "product_type": "Branded",
       "revenue": 8861850.0,
-      "avg_margin_pct": 30.15155561190404,
+      "avg_margin_pct": 30.151555611904044,
       "total_qty": 448.0,
       "transaction_count": 15
     },
@@ -2800,7 +2896,7 @@
       "kd_obat": "R-5258",
       "product_type": "Branded",
       "revenue": 8654983.0,
-      "avg_margin_pct": 36.22806656514523,
+      "avg_margin_pct": 36.22806656514522,
       "total_qty": 563.0,
       "transaction_count": 26
     },
@@ -2808,7 +2904,7 @@
       "kd_obat": "R-2262",
       "product_type": "Branded",
       "revenue": 8552734.75,
-      "avg_margin_pct": 36.400173813161366,
+      "avg_margin_pct": 36.40017381316137,
       "total_qty": 40.0,
       "transaction_count": 40
     },
@@ -2824,7 +2920,7 @@
       "kd_obat": "R-1919",
       "product_type": "Branded",
       "revenue": 8497892.7312,
-      "avg_margin_pct": 28.413226700680276,
+      "avg_margin_pct": 28.413226700680273,
       "total_qty": 1134.0,
       "transaction_count": 8
     },
@@ -2855,8 +2951,8 @@
     {
       "kd_obat": "AI-0564",
       "product_type": "Generic",
-      "revenue": 8291053.494999999,
-      "avg_margin_pct": 41.82460087917813,
+      "revenue": 8291053.495,
+      "avg_margin_pct": 41.82460087917815,
       "total_qty": 22598.0,
       "transaction_count": 1287
     },
@@ -2864,7 +2960,7 @@
       "kd_obat": "AI-1180",
       "product_type": "Generic",
       "revenue": 8288926.345,
-      "avg_margin_pct": 36.28744762038566,
+      "avg_margin_pct": 36.28744762038567,
       "total_qty": 8725.0,
       "transaction_count": 624
     },
@@ -2928,7 +3024,7 @@
       "kd_obat": "AI-1246",
       "product_type": "Generic",
       "revenue": 7951009.615,
-      "avg_margin_pct": 34.71646425405196,
+      "avg_margin_pct": 34.71646425405174,
       "total_qty": 32526.0,
       "transaction_count": 2206
     },
@@ -2944,7 +3040,7 @@
       "kd_obat": "AI-1185",
       "product_type": "Generic",
       "revenue": 7877280.0,
-      "avg_margin_pct": 35.733369736919094,
+      "avg_margin_pct": 35.73336973691909,
       "total_qty": 2419.0,
       "transaction_count": 47
     },
@@ -2976,15 +3072,15 @@
       "kd_obat": "R-0137",
       "product_type": "Branded",
       "revenue": 7663870.949999999,
-      "avg_margin_pct": 35.42662823528214,
+      "avg_margin_pct": 35.42662823528208,
       "total_qty": 36947.0,
       "transaction_count": 3370
     },
     {
       "kd_obat": "AI-0212",
       "product_type": "Generic",
-      "revenue": 7646633.069,
-      "avg_margin_pct": 31.07325101458491,
+      "revenue": 7646633.069000003,
+      "avg_margin_pct": 31.07325101458496,
       "total_qty": 1018.0,
       "transaction_count": 992
     },
@@ -2992,7 +3088,7 @@
       "kd_obat": "AI-0541",
       "product_type": "Generic",
       "revenue": 7646066.5,
-      "avg_margin_pct": 35.700449785594415,
+      "avg_margin_pct": 35.70044978559442,
       "total_qty": 70.0,
       "transaction_count": 40
     },
@@ -3000,7 +3096,7 @@
       "kd_obat": "R-0371",
       "product_type": "Branded",
       "revenue": 7631240.785,
-      "avg_margin_pct": 30.808261828354688,
+      "avg_margin_pct": 30.808261828354695,
       "total_qty": 296.0,
       "transaction_count": 294
     },
@@ -3040,7 +3136,7 @@
       "kd_obat": "R-2378",
       "product_type": "Branded",
       "revenue": 7412236.5,
-      "avg_margin_pct": 33.458846993849754,
+      "avg_margin_pct": 33.45884699384976,
       "total_qty": 1349.5,
       "transaction_count": 211
     },
@@ -3088,7 +3184,7 @@
       "kd_obat": "R-2800",
       "product_type": "Branded",
       "revenue": 7127147.76,
-      "avg_margin_pct": 35.15956652739468,
+      "avg_margin_pct": 35.15956652739469,
       "total_qty": 132.0,
       "transaction_count": 132
     },
@@ -3112,7 +3208,7 @@
       "kd_obat": "R-0274",
       "product_type": "Branded",
       "revenue": 7063825.6,
-      "avg_margin_pct": 32.686889097744356,
+      "avg_margin_pct": 32.68688909774436,
       "total_qty": 1689.0,
       "transaction_count": 80
     },
@@ -3128,7 +3224,7 @@
       "kd_obat": "AI-0219",
       "product_type": "Generic",
       "revenue": 7031893.2250000015,
-      "avg_margin_pct": 33.456928099178896,
+      "avg_margin_pct": 33.45692809917889,
       "total_qty": 397.0,
       "transaction_count": 389
     },
@@ -3152,7 +3248,7 @@
       "kd_obat": "R-1710",
       "product_type": "Branded",
       "revenue": 6875915.0,
-      "avg_margin_pct": 37.174489567690195,
+      "avg_margin_pct": 37.17448956769019,
       "total_qty": 453.0,
       "transaction_count": 17
     },
@@ -3176,7 +3272,7 @@
       "kd_obat": "AI-0717",
       "product_type": "Generic",
       "revenue": 6761922.875,
-      "avg_margin_pct": 33.20357334406005,
+      "avg_margin_pct": 33.20357334406008,
       "total_qty": 9420.0,
       "transaction_count": 904
     },
@@ -3200,7 +3296,7 @@
       "kd_obat": "R-1573",
       "product_type": "Branded",
       "revenue": 6719619.539999999,
-      "avg_margin_pct": 33.678976288546444,
+      "avg_margin_pct": 33.67897628854646,
       "total_qty": 204.0,
       "transaction_count": 203
     },
@@ -3231,8 +3327,8 @@
     {
       "kd_obat": "R-2061",
       "product_type": "Branded",
-      "revenue": 6682336.534999997,
-      "avg_margin_pct": 32.13323064761718,
+      "revenue": 6682336.534999998,
+      "avg_margin_pct": 32.1332306476172,
       "total_qty": 434.7,
       "transaction_count": 453
     },
@@ -3240,7 +3336,7 @@
       "kd_obat": "AI-1156",
       "product_type": "Generic",
       "revenue": 6659279.16,
-      "avg_margin_pct": 33.20354765296284,
+      "avg_margin_pct": 33.20354765296287,
       "total_qty": 37539.8,
       "transaction_count": 4540
     },
@@ -3256,7 +3352,7 @@
       "kd_obat": "R-0539",
       "product_type": "Branded",
       "revenue": 6621301.600000001,
-      "avg_margin_pct": 25.60385338345865,
+      "avg_margin_pct": 25.603853383458652,
       "total_qty": 360.0,
       "transaction_count": 16
     },
@@ -3272,7 +3368,7 @@
       "kd_obat": "AI-0260",
       "product_type": "Generic",
       "revenue": 6559661.35,
-      "avg_margin_pct": 31.890920719553012,
+      "avg_margin_pct": 31.890920719553005,
       "total_qty": 606.0,
       "transaction_count": 94
     },
@@ -3288,7 +3384,7 @@
       "kd_obat": "AI-1152",
       "product_type": "Generic",
       "revenue": 6519238.125,
-      "avg_margin_pct": 34.43104766971914,
+      "avg_margin_pct": 34.43104766971915,
       "total_qty": 2799.0,
       "transaction_count": 182
     },
@@ -3320,14 +3416,14 @@
       "kd_obat": "R-0118",
       "product_type": "Branded",
       "revenue": 6339253.74,
-      "avg_margin_pct": 33.18042058583266,
+      "avg_margin_pct": 33.18042058583264,
       "total_qty": 205.0,
       "transaction_count": 205
     },
     {
       "kd_obat": "AI-0253",
       "product_type": "Generic",
-      "revenue": 6323374.425000001,
+      "revenue": 6323374.425,
       "avg_margin_pct": 29.756551724137932,
       "total_qty": 1682.0,
       "transaction_count": 58
@@ -3335,8 +3431,8 @@
     {
       "kd_obat": "AI-1389",
       "product_type": "Generic",
-      "revenue": 6316026.9,
-      "avg_margin_pct": 35.097376679861675,
+      "revenue": 6316026.900000001,
+      "avg_margin_pct": 35.09737667986169,
       "total_qty": 218.0,
       "transaction_count": 217
     },
@@ -3352,7 +3448,7 @@
       "kd_obat": "AI-0553",
       "product_type": "Generic",
       "revenue": 6292660.335000001,
-      "avg_margin_pct": 35.388724543680546,
+      "avg_margin_pct": 35.38872454368059,
       "total_qty": 1654.0,
       "transaction_count": 755
     },
@@ -3368,7 +3464,7 @@
       "kd_obat": "R-4643",
       "product_type": "Branded",
       "revenue": 6283778.55,
-      "avg_margin_pct": 32.65964627624942,
+      "avg_margin_pct": 32.65964627624941,
       "total_qty": 201.0,
       "transaction_count": 50
     },
@@ -3376,7 +3472,7 @@
       "kd_obat": "AI-0174",
       "product_type": "Generic",
       "revenue": 6279804.33,
-      "avg_margin_pct": 34.52816969799531,
+      "avg_margin_pct": 34.5281696979953,
       "total_qty": 167.0,
       "transaction_count": 65
     },
@@ -3391,8 +3487,8 @@
     {
       "kd_obat": "R-4388",
       "product_type": "Branded",
-      "revenue": 6261163.564999998,
-      "avg_margin_pct": 29.664929412098072,
+      "revenue": 6261163.564999996,
+      "avg_margin_pct": 29.664929412098083,
       "total_qty": 590.0,
       "transaction_count": 583
     },
@@ -3400,15 +3496,15 @@
       "kd_obat": "R-1521",
       "product_type": "Branded",
       "revenue": 6248540.0,
-      "avg_margin_pct": 35.620521728686825,
+      "avg_margin_pct": 35.62052172868683,
       "total_qty": 1718.0,
       "transaction_count": 73
     },
     {
       "kd_obat": "AI-0261",
       "product_type": "Generic",
-      "revenue": 6234902.1,
-      "avg_margin_pct": 33.51545636175343,
+      "revenue": 6234902.100000001,
+      "avg_margin_pct": 33.51545636175344,
       "total_qty": 890.0,
       "transaction_count": 107
     },
@@ -3416,7 +3512,7 @@
       "kd_obat": "AI-1265",
       "product_type": "Generic",
       "revenue": 6231025.300000001,
-      "avg_margin_pct": 33.23530161111334,
+      "avg_margin_pct": 33.23530161111335,
       "total_qty": 1271.0,
       "transaction_count": 512
     },
@@ -3424,7 +3520,7 @@
       "kd_obat": "R-2589",
       "product_type": "Branded",
       "revenue": 6204973.0,
-      "avg_margin_pct": 34.79795446082607,
+      "avg_margin_pct": 34.79795446082608,
       "total_qty": 501.0,
       "transaction_count": 57
     },
@@ -3432,7 +3528,7 @@
       "kd_obat": "AI-1019",
       "product_type": "Generic",
       "revenue": 6190995.65,
-      "avg_margin_pct": 35.06641143919828,
+      "avg_margin_pct": 35.06641143919829,
       "total_qty": 3514.0,
       "transaction_count": 701
     },
@@ -3440,7 +3536,7 @@
       "kd_obat": "R-2373",
       "product_type": "Branded",
       "revenue": 6168084.25,
-      "avg_margin_pct": 32.66277948800436,
+      "avg_margin_pct": 32.66277948800435,
       "total_qty": 702.0,
       "transaction_count": 83
     },
@@ -3472,7 +3568,7 @@
       "kd_obat": "R-4940",
       "product_type": "Branded",
       "revenue": 6081198.6,
-      "avg_margin_pct": 10.00160743732886,
+      "avg_margin_pct": 10.001607437328863,
       "total_qty": 460.0,
       "transaction_count": 88
     },
@@ -3503,8 +3599,8 @@
     {
       "kd_obat": "R-0835",
       "product_type": "Branded",
-      "revenue": 6024979.04,
-      "avg_margin_pct": 30.629486862808836,
+      "revenue": 6024979.040000002,
+      "avg_margin_pct": 30.629486862808847,
       "total_qty": 5645.0,
       "transaction_count": 746
     },
@@ -3535,16 +3631,16 @@
     {
       "kd_obat": "AI-0091",
       "product_type": "Generic",
-      "revenue": 5959790.684999998,
-      "avg_margin_pct": 32.317611192028174,
+      "revenue": 5959790.684999997,
+      "avg_margin_pct": 32.317611192028046,
       "total_qty": 6200.0,
       "transaction_count": 1019
     },
     {
       "kd_obat": "AI-0417",
       "product_type": "Generic",
-      "revenue": 5886958.3900000015,
-      "avg_margin_pct": 31.0813505961629,
+      "revenue": 5886958.390000001,
+      "avg_margin_pct": 31.081350596162945,
       "total_qty": 8517.0,
       "transaction_count": 965
     },
@@ -3584,7 +3680,7 @@
       "kd_obat": "AI-0727",
       "product_type": "Generic",
       "revenue": 5780652.66,
-      "avg_margin_pct": 36.08184344889824,
+      "avg_margin_pct": 36.08184344889825,
       "total_qty": 1872.0,
       "transaction_count": 516
     },
@@ -3608,7 +3704,7 @@
       "kd_obat": "AI-0425",
       "product_type": "Generic",
       "revenue": 5760504.0,
-      "avg_margin_pct": 29.558575752893237,
+      "avg_margin_pct": 29.55857575289324,
       "total_qty": 15.0,
       "transaction_count": 15
     },
@@ -3624,7 +3720,7 @@
       "kd_obat": "AI-1057",
       "product_type": "Generic",
       "revenue": 5713511.829999998,
-      "avg_margin_pct": 32.99576332294546,
+      "avg_margin_pct": 32.995763322945244,
       "total_qty": 52927.25,
       "transaction_count": 6671
     },
@@ -3639,9 +3735,9 @@
     {
       "kd_obat": "R-1280",
       "product_type": "Branded",
-      "revenue": 5653446.599999999,
-      "avg_margin_pct": 36.40848065748197,
-      "total_qty": 475.6199999999994,
+      "revenue": 5653446.599999998,
+      "avg_margin_pct": 36.40848065748196,
+      "total_qty": 475.6199999999992,
       "transaction_count": 712
     },
     {
@@ -3655,7 +3751,7 @@
     {
       "kd_obat": "R-0342",
       "product_type": "Branded",
-      "revenue": 5621308.05,
+      "revenue": 5621308.050000001,
       "avg_margin_pct": 33.58929563379906,
       "total_qty": 117.0,
       "transaction_count": 117
@@ -3664,7 +3760,7 @@
       "kd_obat": "R-4913",
       "product_type": "Branded",
       "revenue": 5615327.415,
-      "avg_margin_pct": 30.056845544653033,
+      "avg_margin_pct": 30.056845544653022,
       "total_qty": 455.0,
       "transaction_count": 451
     },
@@ -3679,24 +3775,24 @@
     {
       "kd_obat": "AI-1034",
       "product_type": "Generic",
-      "revenue": 5576165.045,
-      "avg_margin_pct": 33.2337433475487,
+      "revenue": 5576165.044999998,
+      "avg_margin_pct": 33.23374334754872,
       "total_qty": 835.0,
       "transaction_count": 306
     },
     {
       "kd_obat": "R-1700",
       "product_type": "Branded",
-      "revenue": 5575285.015000001,
-      "avg_margin_pct": 37.117841698936346,
+      "revenue": 5575285.015,
+      "avg_margin_pct": 37.11784169893635,
       "total_qty": 1218.0,
       "transaction_count": 833
     },
     {
       "kd_obat": "R-1203",
       "product_type": "Branded",
-      "revenue": 5568194.700000002,
-      "avg_margin_pct": 34.23886748657513,
+      "revenue": 5568194.700000001,
+      "avg_margin_pct": 34.23886748657519,
       "total_qty": 55953.0,
       "transaction_count": 3669
     },
@@ -3704,7 +3800,7 @@
       "kd_obat": "AI-1060",
       "product_type": "Generic",
       "revenue": 5522771.025,
-      "avg_margin_pct": 46.56697939140888,
+      "avg_margin_pct": 46.56697939140887,
       "total_qty": 7752.0,
       "transaction_count": 662
     },
@@ -3736,7 +3832,7 @@
       "kd_obat": "AI-0837",
       "product_type": "Generic",
       "revenue": 5448079.755000001,
-      "avg_margin_pct": 32.08524848545564,
+      "avg_margin_pct": 32.085248485455686,
       "total_qty": 18011.0,
       "transaction_count": 1905
     },
@@ -3751,8 +3847,8 @@
     {
       "kd_obat": "AI-0693",
       "product_type": "Generic",
-      "revenue": 5430752.61,
-      "avg_margin_pct": 32.484484484484476,
+      "revenue": 5430752.609999999,
+      "avg_margin_pct": 32.48448448448448,
       "total_qty": 1297.0,
       "transaction_count": 54
     },
@@ -3776,7 +3872,7 @@
       "kd_obat": "R-0239",
       "product_type": "Branded",
       "revenue": 5391024.0,
-      "avg_margin_pct": 39.67095385743791,
+      "avg_margin_pct": 39.670953857437894,
       "total_qty": 1230.0,
       "transaction_count": 64
     },
@@ -3800,7 +3896,7 @@
       "kd_obat": "AI-0679",
       "product_type": "Generic",
       "revenue": 5341390.57,
-      "avg_margin_pct": 33.80208096200972,
+      "avg_margin_pct": 33.802080962009725,
       "total_qty": 140.0,
       "transaction_count": 53
     },
@@ -3808,7 +3904,7 @@
       "kd_obat": "R-2616",
       "product_type": "Branded",
       "revenue": 5331759.45,
-      "avg_margin_pct": 37.176482138009405,
+      "avg_margin_pct": 37.1764821380094,
       "total_qty": 138.0,
       "transaction_count": 17
     },
@@ -3816,7 +3912,7 @@
       "kd_obat": "R-2001",
       "product_type": "Branded",
       "revenue": 5320815.04,
-      "avg_margin_pct": 31.777323512698093,
+      "avg_margin_pct": 31.777323512698086,
       "total_qty": 1019.0,
       "transaction_count": 173
     },
@@ -3832,7 +3928,7 @@
       "kd_obat": "AI-1549",
       "product_type": "Generic",
       "revenue": 5291274.875,
-      "avg_margin_pct": 32.996133009647664,
+      "avg_margin_pct": 32.99613300964767,
       "total_qty": 17301.0,
       "transaction_count": 782
     },
@@ -3856,7 +3952,7 @@
       "kd_obat": "R-3434",
       "product_type": "Branded",
       "revenue": 5260005.674999999,
-      "avg_margin_pct": 36.28232923706593,
+      "avg_margin_pct": 36.2823292370659,
       "total_qty": 692.0,
       "transaction_count": 573
     },
@@ -3871,8 +3967,8 @@
     {
       "kd_obat": "R-4873",
       "product_type": "Branded",
-      "revenue": 5217923.800000001,
-      "avg_margin_pct": 19.89857185438659,
+      "revenue": 5217923.8,
+      "avg_margin_pct": 19.898571854386585,
       "total_qty": 413.05,
       "transaction_count": 364
     },
@@ -3880,7 +3976,7 @@
       "kd_obat": "R-4894",
       "product_type": "Branded",
       "revenue": 5189535.0,
-      "avg_margin_pct": 27.419789431665084,
+      "avg_margin_pct": 27.41978943166508,
       "total_qty": 4823.0,
       "transaction_count": 98
     },
@@ -3888,7 +3984,7 @@
       "kd_obat": "R-1071",
       "product_type": "Branded",
       "revenue": 5117118.0,
-      "avg_margin_pct": 36.948719993619896,
+      "avg_margin_pct": 36.9487199936199,
       "total_qty": 298.0,
       "transaction_count": 10
     },
@@ -3920,14 +4016,14 @@
       "kd_obat": "R-0344",
       "product_type": "Branded",
       "revenue": 5061069.625,
-      "avg_margin_pct": 33.35090970569493,
+      "avg_margin_pct": 33.350909705694924,
       "total_qty": 58.0,
       "transaction_count": 57
     },
     {
       "kd_obat": "R-0802",
       "product_type": "Branded",
-      "revenue": 5036228.9350000005,
+      "revenue": 5036228.935,
       "avg_margin_pct": 33.80707892416479,
       "total_qty": 490.0,
       "transaction_count": 149
@@ -3936,7 +4032,7 @@
       "kd_obat": "R-0607",
       "product_type": "Branded",
       "revenue": 5017478.08,
-      "avg_margin_pct": 31.274968332689184,
+      "avg_margin_pct": 31.274968332689195,
       "total_qty": 2596.0,
       "transaction_count": 423
     },
@@ -3952,15 +4048,15 @@
       "kd_obat": "R-1908",
       "product_type": "Branded",
       "revenue": 4986198.4,
-      "avg_margin_pct": 35.17695512094439,
+      "avg_margin_pct": 35.176955120944385,
       "total_qty": 2386.0,
       "transaction_count": 123
     },
     {
       "kd_obat": "AI-1031",
       "product_type": "Generic",
-      "revenue": 4978331.95,
-      "avg_margin_pct": 34.23701910956482,
+      "revenue": 4978331.949999999,
+      "avg_margin_pct": 34.2370191095648,
       "total_qty": 692.0,
       "transaction_count": 275
     },
@@ -3975,8 +4071,8 @@
     {
       "kd_obat": "AI-0264",
       "product_type": "Generic",
-      "revenue": 4940062.1049999995,
-      "avg_margin_pct": 30.446054729456833,
+      "revenue": 4940062.105,
+      "avg_margin_pct": 30.446054729456844,
       "total_qty": 7391.0,
       "transaction_count": 743
     },
@@ -3984,7 +4080,7 @@
       "kd_obat": "R-2160",
       "product_type": "Branded",
       "revenue": 4937136.2,
-      "avg_margin_pct": 35.20768196448343,
+      "avg_margin_pct": 35.207681964483434,
       "total_qty": 225.2,
       "transaction_count": 24
     },
@@ -4007,24 +4103,24 @@
     {
       "kd_obat": "AI-0181",
       "product_type": "Generic",
-      "revenue": 4899330.900000001,
-      "avg_margin_pct": 33.036977621329974,
+      "revenue": 4899330.9,
+      "avg_margin_pct": 33.03697762132996,
       "total_qty": 11569.0,
       "transaction_count": 824
     },
     {
       "kd_obat": "R-2564",
       "product_type": "Branded",
-      "revenue": 4891185.367500008,
-      "avg_margin_pct": 36.09622065448599,
-      "total_qty": 467.40499999999815,
+      "revenue": 4891185.367500009,
+      "avg_margin_pct": 36.096220654486004,
+      "total_qty": 467.4049999999995,
       "transaction_count": 965
     },
     {
       "kd_obat": "R-0176",
       "product_type": "Branded",
       "revenue": 4873789.7540000025,
-      "avg_margin_pct": 31.630870250729814,
+      "avg_margin_pct": 31.630870250729803,
       "total_qty": 3385.3,
       "transaction_count": 683
     },
@@ -4032,7 +4128,7 @@
       "kd_obat": "AI-0039",
       "product_type": "Generic",
       "revenue": 4867588.0,
-      "avg_margin_pct": 35.92722297536797,
+      "avg_margin_pct": 35.92722297536794,
       "total_qty": 383.0,
       "transaction_count": 175
     },
@@ -4063,7 +4159,7 @@
     {
       "kd_obat": "R-1493",
       "product_type": "Branded",
-      "revenue": 4822579.625000001,
+      "revenue": 4822579.625,
       "avg_margin_pct": 33.5143621412077,
       "total_qty": 501.0,
       "transaction_count": 69
@@ -4079,8 +4175,8 @@
     {
       "kd_obat": "R-2078",
       "product_type": "Branded",
-      "revenue": 4817257.56,
-      "avg_margin_pct": 34.69036572802435,
+      "revenue": 4817257.5600000005,
+      "avg_margin_pct": 34.69036572802436,
       "total_qty": 282.0,
       "transaction_count": 272
     },
@@ -4088,7 +4184,7 @@
       "kd_obat": "AI-1556",
       "product_type": "Generic",
       "revenue": 4808184.0,
-      "avg_margin_pct": 20.458229845961863,
+      "avg_margin_pct": 20.45822984596186,
       "total_qty": 897.0,
       "transaction_count": 148
     },
@@ -4112,15 +4208,15 @@
       "kd_obat": "R-0341",
       "product_type": "Branded",
       "revenue": 4775299.5,
-      "avg_margin_pct": 32.75858963588638,
+      "avg_margin_pct": 32.75858963588639,
       "total_qty": 58.0,
       "transaction_count": 58
     },
     {
       "kd_obat": "AI-1291",
       "product_type": "Generic",
-      "revenue": 4740946.775,
-      "avg_margin_pct": 26.03262435008953,
+      "revenue": 4740946.774999999,
+      "avg_margin_pct": 26.032624350089524,
       "total_qty": 185.0,
       "transaction_count": 74
     },
@@ -4144,7 +4240,7 @@
       "kd_obat": "AI-0933",
       "product_type": "Generic",
       "revenue": 4680523.0,
-      "avg_margin_pct": 31.536808170128268,
+      "avg_margin_pct": 31.53680817012825,
       "total_qty": 3447.0,
       "transaction_count": 118
     },
@@ -4168,7 +4264,7 @@
       "kd_obat": "R-0857",
       "product_type": "Branded",
       "revenue": 4611000.0,
-      "avg_margin_pct": 37.041626686203074,
+      "avg_margin_pct": 37.04162668620307,
       "total_qty": 37.0,
       "transaction_count": 36
     },
@@ -4232,15 +4328,15 @@
       "kd_obat": "R-1913",
       "product_type": "Branded",
       "revenue": 4439647.520000001,
-      "avg_margin_pct": 32.25276788116832,
+      "avg_margin_pct": 32.25276788116834,
       "total_qty": 3694.0,
       "transaction_count": 419
     },
     {
       "kd_obat": "AI-1056",
       "product_type": "Generic",
-      "revenue": 4429554.158999998,
-      "avg_margin_pct": 31.08506386068666,
+      "revenue": 4429554.158999999,
+      "avg_margin_pct": 31.085063860686667,
       "total_qty": 1703.0,
       "transaction_count": 1636
     },
@@ -4248,7 +4344,7 @@
       "kd_obat": "AI-1543",
       "product_type": "Generic",
       "revenue": 4402604.0,
-      "avg_margin_pct": 27.76235863040826,
+      "avg_margin_pct": 27.762358630408265,
       "total_qty": 21.0,
       "transaction_count": 21
     },
@@ -4264,7 +4360,7 @@
       "kd_obat": "AI-0615",
       "product_type": "Generic",
       "revenue": 4361948.8,
-      "avg_margin_pct": 32.454692166942095,
+      "avg_margin_pct": 32.4546921669421,
       "total_qty": 25.0,
       "transaction_count": 11
     },
@@ -4281,22 +4377,22 @@
       "product_type": "Branded",
       "revenue": 4341932.1549999975,
       "avg_margin_pct": 36.28274629136549,
-      "total_qty": 133.7300000000001,
+      "total_qty": 133.73000000000008,
       "transaction_count": 275
     },
     {
       "kd_obat": "AI-1141",
       "product_type": "Generic",
-      "revenue": 4323766.350000001,
-      "avg_margin_pct": 35.932565584316734,
+      "revenue": 4323766.35,
+      "avg_margin_pct": 35.93256558431674,
       "total_qty": 16577.0,
       "transaction_count": 379
     },
     {
       "kd_obat": "AI-0806",
       "product_type": "Generic",
-      "revenue": 4323595.954999999,
-      "avg_margin_pct": 35.98594938287855,
+      "revenue": 4323595.955,
+      "avg_margin_pct": 35.985949382878594,
       "total_qty": 17330.0,
       "transaction_count": 1969
     },
@@ -4320,7 +4416,7 @@
       "kd_obat": "AI-0720",
       "product_type": "Generic",
       "revenue": 4304828.235,
-      "avg_margin_pct": 35.23216276477147,
+      "avg_margin_pct": 35.23216276477145,
       "total_qty": 833.0,
       "transaction_count": 156
     },
@@ -4343,7 +4439,7 @@
     {
       "kd_obat": "R-2480",
       "product_type": "Branded",
-      "revenue": 4209564.7250000015,
+      "revenue": 4209564.725000001,
       "avg_margin_pct": 33.58231608583587,
       "total_qty": 75.0,
       "transaction_count": 73
@@ -4352,7 +4448,7 @@
       "kd_obat": "AI-0803",
       "product_type": "Generic",
       "revenue": 4206205.65,
-      "avg_margin_pct": 32.49929038705397,
+      "avg_margin_pct": 32.49929038705396,
       "total_qty": 3534.0,
       "transaction_count": 131
     },
@@ -4367,16 +4463,16 @@
     {
       "kd_obat": "R-2077",
       "product_type": "Branded",
-      "revenue": 4188535.540000001,
-      "avg_margin_pct": 33.72227768935375,
+      "revenue": 4188535.5400000014,
+      "avg_margin_pct": 33.72227768935378,
       "total_qty": 13680.0,
       "transaction_count": 1824
     },
     {
       "kd_obat": "R-0618",
       "product_type": "Branded",
-      "revenue": 4185666.82,
-      "avg_margin_pct": 35.94691157095251,
+      "revenue": 4185666.8200000003,
+      "avg_margin_pct": 35.9469115709525,
       "total_qty": 485.0,
       "transaction_count": 187
     },
@@ -4407,16 +4503,16 @@
     {
       "kd_obat": "R-4027",
       "product_type": "Branded",
-      "revenue": 4138023.68,
-      "avg_margin_pct": 35.30234848484849,
+      "revenue": 4138023.6799999997,
+      "avg_margin_pct": 35.302348484848494,
       "total_qty": 1482.0,
       "transaction_count": 200
     },
     {
       "kd_obat": "R-2362",
       "product_type": "Branded",
-      "revenue": 4125148.5860000006,
-      "avg_margin_pct": 31.969620800872008,
+      "revenue": 4125148.586,
+      "avg_margin_pct": 31.969620800872,
       "total_qty": 5194.0,
       "transaction_count": 674
     },
@@ -4512,7 +4608,7 @@
       "kd_obat": "R-3939",
       "product_type": "Branded",
       "revenue": 3964068.0400000014,
-      "avg_margin_pct": 36.00608912023305,
+      "avg_margin_pct": 36.00608912023304,
       "total_qty": 210.0,
       "transaction_count": 169
     },
@@ -4528,7 +4624,7 @@
       "kd_obat": "AI-0410",
       "product_type": "Generic",
       "revenue": 3958681.445,
-      "avg_margin_pct": 36.40683207916887,
+      "avg_margin_pct": 36.40683207916888,
       "total_qty": 633.0,
       "transaction_count": 214
     },
@@ -4584,15 +4680,15 @@
       "kd_obat": "AI-1550",
       "product_type": "Generic",
       "revenue": 3891953.38,
-      "avg_margin_pct": 33.4694523769462,
+      "avg_margin_pct": 33.469452376946194,
       "total_qty": 7840.0,
       "transaction_count": 1389
     },
     {
       "kd_obat": "AI-0398",
       "product_type": "Generic",
-      "revenue": 3879786.925,
-      "avg_margin_pct": 32.03918506376646,
+      "revenue": 3879786.9250000003,
+      "avg_margin_pct": 32.039185063766475,
       "total_qty": 306.0,
       "transaction_count": 145
     },
@@ -4600,7 +4696,7 @@
       "kd_obat": "AI-0129",
       "product_type": "Generic",
       "revenue": 3823619.85,
-      "avg_margin_pct": 29.499833367540408,
+      "avg_margin_pct": 29.499833367540397,
       "total_qty": 29.0,
       "transaction_count": 29
     },
@@ -4616,7 +4712,7 @@
       "kd_obat": "R-1677",
       "product_type": "Branded",
       "revenue": 3805874.4,
-      "avg_margin_pct": 36.14874345781371,
+      "avg_margin_pct": 36.148743457813715,
       "total_qty": 313.0,
       "transaction_count": 84
     },
@@ -4631,8 +4727,8 @@
     {
       "kd_obat": "R-1202",
       "product_type": "Branded",
-      "revenue": 3802548.0499999984,
-      "avg_margin_pct": 36.661518153130906,
+      "revenue": 3802548.049999998,
+      "avg_margin_pct": 36.66151815313072,
       "total_qty": 42191.0,
       "transaction_count": 2964
     },
@@ -4640,7 +4736,7 @@
       "kd_obat": "AI-1267",
       "product_type": "Generic",
       "revenue": 3798631.5,
-      "avg_margin_pct": 29.57978602894904,
+      "avg_margin_pct": 29.579786028949048,
       "total_qty": 6294.0,
       "transaction_count": 245
     },
@@ -4656,7 +4752,7 @@
       "kd_obat": "AI-0263",
       "product_type": "Generic",
       "revenue": 3761559.3900000006,
-      "avg_margin_pct": 30.25901345219677,
+      "avg_margin_pct": 30.2590134521968,
       "total_qty": 8607.0,
       "transaction_count": 928
     },
@@ -4672,7 +4768,7 @@
       "kd_obat": "AI-1561",
       "product_type": "Generic",
       "revenue": 3687325.92,
-      "avg_margin_pct": 25.50403120571356,
+      "avg_margin_pct": 25.504031205713563,
       "total_qty": 1550.0,
       "transaction_count": 99
     },
@@ -4703,16 +4799,16 @@
     {
       "kd_obat": "AI-1009",
       "product_type": "Generic",
-      "revenue": 3615331.375,
-      "avg_margin_pct": 35.31075672111189,
+      "revenue": 3615331.3750000005,
+      "avg_margin_pct": 35.31075672111194,
       "total_qty": 10159.0,
       "transaction_count": 1337
     },
     {
       "kd_obat": "AI-0947",
       "product_type": "Generic",
-      "revenue": 3612311.3200000003,
-      "avg_margin_pct": 31.74643019160904,
+      "revenue": 3612311.32,
+      "avg_margin_pct": 31.746430191609047,
       "total_qty": 8445.0,
       "transaction_count": 1249
     },
@@ -4720,7 +4816,7 @@
       "kd_obat": "R-1300",
       "product_type": "Branded",
       "revenue": 3599707.0,
-      "avg_margin_pct": 36.36954686180691,
+      "avg_margin_pct": 36.36954686180692,
       "total_qty": 253.0,
       "transaction_count": 34
     },
@@ -4736,7 +4832,7 @@
       "kd_obat": "AI-0102",
       "product_type": "Generic",
       "revenue": 3588776.3799999994,
-      "avg_margin_pct": 34.66694402422651,
+      "avg_margin_pct": 34.666944024226524,
       "total_qty": 3552.0,
       "transaction_count": 648
     },
@@ -4831,8 +4927,8 @@
     {
       "kd_obat": "AI-0167",
       "product_type": "Generic",
-      "revenue": 3367456.3500000006,
-      "avg_margin_pct": 27.002826727498267,
+      "revenue": 3367456.35,
+      "avg_margin_pct": 27.00282672749826,
       "total_qty": 23.0,
       "transaction_count": 23
     },
@@ -4847,8 +4943,8 @@
     {
       "kd_obat": "AI-0530",
       "product_type": "Generic",
-      "revenue": 3340769.55,
-      "avg_margin_pct": 35.272368569388604,
+      "revenue": 3340769.5500000003,
+      "avg_margin_pct": 35.27236856938864,
       "total_qty": 30088.0,
       "transaction_count": 2314
     },
@@ -4864,7 +4960,7 @@
       "kd_obat": "R-3936",
       "product_type": "Branded",
       "revenue": 3328905.7200000007,
-      "avg_margin_pct": 36.05396348608925,
+      "avg_margin_pct": 36.053963486089266,
       "total_qty": 118.0,
       "transaction_count": 112
     },
@@ -4872,7 +4968,7 @@
       "kd_obat": "R-2839",
       "product_type": "Branded",
       "revenue": 3315755.0,
-      "avg_margin_pct": 34.648547294161325,
+      "avg_margin_pct": 34.64854729416133,
       "total_qty": 27.0,
       "transaction_count": 27
     },
@@ -4888,7 +4984,7 @@
       "kd_obat": "AI-1539",
       "product_type": "Generic",
       "revenue": 3299915.625,
-      "avg_margin_pct": 31.47268740031898,
+      "avg_margin_pct": 31.472687400318986,
       "total_qty": 2392.0,
       "transaction_count": 60
     },
@@ -4904,7 +5000,7 @@
       "kd_obat": "AI-0874",
       "product_type": "Generic",
       "revenue": 3298709.875,
-      "avg_margin_pct": 36.27956881924344,
+      "avg_margin_pct": 36.27956881924343,
       "total_qty": 248.0,
       "transaction_count": 86
     },
@@ -4919,8 +5015,8 @@
     {
       "kd_obat": "AI-1275",
       "product_type": "Generic",
-      "revenue": 3287235.385,
-      "avg_margin_pct": 34.88632806571925,
+      "revenue": 3287235.3850000002,
+      "avg_margin_pct": 34.88632806571927,
       "total_qty": 1039.0,
       "transaction_count": 287
     },
@@ -4936,7 +5032,7 @@
       "kd_obat": "R-3212",
       "product_type": "Branded",
       "revenue": 3249399.05,
-      "avg_margin_pct": 40.80789835662057,
+      "avg_margin_pct": 40.807898356620576,
       "total_qty": 1519.0,
       "transaction_count": 38
     },
@@ -4951,7 +5047,7 @@
     {
       "kd_obat": "R-0107",
       "product_type": "Branded",
-      "revenue": 3202104.1499999994,
+      "revenue": 3202104.15,
       "avg_margin_pct": 35.198409703504154,
       "total_qty": 678.0,
       "transaction_count": 636
@@ -4968,14 +5064,14 @@
       "kd_obat": "R-2428",
       "product_type": "Branded",
       "revenue": 3183391.5,
-      "avg_margin_pct": 36.65391430415245,
+      "avg_margin_pct": 36.653914304152444,
       "total_qty": 322.0,
       "transaction_count": 176
     },
     {
       "kd_obat": "R-1600",
       "product_type": "Branded",
-      "revenue": 3175569.5600000005,
+      "revenue": 3175569.56,
       "avg_margin_pct": 36.611826975108215,
       "total_qty": 198.0,
       "transaction_count": 192
@@ -4984,7 +5080,7 @@
       "kd_obat": "R-0388",
       "product_type": "Branded",
       "revenue": 3167543.25,
-      "avg_margin_pct": 34.49984996153914,
+      "avg_margin_pct": 34.49984996153915,
       "total_qty": 108.0,
       "transaction_count": 108
     },
@@ -4992,15 +5088,15 @@
       "kd_obat": "AI-1295",
       "product_type": "Generic",
       "revenue": 3156237.8,
-      "avg_margin_pct": 33.87133315872184,
+      "avg_margin_pct": 33.87133315872183,
       "total_qty": 124.0,
       "transaction_count": 108
     },
     {
       "kd_obat": "AI-0389",
       "product_type": "Generic",
-      "revenue": 3144699.1900000004,
-      "avg_margin_pct": 34.19602900030379,
+      "revenue": 3144699.1900000013,
+      "avg_margin_pct": 34.19602900030377,
       "total_qty": 13643.5,
       "transaction_count": 1849
     },
@@ -5016,7 +5112,7 @@
       "kd_obat": "R-4926",
       "product_type": "Branded",
       "revenue": 3126957.8,
-      "avg_margin_pct": 21.72935352358764,
+      "avg_margin_pct": 21.729353523587655,
       "total_qty": 9378.0,
       "transaction_count": 505
     },
@@ -5040,14 +5136,14 @@
       "kd_obat": "AI-0781",
       "product_type": "Generic",
       "revenue": 3108636.425,
-      "avg_margin_pct": 28.241272881902397,
+      "avg_margin_pct": 28.241272881902404,
       "total_qty": 3024.0,
       "transaction_count": 64
     },
     {
       "kd_obat": "R-2059",
       "product_type": "Branded",
-      "revenue": 3079402.205,
+      "revenue": 3079402.2049999996,
       "avg_margin_pct": 33.08585431719273,
       "total_qty": 164.5,
       "transaction_count": 165
@@ -5080,7 +5176,7 @@
       "kd_obat": "AI-0719",
       "product_type": "Generic",
       "revenue": 3042068.6,
-      "avg_margin_pct": 34.33102200353333,
+      "avg_margin_pct": 34.331022003533334,
       "total_qty": 3121.0,
       "transaction_count": 339
     },
@@ -5096,7 +5192,7 @@
       "kd_obat": "R-3338",
       "product_type": "Branded",
       "revenue": 3016185.125,
-      "avg_margin_pct": 34.861918168002006,
+      "avg_margin_pct": 34.86191816800201,
       "total_qty": 173.0,
       "transaction_count": 25
     },
@@ -5104,7 +5200,7 @@
       "kd_obat": "AI-1576",
       "product_type": "Generic",
       "revenue": 2998135.0,
-      "avg_margin_pct": 35.68376740026346,
+      "avg_margin_pct": 35.683767400263456,
       "total_qty": 69.0,
       "transaction_count": 41
     },
@@ -5112,7 +5208,7 @@
       "kd_obat": "R-3122",
       "product_type": "Branded",
       "revenue": 2994766.1399999997,
-      "avg_margin_pct": 36.09710398914615,
+      "avg_margin_pct": 36.097103989146156,
       "total_qty": 975.0,
       "transaction_count": 152
     },
@@ -5176,7 +5272,7 @@
       "kd_obat": "AI-0033",
       "product_type": "Generic",
       "revenue": 2934650.2350000003,
-      "avg_margin_pct": 25.109399211212793,
+      "avg_margin_pct": 25.1093992112128,
       "total_qty": 102.0,
       "transaction_count": 94
     },
@@ -5191,8 +5287,8 @@
     {
       "kd_obat": "R-2495",
       "product_type": "Branded",
-      "revenue": 2919693.7799999993,
-      "avg_margin_pct": 35.51258176061324,
+      "revenue": 2919693.7800000003,
+      "avg_margin_pct": 35.51258176061322,
       "total_qty": 1161.0,
       "transaction_count": 127
     },
@@ -5224,22 +5320,22 @@
       "kd_obat": "R-1050",
       "product_type": "Branded",
       "revenue": 2899581.3,
-      "avg_margin_pct": 31.72438564857423,
+      "avg_margin_pct": 31.724385648574238,
       "total_qty": 8760.0,
       "transaction_count": 141
     },
     {
       "kd_obat": "R-0899",
       "product_type": "Branded",
-      "revenue": 2889500.385,
-      "avg_margin_pct": 33.993655519308035,
+      "revenue": 2889500.3850000002,
+      "avg_margin_pct": 33.99365551930804,
       "total_qty": 462.0,
       "transaction_count": 71
     },
     {
       "kd_obat": "R-4666",
       "product_type": "Branded",
-      "revenue": 2884071.0000000005,
+      "revenue": 2884071.0,
       "avg_margin_pct": 33.203242481203006,
       "total_qty": 273.0,
       "transaction_count": 32
@@ -5248,7 +5344,7 @@
       "kd_obat": "R-0495",
       "product_type": "Branded",
       "revenue": 2868336.7,
-      "avg_margin_pct": 29.889611863695816,
+      "avg_margin_pct": 29.88961186369581,
       "total_qty": 2345.5,
       "transaction_count": 395
     },
@@ -5272,7 +5368,7 @@
       "kd_obat": "R-2576",
       "product_type": "Branded",
       "revenue": 2857766.0,
-      "avg_margin_pct": 36.211132921281944,
+      "avg_margin_pct": 36.21113292128195,
       "total_qty": 711.0,
       "transaction_count": 514
     },
@@ -5296,7 +5392,7 @@
       "kd_obat": "R-0517",
       "product_type": "Branded",
       "revenue": 2846646.76,
-      "avg_margin_pct": 34.75511798718549,
+      "avg_margin_pct": 34.7551179871855,
       "total_qty": 327.0,
       "transaction_count": 16
     },
@@ -5312,8 +5408,8 @@
       "kd_obat": "R-1324",
       "product_type": "Branded",
       "revenue": 2845565.5549999997,
-      "avg_margin_pct": 36.13384144059064,
-      "total_qty": 229.6130000000003,
+      "avg_margin_pct": 36.13384144059063,
+      "total_qty": 229.61299999999983,
       "transaction_count": 514
     },
     {
@@ -5352,7 +5448,7 @@
       "kd_obat": "R-1777",
       "product_type": "Branded",
       "revenue": 2800772.985,
-      "avg_margin_pct": 28.499936480410398,
+      "avg_margin_pct": 28.499936480410394,
       "total_qty": 139.0,
       "transaction_count": 11
     },
@@ -5384,7 +5480,7 @@
       "kd_obat": "R-1898",
       "product_type": "Branded",
       "revenue": 2786772.5,
-      "avg_margin_pct": 35.40373818307401,
+      "avg_margin_pct": 35.403738183074005,
       "total_qty": 417.0,
       "transaction_count": 42
     },
@@ -5408,7 +5504,7 @@
       "kd_obat": "AI-1371",
       "product_type": "Generic",
       "revenue": 2718520.075,
-      "avg_margin_pct": 35.1001774269204,
+      "avg_margin_pct": 35.10017742692041,
       "total_qty": 95.0,
       "transaction_count": 95
     },
@@ -5448,7 +5544,7 @@
       "kd_obat": "R-4372",
       "product_type": "Branded",
       "revenue": 2638353.085,
-      "avg_margin_pct": 36.074387793103185,
+      "avg_margin_pct": 36.07438779310318,
       "total_qty": 27.0,
       "transaction_count": 27
     },
@@ -5456,15 +5552,15 @@
       "kd_obat": "AI-0388",
       "product_type": "Generic",
       "revenue": 2613582.4350000005,
-      "avg_margin_pct": 32.04935414464142,
+      "avg_margin_pct": 32.04935414464143,
       "total_qty": 256.0,
       "transaction_count": 248
     },
     {
       "kd_obat": "R-0743",
       "product_type": "Branded",
-      "revenue": 2613411.5600000005,
-      "avg_margin_pct": 31.905808919751124,
+      "revenue": 2613411.56,
+      "avg_margin_pct": 31.905808919751127,
       "total_qty": 2719.5,
       "transaction_count": 274
     },
@@ -5504,7 +5600,7 @@
       "kd_obat": "R-4371",
       "product_type": "Branded",
       "revenue": 2558486.625,
-      "avg_margin_pct": 35.26592268929421,
+      "avg_margin_pct": 35.2659226892942,
       "total_qty": 34.0,
       "transaction_count": 32
     },
@@ -5552,7 +5648,7 @@
       "kd_obat": "R-0935",
       "product_type": "Branded",
       "revenue": 2539302.5,
-      "avg_margin_pct": 37.015050784856875,
+      "avg_margin_pct": 37.01505078485689,
       "total_qty": 195.0,
       "transaction_count": 57
     },
@@ -5576,7 +5672,7 @@
       "kd_obat": "R-3967",
       "product_type": "Branded",
       "revenue": 2514851.0,
-      "avg_margin_pct": 36.26590671268446,
+      "avg_margin_pct": 36.265906712684476,
       "total_qty": 482.0,
       "transaction_count": 281
     },
@@ -5592,7 +5688,7 @@
       "kd_obat": "AI-1381",
       "product_type": "Generic",
       "revenue": 2507377.07,
-      "avg_margin_pct": 34.526279465894056,
+      "avg_margin_pct": 34.526279465894106,
       "total_qty": 8279.0,
       "transaction_count": 904
     },
@@ -5664,7 +5760,7 @@
       "kd_obat": "AI-0567",
       "product_type": "Generic",
       "revenue": 2432849.375,
-      "avg_margin_pct": 40.84837715726259,
+      "avg_margin_pct": 40.84837715726257,
       "total_qty": 2044.0,
       "transaction_count": 110
     },
@@ -5688,7 +5784,7 @@
       "kd_obat": "R-4333",
       "product_type": "Branded",
       "revenue": 2403669.75,
-      "avg_margin_pct": 41.40589909371954,
+      "avg_margin_pct": 41.40589909371955,
       "total_qty": 140.0,
       "transaction_count": 131
     },
@@ -5735,7 +5831,7 @@
     {
       "kd_obat": "R-3433",
       "product_type": "Branded",
-      "revenue": 2362170.0199999996,
+      "revenue": 2362170.02,
       "avg_margin_pct": 35.906231317993374,
       "total_qty": 308.0,
       "transaction_count": 287
@@ -5752,7 +5848,7 @@
       "kd_obat": "R-2949",
       "product_type": "Branded",
       "revenue": 2324351.25,
-      "avg_margin_pct": 31.16582738392757,
+      "avg_margin_pct": 31.16582738392758,
       "total_qty": 245.0,
       "transaction_count": 39
     },
@@ -5760,7 +5856,7 @@
       "kd_obat": "R-0235",
       "product_type": "Branded",
       "revenue": 2315863.2,
-      "avg_margin_pct": 36.764911372751946,
+      "avg_margin_pct": 36.76491137275194,
       "total_qty": 2578.0,
       "transaction_count": 118
     },
@@ -5808,7 +5904,7 @@
       "kd_obat": "R-0451",
       "product_type": "Branded",
       "revenue": 2290037.0,
-      "avg_margin_pct": 36.23160691470008,
+      "avg_margin_pct": 36.23160691470009,
       "total_qty": 37.0,
       "transaction_count": 13
     },
@@ -5816,7 +5912,7 @@
       "kd_obat": "R-1227",
       "product_type": "Branded",
       "revenue": 2283795.75,
-      "avg_margin_pct": 36.57938402712515,
+      "avg_margin_pct": 36.579384027125144,
       "total_qty": 384.0,
       "transaction_count": 198
     },
@@ -5855,8 +5951,8 @@
     {
       "kd_obat": "AI-0740",
       "product_type": "Generic",
-      "revenue": 2255289.0500000003,
-      "avg_margin_pct": 36.78197033255461,
+      "revenue": 2255289.05,
+      "avg_margin_pct": 36.78197033255463,
       "total_qty": 3140.0,
       "transaction_count": 434
     },
@@ -5864,7 +5960,7 @@
       "kd_obat": "R-3941",
       "product_type": "Branded",
       "revenue": 2246130.5999999996,
-      "avg_margin_pct": 35.55831842028785,
+      "avg_margin_pct": 35.55831842028786,
       "total_qty": 142.0,
       "transaction_count": 95
     },
@@ -5879,15 +5975,15 @@
     {
       "kd_obat": "R-4691",
       "product_type": "Branded",
-      "revenue": 2238582.425,
-      "avg_margin_pct": 35.68414509156556,
+      "revenue": 2238582.4250000003,
+      "avg_margin_pct": 35.68414509156553,
       "total_qty": 487.0,
       "transaction_count": 481
     },
     {
       "kd_obat": "R-0057",
       "product_type": "Branded",
-      "revenue": 2233301.6799999997,
+      "revenue": 2233301.68,
       "avg_margin_pct": 32.254929559920775,
       "total_qty": 454.0,
       "transaction_count": 43
@@ -5904,7 +6000,7 @@
       "kd_obat": "AI-0066",
       "product_type": "Generic",
       "revenue": 2219545.54,
-      "avg_margin_pct": 34.53576416916687,
+      "avg_margin_pct": 34.53576416916684,
       "total_qty": 16023.850000000002,
       "transaction_count": 2148
     },
@@ -5912,7 +6008,7 @@
       "kd_obat": "R-2720",
       "product_type": "Branded",
       "revenue": 2218662.0,
-      "avg_margin_pct": 37.077935659403664,
+      "avg_margin_pct": 37.07793565940367,
       "total_qty": 139.0,
       "transaction_count": 13
     },
@@ -5920,7 +6016,7 @@
       "kd_obat": "AI-0692",
       "product_type": "Generic",
       "revenue": 2217051.2199999997,
-      "avg_margin_pct": 36.05694104862808,
+      "avg_margin_pct": 36.05694104862809,
       "total_qty": 982.0,
       "transaction_count": 45
     },
@@ -5984,7 +6080,7 @@
       "kd_obat": "AI-0161",
       "product_type": "Generic",
       "revenue": 2169264.985,
-      "avg_margin_pct": 22.64795793539722,
+      "avg_margin_pct": 22.647957935397223,
       "total_qty": 344.0,
       "transaction_count": 65
     },
@@ -5992,7 +6088,7 @@
       "kd_obat": "R-2468",
       "product_type": "Branded",
       "revenue": 2154448.0,
-      "avg_margin_pct": 26.644107105207674,
+      "avg_margin_pct": 26.64410710520767,
       "total_qty": 554.0,
       "transaction_count": 306
     },
@@ -6000,7 +6096,7 @@
       "kd_obat": "AI-1349",
       "product_type": "Generic",
       "revenue": 2154354.05,
-      "avg_margin_pct": 35.89164784459344,
+      "avg_margin_pct": 35.89164784459343,
       "total_qty": 4944.0,
       "transaction_count": 146
     },
@@ -6031,7 +6127,7 @@
     {
       "kd_obat": "AI-1296",
       "product_type": "Generic",
-      "revenue": 2143684.89,
+      "revenue": 2143684.8899999997,
       "avg_margin_pct": 34.318926335648754,
       "total_qty": 121.0,
       "transaction_count": 92
@@ -6040,7 +6136,7 @@
       "kd_obat": "AI-0409",
       "product_type": "Generic",
       "revenue": 2140031.0,
-      "avg_margin_pct": 35.79433333333334,
+      "avg_margin_pct": 35.794333333333334,
       "total_qty": 210.0,
       "transaction_count": 20
     },
@@ -6064,7 +6160,7 @@
       "kd_obat": "AI-0090",
       "product_type": "Generic",
       "revenue": 2112598.085,
-      "avg_margin_pct": 31.507949211131574,
+      "avg_margin_pct": 31.50794921113158,
       "total_qty": 992.0,
       "transaction_count": 91
     },
@@ -6080,7 +6176,7 @@
       "kd_obat": "R-1565",
       "product_type": "Branded",
       "revenue": 2101149.5,
-      "avg_margin_pct": 35.70734843075076,
+      "avg_margin_pct": 35.707348430750756,
       "total_qty": 135.0,
       "transaction_count": 65
     },
@@ -6112,7 +6208,7 @@
       "kd_obat": "AI-1169",
       "product_type": "Generic",
       "revenue": 2080631.0500000003,
-      "avg_margin_pct": 33.70813041522439,
+      "avg_margin_pct": 33.708130415224396,
       "total_qty": 9878.0,
       "transaction_count": 897
     },
@@ -6136,7 +6232,7 @@
       "kd_obat": "AI-1316",
       "product_type": "Generic",
       "revenue": 2070766.5,
-      "avg_margin_pct": 36.19781802796471,
+      "avg_margin_pct": 36.1978180279647,
       "total_qty": 772.0,
       "transaction_count": 26
     },
@@ -6152,14 +6248,14 @@
       "kd_obat": "R-1752",
       "product_type": "Branded",
       "revenue": 2061451.0,
-      "avg_margin_pct": 29.181965682553116,
+      "avg_margin_pct": 29.181965682553113,
       "total_qty": 62.0,
       "transaction_count": 61
     },
     {
       "kd_obat": "AI-0825",
       "product_type": "Generic",
-      "revenue": 2053128.505,
+      "revenue": 2053128.5050000001,
       "avg_margin_pct": 32.05421846793146,
       "total_qty": 943.0,
       "transaction_count": 85
@@ -6176,7 +6272,7 @@
       "kd_obat": "R-1781",
       "product_type": "Branded",
       "revenue": 2035699.805,
-      "avg_margin_pct": 33.54582776067637,
+      "avg_margin_pct": 33.54582776067636,
       "total_qty": 16903.0,
       "transaction_count": 2031
     },
@@ -6184,7 +6280,7 @@
       "kd_obat": "AI-1107",
       "product_type": "Generic",
       "revenue": 2029213.605,
-      "avg_margin_pct": 35.18749461656198,
+      "avg_margin_pct": 35.187494616561985,
       "total_qty": 340.0,
       "transaction_count": 276
     },
@@ -6192,7 +6288,7 @@
       "kd_obat": "AI-0590",
       "product_type": "Generic",
       "revenue": 2022276.8600000003,
-      "avg_margin_pct": 34.52945612798743,
+      "avg_margin_pct": 34.529456127987515,
       "total_qty": 7367.0,
       "transaction_count": 1161
     },
@@ -6208,14 +6304,14 @@
       "kd_obat": "AI-0411",
       "product_type": "Generic",
       "revenue": 2012646.725,
-      "avg_margin_pct": 30.150260626959692,
+      "avg_margin_pct": 30.150260626959682,
       "total_qty": 307.0,
       "transaction_count": 108
     },
     {
       "kd_obat": "R-0213",
       "product_type": "Branded",
-      "revenue": 2009230.68,
+      "revenue": 2009230.6799999997,
       "avg_margin_pct": 34.99965956765095,
       "total_qty": 1191.0,
       "transaction_count": 162
@@ -6224,7 +6320,7 @@
       "kd_obat": "AI-0965",
       "product_type": "Generic",
       "revenue": 2004617.075,
-      "avg_margin_pct": 30.56159580406567,
+      "avg_margin_pct": 30.56159580406568,
       "total_qty": 3530.0,
       "transaction_count": 148
     },
@@ -6232,7 +6328,7 @@
       "kd_obat": "R-2821",
       "product_type": "Branded",
       "revenue": 1996775.5,
-      "avg_margin_pct": 37.326278772378515,
+      "avg_margin_pct": 37.32627877237851,
       "total_qty": 171.0,
       "transaction_count": 92
     },
@@ -6264,7 +6360,7 @@
       "kd_obat": "AI-1565",
       "product_type": "Generic",
       "revenue": 1985829.62,
-      "avg_margin_pct": 29.573324701427936,
+      "avg_margin_pct": 29.573324701427925,
       "total_qty": 7254.25,
       "transaction_count": 333
     },
@@ -6272,7 +6368,7 @@
       "kd_obat": "AI-1279",
       "product_type": "Generic",
       "revenue": 1981525.645,
-      "avg_margin_pct": 35.30208065779233,
+      "avg_margin_pct": 35.30208065779234,
       "total_qty": 1260.0,
       "transaction_count": 92
     },
@@ -6280,7 +6376,7 @@
       "kd_obat": "AI-0581",
       "product_type": "Generic",
       "revenue": 1968459.875,
-      "avg_margin_pct": 35.9035924774722,
+      "avg_margin_pct": 35.903592477472195,
       "total_qty": 268.0,
       "transaction_count": 110
     },
@@ -6296,7 +6392,7 @@
       "kd_obat": "AI-1393",
       "product_type": "Generic",
       "revenue": 1963978.12,
-      "avg_margin_pct": 33.07867186029337,
+      "avg_margin_pct": 33.07867186029336,
       "total_qty": 378.0,
       "transaction_count": 53
     },
@@ -6312,7 +6408,7 @@
       "kd_obat": "AI-0399",
       "product_type": "Generic",
       "revenue": 1938561.0299999998,
-      "avg_margin_pct": 33.77825065878237,
+      "avg_margin_pct": 33.778250658782355,
       "total_qty": 1974.0,
       "transaction_count": 361
     },
@@ -6360,7 +6456,7 @@
       "kd_obat": "R-1539",
       "product_type": "Branded",
       "revenue": 1917477.185,
-      "avg_margin_pct": 35.00058941820954,
+      "avg_margin_pct": 35.00058941820955,
       "total_qty": 33.0,
       "transaction_count": 33
     },
@@ -6383,7 +6479,7 @@
     {
       "kd_obat": "AI-1392",
       "product_type": "Generic",
-      "revenue": 1902903.4400000002,
+      "revenue": 1902903.44,
       "avg_margin_pct": 30.724658032731828,
       "total_qty": 631.0,
       "transaction_count": 82
@@ -6400,7 +6496,7 @@
       "kd_obat": "AI-1151",
       "product_type": "Generic",
       "revenue": 1894840.125,
-      "avg_margin_pct": 35.077064407471674,
+      "avg_margin_pct": 35.07706440747168,
       "total_qty": 977.0,
       "transaction_count": 101
     },
@@ -6423,7 +6519,7 @@
     {
       "kd_obat": "AI-1362",
       "product_type": "Generic",
-      "revenue": 1880947.6349999998,
+      "revenue": 1880947.6350000002,
       "avg_margin_pct": 36.150358087649906,
       "total_qty": 363.0,
       "transaction_count": 78
@@ -6448,7 +6544,7 @@
       "kd_obat": "R-1542",
       "product_type": "Branded",
       "revenue": 1864018.8399999999,
-      "avg_margin_pct": 32.060374761278524,
+      "avg_margin_pct": 32.06037476127852,
       "total_qty": 93.0,
       "transaction_count": 91
     },
@@ -6487,16 +6583,16 @@
     {
       "kd_obat": "AI-1274",
       "product_type": "Generic",
-      "revenue": 1846339.465,
-      "avg_margin_pct": 34.84834682935696,
+      "revenue": 1846339.4649999999,
+      "avg_margin_pct": 34.848346829356984,
       "total_qty": 16344.0,
       "transaction_count": 1574
     },
     {
       "kd_obat": "AI-1460",
       "product_type": "Generic",
-      "revenue": 1844480.615,
-      "avg_margin_pct": 21.742161971557646,
+      "revenue": 1844480.6149999998,
+      "avg_margin_pct": 21.74216197155764,
       "total_qty": 212.0,
       "transaction_count": 209
     },
@@ -6512,7 +6608,7 @@
       "kd_obat": "R-0074",
       "product_type": "Branded",
       "revenue": 1827331.6399999997,
-      "avg_margin_pct": 35.97596746447351,
+      "avg_margin_pct": 35.97596746447355,
       "total_qty": 8216.0,
       "transaction_count": 1290
     },
@@ -6527,7 +6623,7 @@
     {
       "kd_obat": "R-0109",
       "product_type": "Branded",
-      "revenue": 1820864.4,
+      "revenue": 1820864.4000000001,
       "avg_margin_pct": 26.48007903557777,
       "total_qty": 483.0,
       "transaction_count": 95
@@ -6536,7 +6632,7 @@
       "kd_obat": "R-2081",
       "product_type": "Branded",
       "revenue": 1820245.96,
-      "avg_margin_pct": 35.54505472413806,
+      "avg_margin_pct": 35.54505472413807,
       "total_qty": 103.0,
       "transaction_count": 78
     },
@@ -6544,7 +6640,7 @@
       "kd_obat": "R-2006",
       "product_type": "Branded",
       "revenue": 1818102.25,
-      "avg_margin_pct": 36.903858796410795,
+      "avg_margin_pct": 36.90385879641081,
       "total_qty": 1831.0,
       "transaction_count": 89
     },
@@ -6568,7 +6664,7 @@
       "kd_obat": "R-4684",
       "product_type": "Branded",
       "revenue": 1807493.0499999998,
-      "avg_margin_pct": 32.41780851530343,
+      "avg_margin_pct": 32.417808515303435,
       "total_qty": 1780.75,
       "transaction_count": 437
     },
@@ -6584,7 +6680,7 @@
       "kd_obat": "AI-0690",
       "product_type": "Generic",
       "revenue": 1801380.0,
-      "avg_margin_pct": 37.51202308432189,
+      "avg_margin_pct": 37.5120230843219,
       "total_qty": 420.0,
       "transaction_count": 14
     },
@@ -6696,7 +6792,7 @@
       "kd_obat": "R-0056",
       "product_type": "Branded",
       "revenue": 1752091.875,
-      "avg_margin_pct": 37.32298938898416,
+      "avg_margin_pct": 37.32298938898417,
       "total_qty": 11064.0,
       "transaction_count": 639
     },
@@ -6720,7 +6816,7 @@
       "kd_obat": "R-1782",
       "product_type": "Branded",
       "revenue": 1739447.54,
-      "avg_margin_pct": 34.80224546669763,
+      "avg_margin_pct": 34.80224546669762,
       "total_qty": 458.0,
       "transaction_count": 452
     },
@@ -6735,8 +6831,8 @@
     {
       "kd_obat": "AI-0335",
       "product_type": "Generic",
-      "revenue": 1726067.5399999998,
-      "avg_margin_pct": 29.045617143678495,
+      "revenue": 1726067.5399999996,
+      "avg_margin_pct": 29.045617143678484,
       "total_qty": 3712.0,
       "transaction_count": 338
     },
@@ -6744,7 +6840,7 @@
       "kd_obat": "AI-1401",
       "product_type": "Generic",
       "revenue": 1720538.53,
-      "avg_margin_pct": 33.52104162415831,
+      "avg_margin_pct": 33.52104162415836,
       "total_qty": 5547.75,
       "transaction_count": 1352
     },
@@ -6752,7 +6848,7 @@
       "kd_obat": "AI-0001",
       "product_type": "Generic",
       "revenue": 1699436.0,
-      "avg_margin_pct": 35.740102242119384,
+      "avg_margin_pct": 35.74010224211938,
       "total_qty": 241.0,
       "transaction_count": 65
     },
@@ -6760,7 +6856,7 @@
       "kd_obat": "R-1628",
       "product_type": "Branded",
       "revenue": 1699369.165,
-      "avg_margin_pct": 33.245488731808045,
+      "avg_margin_pct": 33.24548873180804,
       "total_qty": 314.0,
       "transaction_count": 141
     },
@@ -6776,7 +6872,7 @@
       "kd_obat": "R-1346",
       "product_type": "Branded",
       "revenue": 1685349.5,
-      "avg_margin_pct": 33.59772767236883,
+      "avg_margin_pct": 33.59772767236886,
       "total_qty": 1151.0,
       "transaction_count": 182
     },
@@ -6800,7 +6896,7 @@
       "kd_obat": "AI-0964",
       "product_type": "Generic",
       "revenue": 1672076.33,
-      "avg_margin_pct": 34.05531154792687,
+      "avg_margin_pct": 34.05531154792688,
       "total_qty": 1685.0,
       "transaction_count": 64
     },
@@ -6816,7 +6912,7 @@
       "kd_obat": "AI-0703",
       "product_type": "Generic",
       "revenue": 1667016.4049999998,
-      "avg_margin_pct": 34.32787374664334,
+      "avg_margin_pct": 34.327873746643384,
       "total_qty": 17778.0,
       "transaction_count": 1194
     },
@@ -6848,7 +6944,7 @@
       "kd_obat": "R-0117",
       "product_type": "Branded",
       "revenue": 1655547.625,
-      "avg_margin_pct": 32.717873240413276,
+      "avg_margin_pct": 32.71787324041328,
       "total_qty": 46.0,
       "transaction_count": 46
     },
@@ -6904,7 +7000,7 @@
       "kd_obat": "R-4342",
       "product_type": "Branded",
       "revenue": 1633185.4649999999,
-      "avg_margin_pct": 36.88642101668198,
+      "avg_margin_pct": 36.886421016681986,
       "total_qty": 244.0,
       "transaction_count": 235
     },
@@ -6927,8 +7023,8 @@
     {
       "kd_obat": "R-0002",
       "product_type": "Branded",
-      "revenue": 1618453.7399999998,
-      "avg_margin_pct": 28.399885957182107,
+      "revenue": 1618453.74,
+      "avg_margin_pct": 28.3998859571821,
       "total_qty": 32.0,
       "transaction_count": 5
     },
@@ -6959,7 +7055,7 @@
     {
       "kd_obat": "AI-0648",
       "product_type": "Generic",
-      "revenue": 1607693.2799999998,
+      "revenue": 1607693.28,
       "avg_margin_pct": 34.18514523807624,
       "total_qty": 216.0,
       "transaction_count": 144
@@ -6967,8 +7063,8 @@
     {
       "kd_obat": "R-1204",
       "product_type": "Branded",
-      "revenue": 1604419.9500000002,
-      "avg_margin_pct": 32.89664627425021,
+      "revenue": 1604419.95,
+      "avg_margin_pct": 32.896646274250244,
       "total_qty": 20434.0,
       "transaction_count": 1382
     },
@@ -7016,7 +7112,7 @@
       "kd_obat": "R-1629",
       "product_type": "Branded",
       "revenue": 1555975.875,
-      "avg_margin_pct": 33.529039414007684,
+      "avg_margin_pct": 33.52903941400768,
       "total_qty": 1309.0,
       "transaction_count": 183
     },
@@ -7048,7 +7144,7 @@
       "kd_obat": "R-2119",
       "product_type": "Branded",
       "revenue": 1539588.0,
-      "avg_margin_pct": 37.10125265680821,
+      "avg_margin_pct": 37.101252656808214,
       "total_qty": 834.0,
       "transaction_count": 27
     },
@@ -7064,7 +7160,7 @@
       "kd_obat": "R-0198",
       "product_type": "Branded",
       "revenue": 1531082.8928399999,
-      "avg_margin_pct": 37.30970342710556,
+      "avg_margin_pct": 37.3097034271055,
       "total_qty": 3445.0,
       "transaction_count": 349
     },
@@ -7080,7 +7176,7 @@
       "kd_obat": "R-1693",
       "product_type": "Branded",
       "revenue": 1520599.1,
-      "avg_margin_pct": 28.329556696622333,
+      "avg_margin_pct": 28.32955669662233,
       "total_qty": 281.0,
       "transaction_count": 12
     },
@@ -7088,7 +7184,7 @@
       "kd_obat": "AI-0087",
       "product_type": "Generic",
       "revenue": 1517695.0,
-      "avg_margin_pct": 27.467411545623833,
+      "avg_margin_pct": 27.467411545623836,
       "total_qty": 416.0,
       "transaction_count": 81
     },
@@ -7096,7 +7192,7 @@
       "kd_obat": "R-1292",
       "product_type": "Branded",
       "revenue": 1513899.35,
-      "avg_margin_pct": 33.35343129238442,
+      "avg_margin_pct": 33.35343129238443,
       "total_qty": 666.0,
       "transaction_count": 44
     },
@@ -7152,7 +7248,7 @@
       "kd_obat": "AI-1317",
       "product_type": "Generic",
       "revenue": 1482779.25,
-      "avg_margin_pct": 35.99762875203514,
+      "avg_margin_pct": 35.997628752035126,
       "total_qty": 262.0,
       "transaction_count": 11
     },
@@ -7160,7 +7256,7 @@
       "kd_obat": "R-3762",
       "product_type": "Branded",
       "revenue": 1478128.75,
-      "avg_margin_pct": 33.12229690411525,
+      "avg_margin_pct": 33.12229690411526,
       "total_qty": 188.0,
       "transaction_count": 187
     },
@@ -7184,7 +7280,7 @@
       "kd_obat": "AI-0726",
       "product_type": "Generic",
       "revenue": 1463901.0,
-      "avg_margin_pct": 35.04868270332188,
+      "avg_margin_pct": 35.048682703321894,
       "total_qty": 1641.0,
       "transaction_count": 97
     },
@@ -7200,7 +7296,7 @@
       "kd_obat": "AI-0875",
       "product_type": "Generic",
       "revenue": 1460737.15,
-      "avg_margin_pct": 34.00009563382486,
+      "avg_margin_pct": 34.000095633824856,
       "total_qty": 6880.5,
       "transaction_count": 761
     },
@@ -7208,7 +7304,7 @@
       "kd_obat": "R-1547",
       "product_type": "Branded",
       "revenue": 1458987.2,
-      "avg_margin_pct": 32.916964963662,
+      "avg_margin_pct": 32.916964963662004,
       "total_qty": 18.0,
       "transaction_count": 18
     },
@@ -7232,7 +7328,7 @@
       "kd_obat": "R-5087",
       "product_type": "Branded",
       "revenue": 1443622.0,
-      "avg_margin_pct": 31.53637340103506,
+      "avg_margin_pct": 31.536373401035057,
       "total_qty": 15.0,
       "transaction_count": 14
     },
@@ -7256,7 +7352,7 @@
       "kd_obat": "R-5269",
       "product_type": "Branded",
       "revenue": 1425638.0,
-      "avg_margin_pct": 36.34364064843248,
+      "avg_margin_pct": 36.343640648432476,
       "total_qty": 283.0,
       "transaction_count": 19
     },
@@ -7264,7 +7360,7 @@
       "kd_obat": "R-1820",
       "product_type": "Branded",
       "revenue": 1409398.375,
-      "avg_margin_pct": 36.95643224699829,
+      "avg_margin_pct": 36.9564322469983,
       "total_qty": 1860.0,
       "transaction_count": 53
     },
@@ -7288,7 +7384,7 @@
       "kd_obat": "AI-1266",
       "product_type": "Generic",
       "revenue": 1391267.43,
-      "avg_margin_pct": 31.095567069660333,
+      "avg_margin_pct": 31.095567069660326,
       "total_qty": 2759.0,
       "transaction_count": 126
     },
@@ -7327,8 +7423,8 @@
     {
       "kd_obat": "R-4777",
       "product_type": "Branded",
-      "revenue": 1381713.32,
-      "avg_margin_pct": 28.59464244468315,
+      "revenue": 1381713.3199999998,
+      "avg_margin_pct": 28.594642444683146,
       "total_qty": 118.0,
       "transaction_count": 105
     },
@@ -7336,7 +7432,7 @@
       "kd_obat": "R-1439",
       "product_type": "Branded",
       "revenue": 1379904.0,
-      "avg_margin_pct": 34.09259259259259,
+      "avg_margin_pct": 34.092592592592595,
       "total_qty": 493.5,
       "transaction_count": 45
     },
@@ -7352,7 +7448,7 @@
       "kd_obat": "R-4405",
       "product_type": "Branded",
       "revenue": 1375952.375,
-      "avg_margin_pct": 180.38402461445466,
+      "avg_margin_pct": 180.38402461445475,
       "total_qty": 436.0,
       "transaction_count": 430
     },
@@ -7376,7 +7472,7 @@
       "kd_obat": "R-1715",
       "product_type": "Branded",
       "revenue": 1373775.3388,
-      "avg_margin_pct": 36.68539539078218,
+      "avg_margin_pct": 36.685395390782176,
       "total_qty": 3164.0,
       "transaction_count": 386
     },
@@ -7384,7 +7480,7 @@
       "kd_obat": "R-4619",
       "product_type": "Branded",
       "revenue": 1370250.25,
-      "avg_margin_pct": 30.050867526944106,
+      "avg_margin_pct": 30.050867526944103,
       "total_qty": 213.0,
       "transaction_count": 209
     },
@@ -7392,7 +7488,7 @@
       "kd_obat": "AI-1569",
       "product_type": "Generic",
       "revenue": 1359450.0,
-      "avg_margin_pct": 34.897002288838024,
+      "avg_margin_pct": 34.89700228883802,
       "total_qty": 123.0,
       "transaction_count": 55
     },
@@ -7440,7 +7536,7 @@
       "kd_obat": "R-2309",
       "product_type": "Branded",
       "revenue": 1319505.925,
-      "avg_margin_pct": 35.95914205745983,
+      "avg_margin_pct": 35.959142057459836,
       "total_qty": 3168.0,
       "transaction_count": 334
     },
@@ -7464,7 +7560,7 @@
       "kd_obat": "R-1224",
       "product_type": "Branded",
       "revenue": 1306262.21,
-      "avg_margin_pct": 33.65280507845674,
+      "avg_margin_pct": 33.65280507845673,
       "total_qty": 172.0,
       "transaction_count": 95
     },
@@ -7472,7 +7568,7 @@
       "kd_obat": "R-4858",
       "product_type": "Branded",
       "revenue": 1304732.4,
-      "avg_margin_pct": 13.895743919885552,
+      "avg_margin_pct": 13.895743919885547,
       "total_qty": 249.0,
       "transaction_count": 24
     },
@@ -7480,7 +7576,7 @@
       "kd_obat": "R-2282",
       "product_type": "Branded",
       "revenue": 1301496.0,
-      "avg_margin_pct": 27.864275780305956,
+      "avg_margin_pct": 27.864275780305963,
       "total_qty": 546.0,
       "transaction_count": 23
     },
@@ -7496,7 +7592,7 @@
       "kd_obat": "R-0141",
       "product_type": "Branded",
       "revenue": 1286844.0,
-      "avg_margin_pct": 36.965567856870855,
+      "avg_margin_pct": 36.96556785687085,
       "total_qty": 101.0,
       "transaction_count": 31
     },
@@ -7528,7 +7624,7 @@
       "kd_obat": "R-3130",
       "product_type": "Branded",
       "revenue": 1272329.75,
-      "avg_margin_pct": 33.71881752817466,
+      "avg_margin_pct": 33.71881752817467,
       "total_qty": 18.0,
       "transaction_count": 16
     },
@@ -7568,7 +7664,7 @@
       "kd_obat": "AI-1390",
       "product_type": "Generic",
       "revenue": 1266169.175,
-      "avg_margin_pct": 32.75599709414159,
+      "avg_margin_pct": 32.755997094141605,
       "total_qty": 2772.0,
       "transaction_count": 613
     },
@@ -7584,7 +7680,7 @@
       "kd_obat": "AI-0499",
       "product_type": "Generic",
       "revenue": 1264338.125,
-      "avg_margin_pct": 33.541156291204075,
+      "avg_margin_pct": 33.54115629120407,
       "total_qty": 20.0,
       "transaction_count": 11
     },
@@ -7647,7 +7743,7 @@
     {
       "kd_obat": "AI-0832",
       "product_type": "Generic",
-      "revenue": 1251958.32,
+      "revenue": 1251958.3199999998,
       "avg_margin_pct": 30.056410256410253,
       "total_qty": 1520.0,
       "transaction_count": 130
@@ -7664,7 +7760,7 @@
       "kd_obat": "R-3884",
       "product_type": "Branded",
       "revenue": 1248834.75,
-      "avg_margin_pct": 35.92412123954874,
+      "avg_margin_pct": 35.92412123954875,
       "total_qty": 275.0,
       "transaction_count": 273
     },
@@ -7680,7 +7776,7 @@
       "kd_obat": "AI-0485",
       "product_type": "Generic",
       "revenue": 1239560.9500000002,
-      "avg_margin_pct": 34.27540130929966,
+      "avg_margin_pct": 34.275401309299674,
       "total_qty": 7828.0,
       "transaction_count": 756
     },
@@ -7712,7 +7808,7 @@
       "kd_obat": "AI-0049",
       "product_type": "Generic",
       "revenue": 1231579.1300000004,
-      "avg_margin_pct": 35.242338349481216,
+      "avg_margin_pct": 35.24233834948121,
       "total_qty": 341.0,
       "transaction_count": 336
     },
@@ -7720,15 +7816,15 @@
       "kd_obat": "R-5145",
       "product_type": "Branded",
       "revenue": 1231568.44,
-      "avg_margin_pct": 30.36275977939296,
+      "avg_margin_pct": 30.362759779392967,
       "total_qty": 377.0,
       "transaction_count": 44
     },
     {
       "kd_obat": "AI-1197",
       "product_type": "Generic",
-      "revenue": 1230496.9449999998,
-      "avg_margin_pct": 32.23472002963399,
+      "revenue": 1230496.9450000003,
+      "avg_margin_pct": 32.23472002963394,
       "total_qty": 15957.0,
       "transaction_count": 2615
     },
@@ -7752,7 +7848,7 @@
       "kd_obat": "R-1220",
       "product_type": "Branded",
       "revenue": 1225270.2196,
-      "avg_margin_pct": 35.815883128667295,
+      "avg_margin_pct": 35.81588312866731,
       "total_qty": 7478.0,
       "transaction_count": 813
     },
@@ -7775,8 +7871,8 @@
     {
       "kd_obat": "AI-0183",
       "product_type": "Generic",
-      "revenue": 1214534.2000000002,
-      "avg_margin_pct": 48.98725898241741,
+      "revenue": 1214534.2,
+      "avg_margin_pct": 48.987258982417416,
       "total_qty": 2497.0,
       "transaction_count": 193
     },
@@ -7800,7 +7896,7 @@
       "kd_obat": "AI-0390",
       "product_type": "Generic",
       "revenue": 1189610.0,
-      "avg_margin_pct": 36.77611742655748,
+      "avg_margin_pct": 36.776117426557484,
       "total_qty": 951.0,
       "transaction_count": 54
     },
@@ -7808,7 +7904,7 @@
       "kd_obat": "AI-0374",
       "product_type": "Generic",
       "revenue": 1185191.65,
-      "avg_margin_pct": 36.44012362580226,
+      "avg_margin_pct": 36.44012362580227,
       "total_qty": 9575.0,
       "transaction_count": 634
     },
@@ -7816,7 +7912,7 @@
       "kd_obat": "AI-0094",
       "product_type": "Generic",
       "revenue": 1181953.575,
-      "avg_margin_pct": 32.79326145552562,
+      "avg_margin_pct": 32.793261455525595,
       "total_qty": 3602.0,
       "transaction_count": 371
     },
@@ -7832,15 +7928,15 @@
       "kd_obat": "R-1733",
       "product_type": "Branded",
       "revenue": 1174714.7400000002,
-      "avg_margin_pct": 31.643392961846622,
+      "avg_margin_pct": 31.643392961846615,
       "total_qty": 2531.0,
       "transaction_count": 491
     },
     {
       "kd_obat": "R-0950",
       "product_type": "Branded",
-      "revenue": 1174161.1099999999,
-      "avg_margin_pct": 48.391737222587075,
+      "revenue": 1174161.1100000006,
+      "avg_margin_pct": 48.39173722258707,
       "total_qty": 468.5,
       "transaction_count": 411
     },
@@ -7848,7 +7944,7 @@
       "kd_obat": "R-0355",
       "product_type": "Branded",
       "revenue": 1172105.0,
-      "avg_margin_pct": 37.31219068924617,
+      "avg_margin_pct": 37.312190689246165,
       "total_qty": 44.0,
       "transaction_count": 29
     },
@@ -7912,7 +8008,7 @@
       "kd_obat": "AI-1181",
       "product_type": "Generic",
       "revenue": 1137296.0,
-      "avg_margin_pct": 34.69631523272215,
+      "avg_margin_pct": 34.696315232722135,
       "total_qty": 1180.0,
       "transaction_count": 80
     },
@@ -8023,8 +8119,8 @@
     {
       "kd_obat": "R-1838",
       "product_type": "Branded",
-      "revenue": 1098729.8900000001,
-      "avg_margin_pct": 35.015368515183056,
+      "revenue": 1098729.89,
+      "avg_margin_pct": 35.01536851518305,
       "total_qty": 159.5,
       "transaction_count": 129
     },
@@ -8056,7 +8152,7 @@
       "kd_obat": "R-4883",
       "product_type": "Branded",
       "revenue": 1089701.6,
-      "avg_margin_pct": 20.21441533870585,
+      "avg_margin_pct": 20.214415338705848,
       "total_qty": 35.0,
       "transaction_count": 35
     },
@@ -8071,7 +8167,7 @@
     {
       "kd_obat": "AI-0455",
       "product_type": "Generic",
-      "revenue": 1083147.47,
+      "revenue": 1083147.4700000002,
       "avg_margin_pct": 36.44438012798386,
       "total_qty": 274.0,
       "transaction_count": 130
@@ -8079,7 +8175,7 @@
     {
       "kd_obat": "AI-1294",
       "product_type": "Generic",
-      "revenue": 1081343.3250000002,
+      "revenue": 1081343.325,
       "avg_margin_pct": 34.650479692839475,
       "total_qty": 222.0,
       "transaction_count": 112
@@ -8111,8 +8207,8 @@
     {
       "kd_obat": "R-0625",
       "product_type": "Branded",
-      "revenue": 1060624.8199999998,
-      "avg_margin_pct": 49.627885503231745,
+      "revenue": 1060624.82,
+      "avg_margin_pct": 49.62788550323177,
       "total_qty": 973.0,
       "transaction_count": 171
     },
@@ -8120,15 +8216,15 @@
       "kd_obat": "AI-0738",
       "product_type": "Generic",
       "revenue": 1059077.05,
-      "avg_margin_pct": 38.498560575401896,
+      "avg_margin_pct": 38.49856057540188,
       "total_qty": 358.0,
       "transaction_count": 308
     },
     {
       "kd_obat": "AI-0307",
       "product_type": "Generic",
-      "revenue": 1058083.0550000002,
-      "avg_margin_pct": 36.865702966561365,
+      "revenue": 1058083.055,
+      "avg_margin_pct": 36.86570296656137,
       "total_qty": 2814.0,
       "transaction_count": 233
     },
@@ -8151,7 +8247,7 @@
     {
       "kd_obat": "AI-1220",
       "product_type": "Generic",
-      "revenue": 1043935.22,
+      "revenue": 1043935.2200000002,
       "avg_margin_pct": 26.183856914858954,
       "total_qty": 1875.0,
       "transaction_count": 344
@@ -8168,7 +8264,7 @@
       "kd_obat": "R-0917",
       "product_type": "Branded",
       "revenue": 1042452.8,
-      "avg_margin_pct": 37.629624259997684,
+      "avg_margin_pct": 37.62962425999768,
       "total_qty": 8150.0,
       "transaction_count": 445
     },
@@ -8215,8 +8311,8 @@
     {
       "kd_obat": "AI-0447",
       "product_type": "Generic",
-      "revenue": 1004582.9949999999,
-      "avg_margin_pct": 34.31747546194395,
+      "revenue": 1004582.995,
+      "avg_margin_pct": 34.31747546194394,
       "total_qty": 111.0,
       "transaction_count": 105
     },
@@ -8232,7 +8328,7 @@
       "kd_obat": "AI-0712",
       "product_type": "Generic",
       "revenue": 1000118.75,
-      "avg_margin_pct": 36.09579839685473,
+      "avg_margin_pct": 36.09579839685474,
       "total_qty": 79.0,
       "transaction_count": 31
     },
@@ -8255,7 +8351,7 @@
     {
       "kd_obat": "R-2469",
       "product_type": "Branded",
-      "revenue": 989951.5000000001,
+      "revenue": 989951.5000000002,
       "avg_margin_pct": 35.13763855741542,
       "total_qty": 1427.0,
       "transaction_count": 253
@@ -8304,7 +8400,7 @@
       "kd_obat": "R-5211",
       "product_type": "Branded",
       "revenue": 975474.0,
-      "avg_margin_pct": 36.49525599713572,
+      "avg_margin_pct": 36.495255997135715,
       "total_qty": 192.0,
       "transaction_count": 72
     },
@@ -8352,7 +8448,7 @@
       "kd_obat": "R-0608",
       "product_type": "Branded",
       "revenue": 950370.39,
-      "avg_margin_pct": 33.375504358994576,
+      "avg_margin_pct": 33.37550435899457,
       "total_qty": 28.0,
       "transaction_count": 28
     },
@@ -8360,14 +8456,14 @@
       "kd_obat": "R-3051",
       "product_type": "Branded",
       "revenue": 940679.36,
-      "avg_margin_pct": 32.3029878618114,
+      "avg_margin_pct": 32.30298786181141,
       "total_qty": 1685.0,
       "transaction_count": 221
     },
     {
       "kd_obat": "R-0267",
       "product_type": "Branded",
-      "revenue": 940318.9,
+      "revenue": 940318.8999999999,
       "avg_margin_pct": 33.57657413971073,
       "total_qty": 245.0,
       "transaction_count": 45
@@ -8375,8 +8471,8 @@
     {
       "kd_obat": "AI-1473",
       "product_type": "Generic",
-      "revenue": 939558.205,
-      "avg_margin_pct": 41.205170233773984,
+      "revenue": 939558.2050000001,
+      "avg_margin_pct": 41.20517023377399,
       "total_qty": 2492.0,
       "transaction_count": 455
     },
@@ -8399,7 +8495,7 @@
     {
       "kd_obat": "R-0192",
       "product_type": "Branded",
-      "revenue": 928868.3999999999,
+      "revenue": 928868.4,
       "avg_margin_pct": 31.00034247393164,
       "total_qty": 274.0,
       "transaction_count": 22
@@ -8408,7 +8504,7 @@
       "kd_obat": "R-1430",
       "product_type": "Branded",
       "revenue": 924033.25,
-      "avg_margin_pct": 32.91774840689165,
+      "avg_margin_pct": 32.917748406891654,
       "total_qty": 1606.0,
       "transaction_count": 114
     },
@@ -8447,7 +8543,7 @@
     {
       "kd_obat": "R-2272",
       "product_type": "Branded",
-      "revenue": 909259.735,
+      "revenue": 909259.7350000001,
       "avg_margin_pct": 35.90865499880126,
       "total_qty": 1197.0,
       "transaction_count": 97
@@ -8479,8 +8575,8 @@
     {
       "kd_obat": "R-0423",
       "product_type": "Branded",
-      "revenue": 901341.82,
-      "avg_margin_pct": 36.623373291743704,
+      "revenue": 901341.8200000001,
+      "avg_margin_pct": 36.62337329174371,
       "total_qty": 2559.0,
       "transaction_count": 445
     },
@@ -8504,7 +8600,7 @@
       "kd_obat": "R-4586",
       "product_type": "Branded",
       "revenue": 893750.0,
-      "avg_margin_pct": 37.4997884618639,
+      "avg_margin_pct": 37.49978846186389,
       "total_qty": 11.0,
       "transaction_count": 11
     },
@@ -8527,7 +8623,7 @@
     {
       "kd_obat": "R-0244",
       "product_type": "Branded",
-      "revenue": 888758.8,
+      "revenue": 888758.7999999999,
       "avg_margin_pct": 30.427859958575763,
       "total_qty": 86.0,
       "transaction_count": 14
@@ -8551,8 +8647,8 @@
     {
       "kd_obat": "R-1794",
       "product_type": "Branded",
-      "revenue": 881439.87,
-      "avg_margin_pct": 35.855162325497865,
+      "revenue": 881439.8700000001,
+      "avg_margin_pct": 35.85516232549785,
       "total_qty": 240.0,
       "transaction_count": 125
     },
@@ -8624,7 +8720,7 @@
       "kd_obat": "R-0023",
       "product_type": "Branded",
       "revenue": 865883.9450000001,
-      "avg_margin_pct": 30.1023701160686,
+      "avg_margin_pct": 30.102370116068588,
       "total_qty": 251.0,
       "transaction_count": 188
     },
@@ -8656,7 +8752,7 @@
       "kd_obat": "R-3128",
       "product_type": "Branded",
       "revenue": 851026.0,
-      "avg_margin_pct": 36.888459473966726,
+      "avg_margin_pct": 36.88845947396672,
       "total_qty": 12.0,
       "transaction_count": 9
     },
@@ -8728,7 +8824,7 @@
       "kd_obat": "R-4552",
       "product_type": "Branded",
       "revenue": 838358.8999999999,
-      "avg_margin_pct": 35.922098886046186,
+      "avg_margin_pct": 35.922098886046165,
       "total_qty": 671.0,
       "transaction_count": 402
     },
@@ -8743,7 +8839,7 @@
     {
       "kd_obat": "AI-0742",
       "product_type": "Generic",
-      "revenue": 833489.2,
+      "revenue": 833489.2000000001,
       "avg_margin_pct": 34.84701313899675,
       "total_qty": 366.0,
       "transaction_count": 55
@@ -8760,7 +8856,7 @@
       "kd_obat": "R-2009",
       "product_type": "Branded",
       "revenue": 823791.0,
-      "avg_margin_pct": 32.68633540372671,
+      "avg_margin_pct": 32.6863354037267,
       "total_qty": 133.0,
       "transaction_count": 8
     },
@@ -8768,7 +8864,7 @@
       "kd_obat": "AI-0271",
       "product_type": "Generic",
       "revenue": 817429.625,
-      "avg_margin_pct": 35.90989713789212,
+      "avg_margin_pct": 35.90989713789211,
       "total_qty": 3452.0,
       "transaction_count": 194
     },
@@ -8783,7 +8879,7 @@
     {
       "kd_obat": "R-2047",
       "product_type": "Branded",
-      "revenue": 815022.6699999999,
+      "revenue": 815022.67,
       "avg_margin_pct": 30.949713659502255,
       "total_qty": 62.5,
       "transaction_count": 68
@@ -8800,7 +8896,7 @@
       "kd_obat": "R-1963",
       "product_type": "Branded",
       "revenue": 811310.44,
-      "avg_margin_pct": 35.92834232138451,
+      "avg_margin_pct": 35.92834232138453,
       "total_qty": 2912.0,
       "transaction_count": 386
     },
@@ -8815,7 +8911,7 @@
     {
       "kd_obat": "R-2083",
       "product_type": "Branded",
-      "revenue": 805935.6950000001,
+      "revenue": 805935.695,
       "avg_margin_pct": 31.704113762102047,
       "total_qty": 381.0,
       "transaction_count": 54
@@ -8824,7 +8920,7 @@
       "kd_obat": "R-0601",
       "product_type": "Branded",
       "revenue": 804212.1475,
-      "avg_margin_pct": 34.14475144317721,
+      "avg_margin_pct": 34.1447514431772,
       "total_qty": 7770.25,
       "transaction_count": 1600
     },
@@ -8840,7 +8936,7 @@
       "kd_obat": "R-1591",
       "product_type": "Branded",
       "revenue": 799007.75,
-      "avg_margin_pct": 34.00482093663912,
+      "avg_margin_pct": 34.00482093663911,
       "total_qty": 284.0,
       "transaction_count": 33
     },
@@ -8855,7 +8951,7 @@
     {
       "kd_obat": "R-1845",
       "product_type": "Branded",
-      "revenue": 798011.16,
+      "revenue": 798011.1599999999,
       "avg_margin_pct": 35.666314461699756,
       "total_qty": 59.0,
       "transaction_count": 12
@@ -8879,7 +8975,7 @@
     {
       "kd_obat": "AI-1471",
       "product_type": "Generic",
-      "revenue": 791701.3599999998,
+      "revenue": 791701.3599999999,
       "avg_margin_pct": 28.01588915887421,
       "total_qty": 79.0,
       "transaction_count": 75
@@ -8896,7 +8992,7 @@
       "kd_obat": "AI-1544",
       "product_type": "Generic",
       "revenue": 787517.6799999999,
-      "avg_margin_pct": 32.906275428831876,
+      "avg_margin_pct": 32.90627542883188,
       "total_qty": 5389.0,
       "transaction_count": 539
     },
@@ -8904,7 +9000,7 @@
       "kd_obat": "R-0266",
       "product_type": "Branded",
       "revenue": 786541.2,
-      "avg_margin_pct": 34.200148006834866,
+      "avg_margin_pct": 34.20014800683485,
       "total_qty": 30.0,
       "transaction_count": 20
     },
@@ -8927,8 +9023,8 @@
     {
       "kd_obat": "R-0307",
       "product_type": "Branded",
-      "revenue": 781473.7000000001,
-      "avg_margin_pct": 34.0798109452887,
+      "revenue": 781473.7,
+      "avg_margin_pct": 34.079810945288706,
       "total_qty": 95.0,
       "transaction_count": 94
     },
@@ -8944,7 +9040,7 @@
       "kd_obat": "R-0407",
       "product_type": "Branded",
       "revenue": 773889.0,
-      "avg_margin_pct": 32.733514155163874,
+      "avg_margin_pct": 32.73351415516388,
       "total_qty": 15.0,
       "transaction_count": 15
     },
@@ -8960,7 +9056,7 @@
       "kd_obat": "R-1637",
       "product_type": "Branded",
       "revenue": 771477.575,
-      "avg_margin_pct": 33.69385501953084,
+      "avg_margin_pct": 33.69385501953085,
       "total_qty": 1295.0,
       "transaction_count": 202
     },
@@ -8968,7 +9064,7 @@
       "kd_obat": "R-0338",
       "product_type": "Branded",
       "revenue": 770058.71,
-      "avg_margin_pct": 33.56920718613355,
+      "avg_margin_pct": 33.56920718613356,
       "total_qty": 64.0,
       "transaction_count": 63
     },
@@ -9056,7 +9152,7 @@
       "kd_obat": "R-0096",
       "product_type": "Branded",
       "revenue": 744640.4,
-      "avg_margin_pct": 32.785600159776315,
+      "avg_margin_pct": 32.78560015977631,
       "total_qty": 21.0,
       "transaction_count": 21
     },
@@ -9152,7 +9248,7 @@
       "kd_obat": "R-0766",
       "product_type": "Branded",
       "revenue": 722259.0,
-      "avg_margin_pct": 30.16559657570893,
+      "avg_margin_pct": 30.165596575708935,
       "total_qty": 132.0,
       "transaction_count": 21
     },
@@ -9160,7 +9256,7 @@
       "kd_obat": "R-0404",
       "product_type": "Branded",
       "revenue": 721242.0,
-      "avg_margin_pct": 34.06241265223468,
+      "avg_margin_pct": 34.062412652234684,
       "total_qty": 19.0,
       "transaction_count": 16
     },
@@ -9199,8 +9295,8 @@
     {
       "kd_obat": "AI-0354",
       "product_type": "Generic",
-      "revenue": 708160.7250000001,
-      "avg_margin_pct": 33.0316825972313,
+      "revenue": 708160.725,
+      "avg_margin_pct": 33.03168259723132,
       "total_qty": 4351.0,
       "transaction_count": 592
     },
@@ -9208,7 +9304,7 @@
       "kd_obat": "R-5036",
       "product_type": "Branded",
       "revenue": 703863.0,
-      "avg_margin_pct": 33.833511475451814,
+      "avg_margin_pct": 33.83351147545181,
       "total_qty": 6.0,
       "transaction_count": 6
     },
@@ -9240,7 +9336,7 @@
       "kd_obat": "R-4626",
       "product_type": "Branded",
       "revenue": 693366.135,
-      "avg_margin_pct": 36.40423661071143,
+      "avg_margin_pct": 36.40423661071144,
       "total_qty": 72.0,
       "transaction_count": 45
     },
@@ -9256,7 +9352,7 @@
       "kd_obat": "AI-1593",
       "product_type": "Generic",
       "revenue": 687334.0,
-      "avg_margin_pct": 36.98851853725153,
+      "avg_margin_pct": 36.98851853725155,
       "total_qty": 86.5,
       "transaction_count": 85
     },
@@ -9264,7 +9360,7 @@
       "kd_obat": "R-1122",
       "product_type": "Branded",
       "revenue": 686838.5,
-      "avg_margin_pct": 36.8557094642145,
+      "avg_margin_pct": 36.85570946421449,
       "total_qty": 1999.0,
       "transaction_count": 121
     },
@@ -9272,7 +9368,7 @@
       "kd_obat": "R-0498",
       "product_type": "Branded",
       "revenue": 683267.5,
-      "avg_margin_pct": 35.300495049504946,
+      "avg_margin_pct": 35.30049504950495,
       "total_qty": 10.0,
       "transaction_count": 10
     },
@@ -9287,8 +9383,8 @@
     {
       "kd_obat": "AI-0431",
       "product_type": "Generic",
-      "revenue": 678463.3,
-      "avg_margin_pct": 28.669191442063397,
+      "revenue": 678463.2999999999,
+      "avg_margin_pct": 28.6691914420634,
       "total_qty": 255.0,
       "transaction_count": 62
     },
@@ -9304,7 +9400,7 @@
       "kd_obat": "R-5255",
       "product_type": "Branded",
       "revenue": 677643.5,
-      "avg_margin_pct": 36.46063162448627,
+      "avg_margin_pct": 36.46063162448628,
       "total_qty": 337.0,
       "transaction_count": 67
     },
@@ -9320,7 +9416,7 @@
       "kd_obat": "R-4199",
       "product_type": "Branded",
       "revenue": 674537.25,
-      "avg_margin_pct": 34.776103656400146,
+      "avg_margin_pct": 34.77610365640014,
       "total_qty": 846.0,
       "transaction_count": 715
     },
@@ -9328,7 +9424,7 @@
       "kd_obat": "R-2386",
       "product_type": "Branded",
       "revenue": 667500.000225,
-      "avg_margin_pct": 36.63311331133114,
+      "avg_margin_pct": 36.633113311331144,
       "total_qty": 180.0,
       "transaction_count": 25
     },
@@ -9376,7 +9472,7 @@
       "kd_obat": "R-2084",
       "product_type": "Branded",
       "revenue": 642183.8300000001,
-      "avg_margin_pct": 35.587665440522976,
+      "avg_margin_pct": 35.58766544052297,
       "total_qty": 23.0,
       "transaction_count": 23
     },
@@ -9384,7 +9480,7 @@
       "kd_obat": "R-4532",
       "product_type": "Branded",
       "revenue": 635214.0,
-      "avg_margin_pct": 37.49220779220779,
+      "avg_margin_pct": 37.4922077922078,
       "total_qty": 84.0,
       "transaction_count": 7
     },
@@ -9424,7 +9520,7 @@
       "kd_obat": "AI-0506",
       "product_type": "Generic",
       "revenue": 629340.5,
-      "avg_margin_pct": 29.885189129393893,
+      "avg_margin_pct": 29.8851891293939,
       "total_qty": 26.0,
       "transaction_count": 26
     },
@@ -9480,7 +9576,7 @@
       "kd_obat": "R-3116",
       "product_type": "Branded",
       "revenue": 616581.5,
-      "avg_margin_pct": 31.163333069807898,
+      "avg_margin_pct": 31.163333069807894,
       "total_qty": 153.0,
       "transaction_count": 13
     },
@@ -9512,7 +9608,7 @@
       "kd_obat": "AI-0705",
       "product_type": "Generic",
       "revenue": 609849.0,
-      "avg_margin_pct": 31.14206527511702,
+      "avg_margin_pct": 31.142065275117012,
       "total_qty": 37.0,
       "transaction_count": 37
     },
@@ -9520,7 +9616,7 @@
       "kd_obat": "R-0679",
       "product_type": "Branded",
       "revenue": 608043.0,
-      "avg_margin_pct": 39.94737175116537,
+      "avg_margin_pct": 39.94737175116536,
       "total_qty": 358.0,
       "transaction_count": 25
     },
@@ -9552,7 +9648,7 @@
       "kd_obat": "R-2412",
       "product_type": "Branded",
       "revenue": 601968.03,
-      "avg_margin_pct": 36.539875244870636,
+      "avg_margin_pct": 36.53987524487063,
       "total_qty": 1378.75,
       "transaction_count": 122
     },
@@ -9592,7 +9688,7 @@
       "kd_obat": "R-0403",
       "product_type": "Branded",
       "revenue": 596409.16,
-      "avg_margin_pct": 34.356887943994806,
+      "avg_margin_pct": 34.3568879439948,
       "total_qty": 10.0,
       "transaction_count": 7
     },
@@ -9648,7 +9744,7 @@
       "kd_obat": "AI-0125",
       "product_type": "Generic",
       "revenue": 579568.25,
-      "avg_margin_pct": 50.84265440913662,
+      "avg_margin_pct": 50.842654409136614,
       "total_qty": 276.0,
       "transaction_count": 56
     },
@@ -9656,7 +9752,7 @@
       "kd_obat": "R-2374",
       "product_type": "Branded",
       "revenue": 577466.0,
-      "avg_margin_pct": 31.999421825366735,
+      "avg_margin_pct": 31.99942182536673,
       "total_qty": 34.0,
       "transaction_count": 7
     },
@@ -9672,7 +9768,7 @@
       "kd_obat": "R-2357",
       "product_type": "Branded",
       "revenue": 574185.0,
-      "avg_margin_pct": 37.501352838028865,
+      "avg_margin_pct": 37.50135283802886,
       "total_qty": 30.0,
       "transaction_count": 4
     },
@@ -9719,8 +9815,8 @@
     {
       "kd_obat": "R-3195",
       "product_type": "Branded",
-      "revenue": 568325.5249999999,
-      "avg_margin_pct": 30.448968473589233,
+      "revenue": 568325.525,
+      "avg_margin_pct": 30.44896847358924,
       "total_qty": 85.0,
       "transaction_count": 81
     },
@@ -9736,7 +9832,7 @@
       "kd_obat": "R-4494",
       "product_type": "Branded",
       "revenue": 565815.09,
-      "avg_margin_pct": 35.92827353802758,
+      "avg_margin_pct": 35.928273538027604,
       "total_qty": 866.0,
       "transaction_count": 548
     },
@@ -9751,7 +9847,7 @@
     {
       "kd_obat": "AI-0661",
       "product_type": "Generic",
-      "revenue": 562127.91,
+      "revenue": 562127.9099999999,
       "avg_margin_pct": 32.84668170884073,
       "total_qty": 2595.5,
       "transaction_count": 329
@@ -9832,7 +9928,7 @@
       "kd_obat": "R-0361",
       "product_type": "Branded",
       "revenue": 543751.6,
-      "avg_margin_pct": 35.29858465382788,
+      "avg_margin_pct": 35.29858465382789,
       "total_qty": 35.0,
       "transaction_count": 5
     },
@@ -9864,7 +9960,7 @@
       "kd_obat": "R-3995",
       "product_type": "Branded",
       "revenue": 536316.88,
-      "avg_margin_pct": 27.603068340306834,
+      "avg_margin_pct": 27.60306834030684,
       "total_qty": 71.0,
       "transaction_count": 5
     },
@@ -9896,7 +9992,7 @@
       "kd_obat": "R-4854",
       "product_type": "Branded",
       "revenue": 533560.0,
-      "avg_margin_pct": 10.841004950208857,
+      "avg_margin_pct": 10.841004950208859,
       "total_qty": 1405.0,
       "transaction_count": 18
     },
@@ -9909,14 +10005,6 @@
       "transaction_count": 2
     },
     {
-      "kd_obat": "R-5137",
-      "product_type": "Branded",
-      "revenue": 532400.0,
-      "avg_margin_pct": 21.0,
-      "total_qty": 2.0,
-      "transaction_count": 2
-    },
-    {
       "kd_obat": "R-5177",
       "product_type": "Branded",
       "revenue": 532400.0,
@@ -9925,10 +10013,18 @@
       "transaction_count": 1
     },
     {
+      "kd_obat": "R-5137",
+      "product_type": "Branded",
+      "revenue": 532400.0,
+      "avg_margin_pct": 21.0,
+      "total_qty": 2.0,
+      "transaction_count": 2
+    },
+    {
       "kd_obat": "R-2122",
       "product_type": "Branded",
       "revenue": 530707.0,
-      "avg_margin_pct": 37.16116716662121,
+      "avg_margin_pct": 37.161167166621205,
       "total_qty": 1001.0,
       "transaction_count": 95
     },
@@ -10024,7 +10120,7 @@
       "kd_obat": "AI-0737",
       "product_type": "Generic",
       "revenue": 517216.0,
-      "avg_margin_pct": 34.98199062233588,
+      "avg_margin_pct": 34.981990622335886,
       "total_qty": 1337.0,
       "transaction_count": 138
     },
@@ -10072,7 +10168,7 @@
       "kd_obat": "R-0245",
       "product_type": "Branded",
       "revenue": 507422.0,
-      "avg_margin_pct": 32.91597567716971,
+      "avg_margin_pct": 32.915975677169705,
       "total_qty": 7.0,
       "transaction_count": 6
     },
@@ -10127,8 +10223,8 @@
     {
       "kd_obat": "AI-0701",
       "product_type": "Generic",
-      "revenue": 496746.85000000003,
-      "avg_margin_pct": 35.47308419725411,
+      "revenue": 496746.85,
+      "avg_margin_pct": 35.47308419725409,
       "total_qty": 4385.0,
       "transaction_count": 344
     },
@@ -10136,7 +10232,7 @@
       "kd_obat": "R-1375",
       "product_type": "Branded",
       "revenue": 495354.775,
-      "avg_margin_pct": 32.634112996643104,
+      "avg_margin_pct": 32.6341129966431,
       "total_qty": 38.0,
       "transaction_count": 38
     },
@@ -10184,7 +10280,7 @@
       "kd_obat": "AI-0024",
       "product_type": "Generic",
       "revenue": 480904.005,
-      "avg_margin_pct": 35.319975186104244,
+      "avg_margin_pct": 35.31997518610424,
       "total_qty": 1861.5,
       "transaction_count": 130
     },
@@ -10232,7 +10328,7 @@
       "kd_obat": "AI-1350",
       "product_type": "Generic",
       "revenue": 477912.625,
-      "avg_margin_pct": 33.83069620253165,
+      "avg_margin_pct": 33.830696202531655,
       "total_qty": 902.0,
       "transaction_count": 60
     },
@@ -10240,7 +10336,7 @@
       "kd_obat": "R-2779",
       "product_type": "Branded",
       "revenue": 476733.375,
-      "avg_margin_pct": 35.05531941492687,
+      "avg_margin_pct": 35.05531941492686,
       "total_qty": 9.0,
       "transaction_count": 9
     },
@@ -10280,7 +10376,7 @@
       "kd_obat": "R-0102",
       "product_type": "Branded",
       "revenue": 463848.025,
-      "avg_margin_pct": 33.64694338024689,
+      "avg_margin_pct": 33.646943380246896,
       "total_qty": 343.0,
       "transaction_count": 47
     },
@@ -10312,7 +10408,7 @@
       "kd_obat": "R-0651",
       "product_type": "Branded",
       "revenue": 461699.505,
-      "avg_margin_pct": 36.02692164242364,
+      "avg_margin_pct": 36.02692164242363,
       "total_qty": 3808.25,
       "transaction_count": 339
     },
@@ -10328,7 +10424,7 @@
       "kd_obat": "R-2087",
       "product_type": "Branded",
       "revenue": 459318.6,
-      "avg_margin_pct": 34.72696945065366,
+      "avg_margin_pct": 34.726969450653655,
       "total_qty": 641.0,
       "transaction_count": 12
     },
@@ -10336,7 +10432,7 @@
       "kd_obat": "AI-1376",
       "product_type": "Generic",
       "revenue": 458147.375,
-      "avg_margin_pct": 35.668831168831126,
+      "avg_margin_pct": 35.668831168831105,
       "total_qty": 9346.0,
       "transaction_count": 231
     },
@@ -10407,8 +10503,8 @@
     {
       "kd_obat": "R-0095",
       "product_type": "Branded",
-      "revenue": 447138.69,
-      "avg_margin_pct": 34.330217058497055,
+      "revenue": 447138.69000000006,
+      "avg_margin_pct": 34.33021705849706,
       "total_qty": 19.0,
       "transaction_count": 19
     },
@@ -10472,7 +10568,7 @@
       "kd_obat": "R-0450",
       "product_type": "Branded",
       "revenue": 433499.305,
-      "avg_margin_pct": 36.22798684691269,
+      "avg_margin_pct": 36.22798684691268,
       "total_qty": 812.0,
       "transaction_count": 112
     },
@@ -10480,7 +10576,7 @@
       "kd_obat": "R-4718",
       "product_type": "Branded",
       "revenue": 432615.275,
-      "avg_margin_pct": 28.021221823178166,
+      "avg_margin_pct": 28.021221823178173,
       "total_qty": 1303.0,
       "transaction_count": 103
     },
@@ -10495,8 +10591,8 @@
     {
       "kd_obat": "R-0967",
       "product_type": "Branded",
-      "revenue": 432217.2950000004,
-      "avg_margin_pct": 9.431736956934971,
+      "revenue": 432217.2950000005,
+      "avg_margin_pct": 9.43173695693498,
       "total_qty": 5625.25,
       "transaction_count": 769
     },
@@ -10519,7 +10615,7 @@
     {
       "kd_obat": "AI-0155",
       "product_type": "Generic",
-      "revenue": 427981.3499999999,
+      "revenue": 427981.35,
       "avg_margin_pct": 33.47222222222222,
       "total_qty": 18.0,
       "transaction_count": 18
@@ -10528,7 +10624,7 @@
       "kd_obat": "R-3841",
       "product_type": "Branded",
       "revenue": 427662.5,
-      "avg_margin_pct": 30.283816425120776,
+      "avg_margin_pct": 30.283816425120772,
       "total_qty": 914.0,
       "transaction_count": 18
     },
@@ -10608,7 +10704,7 @@
       "kd_obat": "R-3247",
       "product_type": "Branded",
       "revenue": 415438.625,
-      "avg_margin_pct": 28.984894090932514,
+      "avg_margin_pct": 28.98489409093251,
       "total_qty": 32.0,
       "transaction_count": 31
     },
@@ -10632,7 +10728,7 @@
       "kd_obat": "AI-0011",
       "product_type": "Generic",
       "revenue": 414360.0,
-      "avg_margin_pct": 54.021281041221826,
+      "avg_margin_pct": 54.02128104122182,
       "total_qty": 938.0,
       "transaction_count": 28
     },
@@ -10647,7 +10743,7 @@
     {
       "kd_obat": "AI-0598",
       "product_type": "Generic",
-      "revenue": 411925.805,
+      "revenue": 411925.80500000005,
       "avg_margin_pct": 33.39326319507318,
       "total_qty": 1790.0,
       "transaction_count": 93
@@ -10664,7 +10760,7 @@
       "kd_obat": "R-0139",
       "product_type": "Branded",
       "revenue": 410741.9,
-      "avg_margin_pct": 25.305080756230296,
+      "avg_margin_pct": 25.305080756230293,
       "total_qty": 376.0,
       "transaction_count": 19
     },
@@ -10688,7 +10784,7 @@
       "kd_obat": "R-1481",
       "product_type": "Branded",
       "revenue": 405772.125,
-      "avg_margin_pct": 37.48361013986014,
+      "avg_margin_pct": 37.48361013986015,
       "total_qty": 136.0,
       "transaction_count": 16
     },
@@ -10712,7 +10808,7 @@
       "kd_obat": "AI-0192",
       "product_type": "Generic",
       "revenue": 404230.35,
-      "avg_margin_pct": 32.84736842105264,
+      "avg_margin_pct": 32.847368421052636,
       "total_qty": 3983.0,
       "transaction_count": 90
     },
@@ -10752,7 +10848,7 @@
       "kd_obat": "R-4593",
       "product_type": "Branded",
       "revenue": 398467.0,
-      "avg_margin_pct": 28.335027198744985,
+      "avg_margin_pct": 28.335027198744992,
       "total_qty": 29.0,
       "transaction_count": 6
     },
@@ -10760,7 +10856,7 @@
       "kd_obat": "R-2053",
       "product_type": "Branded",
       "revenue": 397821.77067,
-      "avg_margin_pct": 34.15269526533308,
+      "avg_margin_pct": 34.15269526533307,
       "total_qty": 2436.25,
       "transaction_count": 379
     },
@@ -10807,7 +10903,7 @@
     {
       "kd_obat": "AI-1194",
       "product_type": "Generic",
-      "revenue": 392579.2500000003,
+      "revenue": 392579.25000000023,
       "avg_margin_pct": 32.61538461538461,
       "total_qty": 93.0,
       "transaction_count": 91
@@ -10816,7 +10912,7 @@
       "kd_obat": "R-0635",
       "product_type": "Branded",
       "revenue": 391611.2875,
-      "avg_margin_pct": 35.2170503042986,
+      "avg_margin_pct": 35.21705030429862,
       "total_qty": 9307.25,
       "transaction_count": 1159
     },
@@ -10840,7 +10936,7 @@
       "kd_obat": "AI-0996",
       "product_type": "Generic",
       "revenue": 388422.475,
-      "avg_margin_pct": 30.132463408791715,
+      "avg_margin_pct": 30.132463408791708,
       "total_qty": 502.0,
       "transaction_count": 146
     },
@@ -10880,7 +10976,7 @@
       "kd_obat": "R-2920",
       "product_type": "Branded",
       "revenue": 385098.7,
-      "avg_margin_pct": 32.36777283612727,
+      "avg_margin_pct": 32.36777283612728,
       "total_qty": 79.0,
       "transaction_count": 79
     },
@@ -10904,7 +11000,7 @@
       "kd_obat": "R-2547",
       "product_type": "Branded",
       "revenue": 377755.0,
-      "avg_margin_pct": 27.88844621513944,
+      "avg_margin_pct": 27.888446215139442,
       "total_qty": 150.0,
       "transaction_count": 4
     },
@@ -10936,7 +11032,7 @@
       "kd_obat": "R-0254",
       "product_type": "Branded",
       "revenue": 375159.15,
-      "avg_margin_pct": 34.518847372590436,
+      "avg_margin_pct": 34.51884737259044,
       "total_qty": 261.0,
       "transaction_count": 28
     },
@@ -10992,7 +11088,7 @@
       "kd_obat": "R-2054",
       "product_type": "Branded",
       "revenue": 359284.48212,
-      "avg_margin_pct": 32.93804835105181,
+      "avg_margin_pct": 32.93804835105182,
       "total_qty": 2359.0,
       "transaction_count": 489
     },
@@ -11008,7 +11104,7 @@
       "kd_obat": "R-2382",
       "product_type": "Branded",
       "revenue": 355118.4,
-      "avg_margin_pct": 30.69758198078834,
+      "avg_margin_pct": 30.697581980788335,
       "total_qty": 30.0,
       "transaction_count": 5
     },
@@ -11125,6 +11221,14 @@
       "transaction_count": 6
     },
     {
+      "kd_obat": "R-4328",
+      "product_type": "Branded",
+      "revenue": 341517.9,
+      "avg_margin_pct": 36.89189514189514,
+      "total_qty": 18.0,
+      "transaction_count": 18
+    },
+    {
       "kd_obat": "R-4329",
       "product_type": "Branded",
       "revenue": 341517.9,
@@ -11133,18 +11237,10 @@
       "transaction_count": 18
     },
     {
-      "kd_obat": "R-4328",
-      "product_type": "Branded",
-      "revenue": 341517.9,
-      "avg_margin_pct": 36.89189514189515,
-      "total_qty": 18.0,
-      "transaction_count": 18
-    },
-    {
       "kd_obat": "R-1205",
       "product_type": "Branded",
       "revenue": 340021.875,
-      "avg_margin_pct": 36.182652210175135,
+      "avg_margin_pct": 36.1826522101751,
       "total_qty": 4407.0,
       "transaction_count": 327
     },
@@ -11160,15 +11256,15 @@
       "kd_obat": "R-1473",
       "product_type": "Branded",
       "revenue": 335916.075,
-      "avg_margin_pct": 36.77581814873541,
+      "avg_margin_pct": 36.77581814873542,
       "total_qty": 583.0,
       "transaction_count": 73
     },
     {
       "kd_obat": "R-2760",
       "product_type": "Branded",
-      "revenue": 335329.3,
-      "avg_margin_pct": 35.95062969854048,
+      "revenue": 335329.30000000005,
+      "avg_margin_pct": 35.95062969854047,
       "total_qty": 461.0,
       "transaction_count": 359
     },
@@ -11192,7 +11288,7 @@
       "kd_obat": "R-1063",
       "product_type": "Branded",
       "revenue": 330604.575,
-      "avg_margin_pct": 36.389153975638536,
+      "avg_margin_pct": 36.38915397563853,
       "total_qty": 89.0,
       "transaction_count": 83
     },
@@ -11208,7 +11304,7 @@
       "kd_obat": "R-4501",
       "product_type": "Branded",
       "revenue": 329170.0,
-      "avg_margin_pct": 29.59164292497626,
+      "avg_margin_pct": 29.591642924976256,
       "total_qty": 24.0,
       "transaction_count": 22
     },
@@ -11216,14 +11312,14 @@
       "kd_obat": "R-1168",
       "product_type": "Branded",
       "revenue": 328224.6,
-      "avg_margin_pct": 33.959994593864046,
+      "avg_margin_pct": 33.95999459386404,
       "total_qty": 17.0,
       "transaction_count": 13
     },
     {
       "kd_obat": "R-2395",
       "product_type": "Branded",
-      "revenue": 327810.55,
+      "revenue": 327810.55000000005,
       "avg_margin_pct": 36.81946224165219,
       "total_qty": 1641.25,
       "transaction_count": 207
@@ -11240,7 +11336,7 @@
       "kd_obat": "AI-0854",
       "product_type": "Generic",
       "revenue": 326103.125,
-      "avg_margin_pct": 32.87330555260975,
+      "avg_margin_pct": 32.87330555260974,
       "total_qty": 1332.0,
       "transaction_count": 30
     },
@@ -11272,7 +11368,7 @@
       "kd_obat": "R-0317",
       "product_type": "Branded",
       "revenue": 323304.42,
-      "avg_margin_pct": 27.401324341494405,
+      "avg_margin_pct": 27.4013243414944,
       "total_qty": 113.0,
       "transaction_count": 17
     },
@@ -11296,7 +11392,7 @@
       "kd_obat": "R-0761",
       "product_type": "Branded",
       "revenue": 320905.5,
-      "avg_margin_pct": 32.84564856208143,
+      "avg_margin_pct": 32.84564856208142,
       "total_qty": 13.0,
       "transaction_count": 13
     },
@@ -11312,7 +11408,7 @@
       "kd_obat": "R-0262",
       "product_type": "Branded",
       "revenue": 320637.5,
-      "avg_margin_pct": 37.10806625641852,
+      "avg_margin_pct": 37.10806625641851,
       "total_qty": 14.0,
       "transaction_count": 14
     },
@@ -11336,7 +11432,7 @@
       "kd_obat": "R-3630",
       "product_type": "Branded",
       "revenue": 318040.0,
-      "avg_margin_pct": 37.50108084738436,
+      "avg_margin_pct": 37.50108084738435,
       "total_qty": 10.0,
       "transaction_count": 10
     },
@@ -11352,7 +11448,7 @@
       "kd_obat": "AI-0950",
       "product_type": "Generic",
       "revenue": 315174.35,
-      "avg_margin_pct": 36.39162347686243,
+      "avg_margin_pct": 36.391623476862435,
       "total_qty": 2241.0,
       "transaction_count": 201
     },
@@ -11408,7 +11504,7 @@
       "kd_obat": "R-3885",
       "product_type": "Branded",
       "revenue": 308700.37790625,
-      "avg_margin_pct": 36.53267488113664,
+      "avg_margin_pct": 36.53267488113666,
       "total_qty": 68.0,
       "transaction_count": 68
     },
@@ -11440,7 +11536,7 @@
       "kd_obat": "R-2144",
       "product_type": "Branded",
       "revenue": 307196.0,
-      "avg_margin_pct": 36.99734467990948,
+      "avg_margin_pct": 36.99734467990947,
       "total_qty": 965.0,
       "transaction_count": 98
     },
@@ -11512,7 +11608,7 @@
       "kd_obat": "R-3943",
       "product_type": "Branded",
       "revenue": 300772.25,
-      "avg_margin_pct": 35.30015744489428,
+      "avg_margin_pct": 35.30015744489429,
       "total_qty": 10.0,
       "transaction_count": 10
     },
@@ -11560,7 +11656,7 @@
       "kd_obat": "R-1872",
       "product_type": "Branded",
       "revenue": 292827.815,
-      "avg_margin_pct": 34.38205549833455,
+      "avg_margin_pct": 34.382055498334545,
       "total_qty": 2653.5,
       "transaction_count": 99
     },
@@ -11616,7 +11712,7 @@
       "kd_obat": "R-5156",
       "product_type": "Branded",
       "revenue": 287995.0,
-      "avg_margin_pct": 32.68757260946219,
+      "avg_margin_pct": 32.68757260946218,
       "total_qty": 8.0,
       "transaction_count": 8
     },
@@ -11648,7 +11744,7 @@
       "kd_obat": "AI-0660",
       "product_type": "Generic",
       "revenue": 282470.425,
-      "avg_margin_pct": 31.384648480197203,
+      "avg_margin_pct": 31.38464848019721,
       "total_qty": 55.0,
       "transaction_count": 55
     },
@@ -11664,7 +11760,7 @@
       "kd_obat": "R-1831",
       "product_type": "Branded",
       "revenue": 280028.95,
-      "avg_margin_pct": 36.13002326547097,
+      "avg_margin_pct": 36.130023265470975,
       "total_qty": 327.0,
       "transaction_count": 25
     },
@@ -11712,7 +11808,7 @@
       "kd_obat": "R-4518",
       "product_type": "Branded",
       "revenue": 275631.60000000003,
-      "avg_margin_pct": 28.257806023763468,
+      "avg_margin_pct": 28.257806023763465,
       "total_qty": 422.0,
       "transaction_count": 56
     },
@@ -11760,7 +11856,7 @@
       "kd_obat": "R-1706",
       "product_type": "Branded",
       "revenue": 271793.4,
-      "avg_margin_pct": 24.418499219032423,
+      "avg_margin_pct": 24.41849921903242,
       "total_qty": 205.0,
       "transaction_count": 8
     },
@@ -11784,7 +11880,7 @@
       "kd_obat": "R-1244",
       "product_type": "Branded",
       "revenue": 269977.125,
-      "avg_margin_pct": 36.779446044151925,
+      "avg_margin_pct": 36.77944604415192,
       "total_qty": 81.0,
       "transaction_count": 15
     },
@@ -11872,7 +11968,7 @@
       "kd_obat": "AI-1027",
       "product_type": "Generic",
       "revenue": 260992.2,
-      "avg_margin_pct": 33.81838656838657,
+      "avg_margin_pct": 33.818386568386565,
       "total_qty": 240.0,
       "transaction_count": 6
     },
@@ -11895,7 +11991,7 @@
     {
       "kd_obat": "AI-1237",
       "product_type": "Generic",
-      "revenue": 258403.80000000005,
+      "revenue": 258403.80000000002,
       "avg_margin_pct": 23.006605850896516,
       "total_qty": 187.0,
       "transaction_count": 17
@@ -11919,8 +12015,8 @@
     {
       "kd_obat": "R-1823",
       "product_type": "Branded",
-      "revenue": 257499.15000000002,
-      "avg_margin_pct": 36.74256602884591,
+      "revenue": 257499.15,
+      "avg_margin_pct": 36.742566028845914,
       "total_qty": 113.0,
       "transaction_count": 46
     },
@@ -11928,7 +12024,7 @@
       "kd_obat": "AI-0870",
       "product_type": "Generic",
       "revenue": 257284.75,
-      "avg_margin_pct": 37.50440917107584,
+      "avg_margin_pct": 37.504409171075835,
       "total_qty": 99.0,
       "transaction_count": 15
     },
@@ -11944,7 +12040,7 @@
       "kd_obat": "AI-0606",
       "product_type": "Generic",
       "revenue": 255837.25,
-      "avg_margin_pct": 33.15079365079365,
+      "avg_margin_pct": 33.150793650793666,
       "total_qty": 2670.0,
       "transaction_count": 84
     },
@@ -11952,7 +12048,7 @@
       "kd_obat": "AI-0176",
       "product_type": "Generic",
       "revenue": 255503.47999999998,
-      "avg_margin_pct": 29.97058823529412,
+      "avg_margin_pct": 29.970588235294116,
       "total_qty": 94.0,
       "transaction_count": 17
     },
@@ -11967,7 +12063,7 @@
     {
       "kd_obat": "AI-1030",
       "product_type": "Generic",
-      "revenue": 255039.52500000002,
+      "revenue": 255039.525,
       "avg_margin_pct": 22.1875,
       "total_qty": 8.0,
       "transaction_count": 8
@@ -11997,7 +12093,7 @@
       "transaction_count": 28
     },
     {
-      "kd_obat": "R-4383",
+      "kd_obat": "R-4382",
       "product_type": "Branded",
       "revenue": 250000.0,
       "avg_margin_pct": 37.5001375001375,
@@ -12005,7 +12101,7 @@
       "transaction_count": 1
     },
     {
-      "kd_obat": "R-4382",
+      "kd_obat": "R-4383",
       "product_type": "Branded",
       "revenue": 250000.0,
       "avg_margin_pct": 37.5001375001375,
@@ -12031,8 +12127,8 @@
     {
       "kd_obat": "AI-0397",
       "product_type": "Generic",
-      "revenue": 245508.97499999998,
-      "avg_margin_pct": 30.82047705440633,
+      "revenue": 245508.975,
+      "avg_margin_pct": 30.82047705440632,
       "total_qty": 843.0,
       "transaction_count": 69
     },
@@ -12071,7 +12167,7 @@
     {
       "kd_obat": "AI-0209",
       "product_type": "Generic",
-      "revenue": 241657.02500000002,
+      "revenue": 241657.025,
       "avg_margin_pct": 31.823982398239828,
       "total_qty": 211.0,
       "transaction_count": 23
@@ -12080,7 +12176,7 @@
       "kd_obat": "AI-1089",
       "product_type": "Generic",
       "revenue": 241603.86,
-      "avg_margin_pct": 23.995204603580568,
+      "avg_margin_pct": 23.995204603580564,
       "total_qty": 2742.0,
       "transaction_count": 60
     },
@@ -12112,7 +12208,7 @@
       "kd_obat": "R-0687",
       "product_type": "Branded",
       "revenue": 235346.45,
-      "avg_margin_pct": 29.776877687768774,
+      "avg_margin_pct": 29.776877687768785,
       "total_qty": 100.0,
       "transaction_count": 11
     },
@@ -12135,8 +12231,8 @@
     {
       "kd_obat": "R-4831",
       "product_type": "Branded",
-      "revenue": 235108.99999999997,
-      "avg_margin_pct": 10.011933671232807,
+      "revenue": 235108.99999999994,
+      "avg_margin_pct": 10.011933671232805,
       "total_qty": 290.0,
       "transaction_count": 162
     },
@@ -12144,7 +12240,7 @@
       "kd_obat": "AI-0076",
       "product_type": "Generic",
       "revenue": 232535.25,
-      "avg_margin_pct": 36.40044345282133,
+      "avg_margin_pct": 36.40044345282132,
       "total_qty": 10.0,
       "transaction_count": 10
     },
@@ -12152,7 +12248,7 @@
       "kd_obat": "R-3384",
       "product_type": "Branded",
       "revenue": 232052.0,
-      "avg_margin_pct": 24.929715593331156,
+      "avg_margin_pct": 24.92971559333115,
       "total_qty": 83.0,
       "transaction_count": 7
     },
@@ -12168,7 +12264,7 @@
       "kd_obat": "AI-0758",
       "product_type": "Generic",
       "revenue": 230327.2499999999,
-      "avg_margin_pct": 20.342936727938206,
+      "avg_margin_pct": 20.34293672793821,
       "total_qty": 75.0,
       "transaction_count": 73
     },
@@ -12176,7 +12272,7 @@
       "kd_obat": "R-2464",
       "product_type": "Branded",
       "revenue": 230201.0,
-      "avg_margin_pct": 77.83456856101469,
+      "avg_margin_pct": 77.83456856101465,
       "total_qty": 4199.0,
       "transaction_count": 667
     },
@@ -12224,7 +12320,7 @@
       "kd_obat": "R-4759",
       "product_type": "Branded",
       "revenue": 226371.625,
-      "avg_margin_pct": 32.360931038410016,
+      "avg_margin_pct": 32.36093103841002,
       "total_qty": 4573.75,
       "transaction_count": 742
     },
@@ -12248,7 +12344,7 @@
       "kd_obat": "AI-1239",
       "product_type": "Generic",
       "revenue": 224201.91,
-      "avg_margin_pct": 30.824558240173097,
+      "avg_margin_pct": 30.824558240173094,
       "total_qty": 31.0,
       "transaction_count": 14
     },
@@ -12280,7 +12376,7 @@
       "kd_obat": "AI-0838",
       "product_type": "Generic",
       "revenue": 222836.1,
-      "avg_margin_pct": 32.90242448648898,
+      "avg_margin_pct": 32.902424486488975,
       "total_qty": 26.0,
       "transaction_count": 11
     },
@@ -12296,7 +12392,7 @@
       "kd_obat": "R-1723",
       "product_type": "Branded",
       "revenue": 222560.0,
-      "avg_margin_pct": 34.36273472937085,
+      "avg_margin_pct": 34.36273472937084,
       "total_qty": 66.0,
       "transaction_count": 39
     },
@@ -12325,20 +12421,20 @@
       "transaction_count": 1
     },
     {
-      "kd_obat": "R-4915",
-      "product_type": "Branded",
-      "revenue": 220000.0,
-      "avg_margin_pct": 37.5,
-      "total_qty": 36.0,
-      "transaction_count": 3
-    },
-    {
       "kd_obat": "R-3211",
       "product_type": "Branded",
       "revenue": 220000.0,
       "avg_margin_pct": 37.5,
       "total_qty": 2.0,
       "transaction_count": 1
+    },
+    {
+      "kd_obat": "R-4915",
+      "product_type": "Branded",
+      "revenue": 220000.0,
+      "avg_margin_pct": 37.5,
+      "total_qty": 36.0,
+      "transaction_count": 3
     },
     {
       "kd_obat": "R-0693",
@@ -12352,7 +12448,7 @@
       "kd_obat": "R-2767",
       "product_type": "Branded",
       "revenue": 219701.725,
-      "avg_margin_pct": 33.98731770707997,
+      "avg_margin_pct": 33.987317707079974,
       "total_qty": 414.0,
       "transaction_count": 263
     },
@@ -12464,7 +12560,7 @@
       "kd_obat": "AI-0083",
       "product_type": "Generic",
       "revenue": 208565.7,
-      "avg_margin_pct": 29.63544106167056,
+      "avg_margin_pct": 29.635441061670566,
       "total_qty": 1521.0,
       "transaction_count": 122
     },
@@ -12520,14 +12616,14 @@
       "kd_obat": "AI-1555",
       "product_type": "Generic",
       "revenue": 203460.0,
-      "avg_margin_pct": 9.861829176114892,
+      "avg_margin_pct": 9.86182917611489,
       "total_qty": 90.0,
       "transaction_count": 14
     },
     {
       "kd_obat": "AI-1423",
       "product_type": "Generic",
-      "revenue": 203314.17500000002,
+      "revenue": 203314.175,
       "avg_margin_pct": 30.321968431576256,
       "total_qty": 36.0,
       "transaction_count": 27
@@ -12584,7 +12680,7 @@
       "kd_obat": "R-2703",
       "product_type": "Branded",
       "revenue": 202151.12,
-      "avg_margin_pct": 30.01786349093494,
+      "avg_margin_pct": 30.017863490934943,
       "total_qty": 399.5,
       "transaction_count": 58
     },
@@ -12592,7 +12688,7 @@
       "kd_obat": "R-1941",
       "product_type": "Branded",
       "revenue": 202054.1,
-      "avg_margin_pct": 29.810398613518196,
+      "avg_margin_pct": 29.810398613518192,
       "total_qty": 61.0,
       "transaction_count": 5
     },
@@ -12640,7 +12736,7 @@
       "kd_obat": "AI-1199",
       "product_type": "Generic",
       "revenue": 198001.97999999998,
-      "avg_margin_pct": 33.211212622853985,
+      "avg_margin_pct": 33.21121262285399,
       "total_qty": 1914.35,
       "transaction_count": 343
     },
@@ -12768,15 +12864,15 @@
       "kd_obat": "AI-1368",
       "product_type": "Generic",
       "revenue": 187992.75,
-      "avg_margin_pct": 35.43830456407256,
+      "avg_margin_pct": 35.43830456407255,
       "total_qty": 8.0,
       "transaction_count": 8
     },
     {
       "kd_obat": "AI-0551",
       "product_type": "Generic",
-      "revenue": 187523.48000000007,
-      "avg_margin_pct": 29.64484950769711,
+      "revenue": 187523.48000000004,
+      "avg_margin_pct": 29.644849507697117,
       "total_qty": 84.0,
       "transaction_count": 83
     },
@@ -12792,7 +12888,7 @@
       "kd_obat": "R-0428",
       "product_type": "Branded",
       "revenue": 185824.275,
-      "avg_margin_pct": 29.937845286793127,
+      "avg_margin_pct": 29.93784528679313,
       "total_qty": 592.0,
       "transaction_count": 32
     },
@@ -12808,7 +12904,7 @@
       "kd_obat": "R-0475",
       "product_type": "Branded",
       "revenue": 184643.0,
-      "avg_margin_pct": 34.90664577621099,
+      "avg_margin_pct": 34.906645776210986,
       "total_qty": 331.0,
       "transaction_count": 37
     },
@@ -12839,8 +12935,8 @@
     {
       "kd_obat": "R-0436",
       "product_type": "Branded",
-      "revenue": 180831.82999999996,
-      "avg_margin_pct": 39.95177271751642,
+      "revenue": 180831.82999999987,
+      "avg_margin_pct": 39.9517727175164,
       "total_qty": 8753.95,
       "transaction_count": 1553
     },
@@ -12861,19 +12957,19 @@
       "transaction_count": 1
     },
     {
-      "kd_obat": "R-3153",
-      "product_type": "Branded",
-      "revenue": 178200.0,
-      "avg_margin_pct": 32.0,
-      "total_qty": 30.0,
-      "transaction_count": 1
-    },
-    {
       "kd_obat": "R-4800",
       "product_type": "Branded",
       "revenue": 178200.0,
       "avg_margin_pct": 32.0,
       "total_qty": 1.0,
+      "transaction_count": 1
+    },
+    {
+      "kd_obat": "R-3153",
+      "product_type": "Branded",
+      "revenue": 178200.0,
+      "avg_margin_pct": 32.0,
+      "total_qty": 30.0,
       "transaction_count": 1
     },
     {
@@ -12952,7 +13048,7 @@
       "kd_obat": "R-0986",
       "product_type": "Branded",
       "revenue": 173010.0,
-      "avg_margin_pct": 36.11436950146628,
+      "avg_margin_pct": 36.11436950146627,
       "total_qty": 75.0,
       "transaction_count": 4
     },
@@ -12992,15 +13088,15 @@
       "kd_obat": "R-1815",
       "product_type": "Branded",
       "revenue": 171058.89,
-      "avg_margin_pct": 33.34178347114883,
+      "avg_margin_pct": 33.34178347114882,
       "total_qty": 2644.0,
       "transaction_count": 85
     },
     {
       "kd_obat": "R-5261",
       "product_type": "Branded",
-      "revenue": 170821.80000000002,
-      "avg_margin_pct": 32.55827436269077,
+      "revenue": 170821.8,
+      "avg_margin_pct": 32.55827436269076,
       "total_qty": 407.0,
       "transaction_count": 37
     },
@@ -13024,7 +13120,7 @@
       "kd_obat": "R-0755",
       "product_type": "Branded",
       "revenue": 169776.16,
-      "avg_margin_pct": 34.060438814638125,
+      "avg_margin_pct": 34.06043881463813,
       "total_qty": 687.0,
       "transaction_count": 231
     },
@@ -13039,8 +13135,8 @@
     {
       "kd_obat": "R-0108",
       "product_type": "Branded",
-      "revenue": 167886.10499999998,
-      "avg_margin_pct": 36.599547773654905,
+      "revenue": 167886.105,
+      "avg_margin_pct": 36.59954777365491,
       "total_qty": 836.5,
       "transaction_count": 176
     },
@@ -13064,7 +13160,7 @@
       "kd_obat": "AI-1040",
       "product_type": "Generic",
       "revenue": 165150.875,
-      "avg_margin_pct": 34.04035802336799,
+      "avg_margin_pct": 34.040358023367986,
       "total_qty": 50.0,
       "transaction_count": 19
     },
@@ -13096,7 +13192,7 @@
       "kd_obat": "AI-0760",
       "product_type": "Generic",
       "revenue": 164030.79,
-      "avg_margin_pct": 22.63053273587255,
+      "avg_margin_pct": 22.630532735872542,
       "total_qty": 922.0,
       "transaction_count": 103
     },
@@ -13104,7 +13200,7 @@
       "kd_obat": "R-1023",
       "product_type": "Branded",
       "revenue": 163158.28019999998,
-      "avg_margin_pct": 35.93296910237873,
+      "avg_margin_pct": 35.93296910237872,
       "total_qty": 1358.0,
       "transaction_count": 99
     },
@@ -13120,7 +13216,7 @@
       "kd_obat": "R-2406",
       "product_type": "Branded",
       "revenue": 162778.0,
-      "avg_margin_pct": 26.498559836615772,
+      "avg_margin_pct": 26.49855983661578,
       "total_qty": 6.0,
       "transaction_count": 6
     },
@@ -13215,7 +13311,7 @@
     {
       "kd_obat": "R-0757",
       "product_type": "Branded",
-      "revenue": 154287.27263999998,
+      "revenue": 154287.27264,
       "avg_margin_pct": 26.272110180995476,
       "total_qty": 28.0,
       "transaction_count": 4
@@ -13280,7 +13376,7 @@
       "kd_obat": "AI-1112",
       "product_type": "Generic",
       "revenue": 150855.15000000002,
-      "avg_margin_pct": 32.50144430402599,
+      "avg_margin_pct": 32.501444304025995,
       "total_qty": 307.0,
       "transaction_count": 29
     },
@@ -13304,7 +13400,7 @@
       "kd_obat": "R-1697",
       "product_type": "Branded",
       "revenue": 150461.375,
-      "avg_margin_pct": 37.249405040427675,
+      "avg_margin_pct": 37.24940504042768,
       "total_qty": 178.0,
       "transaction_count": 20
     },
@@ -13375,7 +13471,7 @@
     {
       "kd_obat": "R-2710",
       "product_type": "Branded",
-      "revenue": 147339.97999999998,
+      "revenue": 147339.98,
       "avg_margin_pct": 30.34975551008347,
       "total_qty": 10.0,
       "transaction_count": 10
@@ -13424,7 +13520,7 @@
       "kd_obat": "R-2768",
       "product_type": "Branded",
       "revenue": 142989.775,
-      "avg_margin_pct": 35.37037970430108,
+      "avg_margin_pct": 35.37037970430109,
       "total_qty": 228.0,
       "transaction_count": 128
     },
@@ -13463,8 +13559,8 @@
     {
       "kd_obat": "AI-0191",
       "product_type": "Generic",
-      "revenue": 139656.41000000003,
-      "avg_margin_pct": 35.293168727594974,
+      "revenue": 139656.40999999997,
+      "avg_margin_pct": 35.29316872759497,
       "total_qty": 1869.0,
       "transaction_count": 122
     },
@@ -13480,7 +13576,7 @@
       "kd_obat": "R-1657",
       "product_type": "Branded",
       "revenue": 139334.0,
-      "avg_margin_pct": 25.556618819776716,
+      "avg_margin_pct": 25.556618819776713,
       "total_qty": 86.0,
       "transaction_count": 6
     },
@@ -13624,7 +13720,7 @@
       "kd_obat": "R-5316",
       "product_type": "Branded",
       "revenue": 131698.0,
-      "avg_margin_pct": 34.35555555555557,
+      "avg_margin_pct": 34.355555555555554,
       "total_qty": 396.0,
       "transaction_count": 81
     },
@@ -13648,7 +13744,7 @@
       "kd_obat": "R-4201",
       "product_type": "Branded",
       "revenue": 130790.0,
-      "avg_margin_pct": 36.286770140428665,
+      "avg_margin_pct": 36.28677014042867,
       "total_qty": 135.0,
       "transaction_count": 123
     },
@@ -13679,7 +13775,7 @@
     {
       "kd_obat": "R-0640",
       "product_type": "Branded",
-      "revenue": 129747.28,
+      "revenue": 129747.27999999998,
       "avg_margin_pct": 35.36139516886848,
       "total_qty": 105.0,
       "transaction_count": 79
@@ -13704,7 +13800,7 @@
       "kd_obat": "R-0637",
       "product_type": "Branded",
       "revenue": 128558.0,
-      "avg_margin_pct": 37.52161403187063,
+      "avg_margin_pct": 37.521614031870634,
       "total_qty": 16.0,
       "transaction_count": 9
     },
@@ -13712,7 +13808,7 @@
       "kd_obat": "R-5230",
       "product_type": "Branded",
       "revenue": 128375.0,
-      "avg_margin_pct": 10.001692333728213,
+      "avg_margin_pct": 10.001692333728212,
       "total_qty": 19.75,
       "transaction_count": 19
     },
@@ -13952,7 +14048,7 @@
       "kd_obat": "R-0646",
       "product_type": "Branded",
       "revenue": 115549.0,
-      "avg_margin_pct": 37.460913070669164,
+      "avg_margin_pct": 37.46091307066917,
       "total_qty": 718.0,
       "transaction_count": 41
     },
@@ -14032,7 +14128,7 @@
       "kd_obat": "R-3763",
       "product_type": "Branded",
       "revenue": 110959.0,
-      "avg_margin_pct": 34.49575757575757,
+      "avg_margin_pct": 34.49575757575758,
       "total_qty": 11.0,
       "transaction_count": 11
     },
@@ -14040,7 +14136,7 @@
       "kd_obat": "R-0337",
       "product_type": "Branded",
       "revenue": 110945.5,
-      "avg_margin_pct": 36.33870967741935,
+      "avg_margin_pct": 36.33870967741936,
       "total_qty": 163.0,
       "transaction_count": 31
     },
@@ -14103,8 +14199,8 @@
     {
       "kd_obat": "R-3623",
       "product_type": "Branded",
-      "revenue": 106358.04999999999,
-      "avg_margin_pct": 26.0170138105622,
+      "revenue": 106358.05,
+      "avg_margin_pct": 26.017013810562197,
       "total_qty": 27.0,
       "transaction_count": 26
     },
@@ -14152,7 +14248,7 @@
       "kd_obat": "R-3624",
       "product_type": "Branded",
       "revenue": 104060.61,
-      "avg_margin_pct": 25.587631771770056,
+      "avg_margin_pct": 25.58763177177005,
       "total_qty": 26.0,
       "transaction_count": 23
     },
@@ -14160,7 +14256,7 @@
       "kd_obat": "AI-0144",
       "product_type": "Generic",
       "revenue": 103128.99999999999,
-      "avg_margin_pct": 18.804728406164916,
+      "avg_margin_pct": 18.804728406164923,
       "total_qty": 51.0,
       "transaction_count": 47
     },
@@ -14192,7 +14288,7 @@
       "kd_obat": "R-4497",
       "product_type": "Branded",
       "revenue": 102508.24,
-      "avg_margin_pct": 36.00033132435076,
+      "avg_margin_pct": 36.00033132435077,
       "total_qty": 161.0,
       "transaction_count": 67
     },
@@ -14224,7 +14320,7 @@
       "kd_obat": "R-0519",
       "product_type": "Branded",
       "revenue": 99640.0,
-      "avg_margin_pct": 29.24817101644788,
+      "avg_margin_pct": 29.248171016447877,
       "total_qty": 4.0,
       "transaction_count": 4
     },
@@ -14312,7 +14408,7 @@
       "kd_obat": "R-4850",
       "product_type": "Branded",
       "revenue": 96543.5,
-      "avg_margin_pct": 17.550015675817985,
+      "avg_margin_pct": 17.55001567581798,
       "total_qty": 15.0,
       "transaction_count": 15
     },
@@ -14368,7 +14464,7 @@
       "kd_obat": "R-1028",
       "product_type": "Branded",
       "revenue": 95064.375,
-      "avg_margin_pct": 31.102469093371315,
+      "avg_margin_pct": 31.102469093371322,
       "total_qty": 60.0,
       "transaction_count": 6
     },
@@ -14485,7 +14581,7 @@
       "transaction_count": 12
     },
     {
-      "kd_obat": "R-3702",
+      "kd_obat": "R-3701",
       "product_type": "Branded",
       "revenue": 89375.0,
       "avg_margin_pct": 37.5,
@@ -14493,7 +14589,7 @@
       "transaction_count": 1
     },
     {
-      "kd_obat": "R-3701",
+      "kd_obat": "R-3702",
       "product_type": "Branded",
       "revenue": 89375.0,
       "avg_margin_pct": 37.5,
@@ -14511,8 +14607,8 @@
     {
       "kd_obat": "AI-0557",
       "product_type": "Generic",
-      "revenue": 88924.525,
-      "avg_margin_pct": 28.650787075393538,
+      "revenue": 88924.52500000001,
+      "avg_margin_pct": 28.65078707539354,
       "total_qty": 1398.0,
       "transaction_count": 71
     },
@@ -14728,7 +14824,7 @@
       "kd_obat": "R-1983",
       "product_type": "Branded",
       "revenue": 81429.93,
-      "avg_margin_pct": 34.276733934628666,
+      "avg_margin_pct": 34.27673393462867,
       "total_qty": 436.0,
       "transaction_count": 37
     },
@@ -14752,7 +14848,7 @@
       "kd_obat": "AI-0478",
       "product_type": "Generic",
       "revenue": 80393.875,
-      "avg_margin_pct": 55.27777777777778,
+      "avg_margin_pct": 55.277777777777786,
       "total_qty": 705.0,
       "transaction_count": 27
     },
@@ -14784,7 +14880,7 @@
       "kd_obat": "R-0089",
       "product_type": "Branded",
       "revenue": 79283.4,
-      "avg_margin_pct": 36.97284267480577,
+      "avg_margin_pct": 36.97284267480578,
       "total_qty": 501.8,
       "transaction_count": 80
     },
@@ -14856,7 +14952,7 @@
       "kd_obat": "R-1283",
       "product_type": "Branded",
       "revenue": 76718.5,
-      "avg_margin_pct": 37.15526315789474,
+      "avg_margin_pct": 37.155263157894744,
       "total_qty": 112.0,
       "transaction_count": 38
     },
@@ -14928,7 +15024,7 @@
       "kd_obat": "AI-0032",
       "product_type": "Generic",
       "revenue": 74847.45,
-      "avg_margin_pct": 32.320290820290815,
+      "avg_margin_pct": 32.32029082029082,
       "total_qty": 209.0,
       "transaction_count": 33
     },
@@ -15104,7 +15200,7 @@
       "kd_obat": "R-4683",
       "product_type": "Branded",
       "revenue": 69230.45,
-      "avg_margin_pct": 33.218253968253975,
+      "avg_margin_pct": 33.21825396825397,
       "total_qty": 149.0,
       "transaction_count": 18
     },
@@ -15192,7 +15288,7 @@
       "kd_obat": "AI-0721",
       "product_type": "Generic",
       "revenue": 66220.225,
-      "avg_margin_pct": 36.248578853337655,
+      "avg_margin_pct": 36.24857885333764,
       "total_qty": 1041.0,
       "transaction_count": 131
     },
@@ -15280,7 +15376,7 @@
       "kd_obat": "R-1117",
       "product_type": "Branded",
       "revenue": 63016.05,
-      "avg_margin_pct": 36.80232558139538,
+      "avg_margin_pct": 36.802325581395365,
       "total_qty": 1175.0,
       "transaction_count": 84
     },
@@ -15288,7 +15384,7 @@
       "kd_obat": "R-5051",
       "product_type": "Branded",
       "revenue": 62717.0,
-      "avg_margin_pct": 30.27472527472528,
+      "avg_margin_pct": 30.274725274725277,
       "total_qty": 173.0,
       "transaction_count": 26
     },
@@ -15416,7 +15512,7 @@
       "kd_obat": "R-2450",
       "product_type": "Branded",
       "revenue": 57802.6862,
-      "avg_margin_pct": 34.934780028383386,
+      "avg_margin_pct": 34.9347800283834,
       "total_qty": 1895.0,
       "transaction_count": 337
     },
@@ -15576,7 +15672,7 @@
       "kd_obat": "R-3036",
       "product_type": "Branded",
       "revenue": 53300.345,
-      "avg_margin_pct": 33.378591303222464,
+      "avg_margin_pct": 33.37859130322247,
       "total_qty": 4.0,
       "transaction_count": 4
     },
@@ -15592,7 +15688,7 @@
       "kd_obat": "AI-0580",
       "product_type": "Generic",
       "revenue": 53211.0,
-      "avg_margin_pct": 30.992324561403514,
+      "avg_margin_pct": 30.99232456140351,
       "total_qty": 366.0,
       "transaction_count": 8
     },
@@ -15696,7 +15792,7 @@
       "kd_obat": "AI-0113",
       "product_type": "Generic",
       "revenue": 49990.119999999995,
-      "avg_margin_pct": 32.91184573002755,
+      "avg_margin_pct": 32.911845730027544,
       "total_qty": 39.0,
       "transaction_count": 6
     },
@@ -15904,7 +16000,7 @@
       "kd_obat": "R-2351",
       "product_type": "Branded",
       "revenue": 45145.2,
-      "avg_margin_pct": 30.434523809523807,
+      "avg_margin_pct": 30.434523809523814,
       "total_qty": 36.0,
       "transaction_count": 7
     },
@@ -15928,7 +16024,7 @@
       "kd_obat": "R-2625",
       "product_type": "Branded",
       "revenue": 44712.0,
-      "avg_margin_pct": 0.6605504587155969,
+      "avg_margin_pct": 0.6605504587155954,
       "total_qty": 435.0,
       "transaction_count": 9
     },
@@ -16000,7 +16096,7 @@
       "kd_obat": "R-5236",
       "product_type": "Branded",
       "revenue": 43098.0,
-      "avg_margin_pct": 35.85026737967914,
+      "avg_margin_pct": 35.850267379679146,
       "total_qty": 58.0,
       "transaction_count": 34
     },
@@ -16040,7 +16136,7 @@
       "kd_obat": "R-2279",
       "product_type": "Branded",
       "revenue": 41325.0,
-      "avg_margin_pct": 33.85726903153528,
+      "avg_margin_pct": 33.857269031535274,
       "total_qty": 52.0,
       "transaction_count": 6
     },
@@ -16080,7 +16176,7 @@
       "kd_obat": "R-1155",
       "product_type": "Branded",
       "revenue": 40024.0,
-      "avg_margin_pct": 36.69137466307277,
+      "avg_margin_pct": 36.691374663072764,
       "total_qty": 327.0,
       "transaction_count": 53
     },
@@ -16096,7 +16192,7 @@
       "kd_obat": "R-5221",
       "product_type": "Branded",
       "revenue": 39762.0,
-      "avg_margin_pct": 35.98076923076924,
+      "avg_margin_pct": 35.98076923076923,
       "total_qty": 45.0,
       "transaction_count": 32
     },
@@ -16125,7 +16221,7 @@
       "transaction_count": 11
     },
     {
-      "kd_obat": "R-3118",
+      "kd_obat": "R-1422",
       "product_type": "Branded",
       "revenue": 38999.4,
       "avg_margin_pct": 32.00000000000001,
@@ -16133,7 +16229,7 @@
       "transaction_count": 1
     },
     {
-      "kd_obat": "R-1422",
+      "kd_obat": "R-3118",
       "product_type": "Branded",
       "revenue": 38999.4,
       "avg_margin_pct": 32.00000000000001,
@@ -16168,7 +16264,7 @@
       "kd_obat": "R-0437",
       "product_type": "Branded",
       "revenue": 38115.7,
-      "avg_margin_pct": 35.19656670365581,
+      "avg_margin_pct": 35.196566703655805,
       "total_qty": 79.0,
       "transaction_count": 15
     },
@@ -16232,17 +16328,9 @@
       "kd_obat": "AI-1090",
       "product_type": "Generic",
       "revenue": 36059.195,
-      "avg_margin_pct": 30.888888888888886,
+      "avg_margin_pct": 30.888888888888893,
       "total_qty": 340.0,
       "transaction_count": 17
-    },
-    {
-      "kd_obat": "AI-1523",
-      "product_type": "Generic",
-      "revenue": 36000.0,
-      "avg_margin_pct": 20.0,
-      "total_qty": 30.0,
-      "transaction_count": 1
     },
     {
       "kd_obat": "R-5290",
@@ -16250,6 +16338,14 @@
       "revenue": 36000.0,
       "avg_margin_pct": 32.00352009386917,
       "total_qty": 2.0,
+      "transaction_count": 1
+    },
+    {
+      "kd_obat": "AI-1523",
+      "product_type": "Generic",
+      "revenue": 36000.0,
+      "avg_margin_pct": 20.0,
+      "total_qty": 30.0,
       "transaction_count": 1
     },
     {
@@ -16416,7 +16512,7 @@
       "kd_obat": "R-3167",
       "product_type": "Branded",
       "revenue": 30611.675,
-      "avg_margin_pct": 40.14406162572337,
+      "avg_margin_pct": 40.144061625723374,
       "total_qty": 76.0,
       "transaction_count": 9
     },
@@ -16573,19 +16669,19 @@
       "transaction_count": 1
     },
     {
-      "kd_obat": "R-0172",
-      "product_type": "Branded",
-      "revenue": 27225.0,
-      "avg_margin_pct": 37.5,
-      "total_qty": 1.0,
-      "transaction_count": 1
-    },
-    {
       "kd_obat": "R-0622",
       "product_type": "Branded",
       "revenue": 27225.0,
       "avg_margin_pct": 10.0,
       "total_qty": 11.0,
+      "transaction_count": 1
+    },
+    {
+      "kd_obat": "R-0172",
+      "product_type": "Branded",
+      "revenue": 27225.0,
+      "avg_margin_pct": 37.5,
+      "total_qty": 1.0,
       "transaction_count": 1
     },
     {
@@ -16671,8 +16767,8 @@
     {
       "kd_obat": "AI-0338",
       "product_type": "Generic",
-      "revenue": 25222.63000000001,
-      "avg_margin_pct": 34.141795311606614,
+      "revenue": 25222.630000000005,
+      "avg_margin_pct": 34.141795311606636,
       "total_qty": 846.5,
       "transaction_count": 159
     },
@@ -16920,7 +17016,7 @@
       "kd_obat": "R-3535",
       "product_type": "Branded",
       "revenue": 20426.5,
-      "avg_margin_pct": 37.48903493427957,
+      "avg_margin_pct": 37.489034934279566,
       "total_qty": 11.0,
       "transaction_count": 11
     },
@@ -17080,7 +17176,7 @@
       "kd_obat": "R-0315",
       "product_type": "Branded",
       "revenue": 15569.0,
-      "avg_margin_pct": 35.71666666666667,
+      "avg_margin_pct": 35.71666666666666,
       "total_qty": 23.0,
       "transaction_count": 6
     },
@@ -17176,7 +17272,7 @@
       "kd_obat": "R-0686",
       "product_type": "Branded",
       "revenue": 12405.0,
-      "avg_margin_pct": 31.897926634768737,
+      "avg_margin_pct": 31.89792663476874,
       "total_qty": 45.0,
       "transaction_count": 3
     },
@@ -17408,7 +17504,7 @@
       "kd_obat": "AI-0643",
       "product_type": "Generic",
       "revenue": 9791.32,
-      "avg_margin_pct": 29.838383838383837,
+      "avg_margin_pct": 29.838383838383834,
       "total_qty": 60.0,
       "transaction_count": 11
     },
@@ -17600,7 +17696,7 @@
       "kd_obat": "R-1834",
       "product_type": "Branded",
       "revenue": 6736.625,
-      "avg_margin_pct": 36.68384879725086,
+      "avg_margin_pct": 36.68384879725085,
       "total_qty": 17.0,
       "transaction_count": 7
     },
@@ -17955,7 +18051,7 @@
       "product_type": "Generic",
       "price_tier": "Mid",
       "revenue": 652803605.8199999,
-      "avg_margin_pct": 36.09109995098388,
+      "avg_margin_pct": 36.09109995098389,
       "total_qty": 160495.0
     },
     {
@@ -17963,7 +18059,7 @@
       "product_type": "Generic",
       "price_tier": "Mid",
       "revenue": 384275316.6499999,
-      "avg_margin_pct": 35.06220727343972,
+      "avg_margin_pct": 35.06220727343973,
       "total_qty": 138159.0
     },
     {
@@ -17971,7 +18067,7 @@
       "product_type": "Generic",
       "price_tier": "Premium",
       "revenue": 336258282.12,
-      "avg_margin_pct": 34.72463835226403,
+      "avg_margin_pct": 34.72463835226404,
       "total_qty": 69.0
     },
     {
@@ -17979,7 +18075,7 @@
       "product_type": "Generic",
       "price_tier": "Premium",
       "revenue": 290644725.87,
-      "avg_margin_pct": 33.6484133005283,
+      "avg_margin_pct": 33.648413300528304,
       "total_qty": 2416.0
     },
     {
@@ -18003,7 +18099,7 @@
       "product_type": "Generic",
       "price_tier": "Mid",
       "revenue": 241605973.36500004,
-      "avg_margin_pct": 36.51793602591086,
+      "avg_margin_pct": 36.51793602591082,
       "total_qty": 36007.0
     },
     {
@@ -18011,15 +18107,15 @@
       "product_type": "Generic",
       "price_tier": "Premium",
       "revenue": 224012307.75,
-      "avg_margin_pct": 30.758830963426316,
+      "avg_margin_pct": 30.758830963426306,
       "total_qty": 214.0
     },
     {
       "kd_obat": "AI-1311",
       "product_type": "Generic",
       "price_tier": "Premium",
-      "revenue": 202945003.75999996,
-      "avg_margin_pct": 32.68853592870761,
+      "revenue": 202945003.76,
+      "avg_margin_pct": 32.688535928707616,
       "total_qty": 923.0
     },
     {
@@ -18027,7 +18123,7 @@
       "product_type": "Generic",
       "price_tier": "Mid",
       "revenue": 174184929.075,
-      "avg_margin_pct": 35.662105428786205,
+      "avg_margin_pct": 35.6621054287861,
       "total_qty": 25276.0
     },
     {
@@ -18042,7 +18138,7 @@
       "kd_obat": "R-2754",
       "product_type": "Branded",
       "price_tier": "High",
-      "revenue": 167466393.82143983,
+      "revenue": 167466393.82143986,
       "avg_margin_pct": 77.17899781842058,
       "total_qty": 24994.0
     },
@@ -18051,7 +18147,7 @@
       "product_type": "Generic",
       "price_tier": "Premium",
       "revenue": 166765640.0,
-      "avg_margin_pct": 34.47712965305877,
+      "avg_margin_pct": 34.47712965305876,
       "total_qty": 153.0
     },
     {
@@ -18067,7 +18163,7 @@
       "product_type": "Generic",
       "price_tier": "Premium",
       "revenue": 156837296.72499996,
-      "avg_margin_pct": 32.65529480192585,
+      "avg_margin_pct": 32.65529480192584,
       "total_qty": 1098.0
     },
     {
@@ -18075,15 +18171,15 @@
       "product_type": "Generic",
       "price_tier": "High",
       "revenue": 155261542.75,
-      "avg_margin_pct": 35.74993996330222,
+      "avg_margin_pct": 35.74993996330221,
       "total_qty": 3760.0
     },
     {
       "kd_obat": "AI-0406",
       "product_type": "Generic",
       "price_tier": "Mid",
-      "revenue": 148531250.415,
-      "avg_margin_pct": 35.1463032147805,
+      "revenue": 148531250.41499996,
+      "avg_margin_pct": 35.14630321478056,
       "total_qty": 133644.0
     },
     {

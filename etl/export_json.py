@@ -31,10 +31,13 @@ def export_overview(conn) -> dict:
             COUNT(*)::int AS transactions,
             AVG(f.margin_pct)::float AS avg_margin_pct,
             SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient')::float AS revenue_outpatient,
-            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient')::float AS revenue_inpatient
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient')::float AS revenue_inpatient,
+            SUM(f.revenue) FILTER (WHERE p.product_type = 'Generic')::float AS revenue_generic,
+            SUM(f.revenue) FILTER (WHERE p.product_type = 'Branded')::float AS revenue_branded
         FROM fact_sales f
         JOIN dim_date d ON f.date_key = d.date_key
         JOIN dim_transaction t ON f.no_resep = t.no_resep
+        JOIN dim_product p ON f.kd_obat = p.kd_obat
         WHERE f.flag_qty_le_zero = false
         GROUP BY d.year_month
         ORDER BY d.year_month;
@@ -59,27 +62,31 @@ def export_products(conn) -> dict:
     product_type_revenue = query_dict(conn, """
         SELECT
             p.product_type,
+            t.transaction_type,
             SUM(f.revenue)::float AS revenue,
             COUNT(*)::int AS transactions,
             AVG(f.margin_pct)::float AS avg_margin_pct
         FROM fact_sales f
         JOIN dim_product p ON f.kd_obat = p.kd_obat
+        JOIN dim_transaction t ON f.no_resep = t.no_resep
         WHERE f.flag_qty_le_zero = false
-        GROUP BY p.product_type;
+        GROUP BY p.product_type, t.transaction_type;
     """)
 
     monthly_product_trend = query_dict(conn, """
         SELECT
             d.year_month,
             p.product_type,
+            t.transaction_type,
             SUM(f.revenue)::float AS revenue,
             COUNT(*)::int AS transactions
         FROM fact_sales f
         JOIN dim_date d ON f.date_key = d.date_key
         JOIN dim_product p ON f.kd_obat = p.kd_obat
+        JOIN dim_transaction t ON f.no_resep = t.no_resep
         WHERE f.flag_qty_le_zero = false
-        GROUP BY d.year_month, p.product_type
-        ORDER BY d.year_month, p.product_type;
+        GROUP BY d.year_month, p.product_type, t.transaction_type
+        ORDER BY d.year_month, p.product_type, t.transaction_type;
     """)
 
     sku_scatter = query_dict(conn, """

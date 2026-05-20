@@ -1,3 +1,5 @@
+const dataCache: Record<string, unknown> = {}
+
 export interface MonthlyData {
   year_month: string
   revenue: number
@@ -5,6 +7,8 @@ export interface MonthlyData {
   avg_margin_pct: number
   revenue_outpatient: number | null
   revenue_inpatient: number | null
+  revenue_generic: number | null
+  revenue_branded: number | null
 }
 
 export interface OverviewData {
@@ -15,9 +19,14 @@ export interface OverviewData {
 }
 
 export async function getOverviewData(): Promise<OverviewData> {
+  if (dataCache.overview) {
+    return dataCache.overview as OverviewData
+  }
   const res = await fetch("/data/overview.json")
   if (!res.ok) throw new Error("Failed to fetch overview data")
-  return res.json()
+  const data = await res.json()
+  dataCache.overview = data
+  return data
 }
 
 export const MONTHS = [
@@ -54,6 +63,7 @@ export function formatNumber(value: number): string {
 
 export interface ProductTypeRevenue {
   product_type: string
+  transaction_type: string
   revenue: number
   transactions: number
   avg_margin_pct: number
@@ -62,6 +72,7 @@ export interface ProductTypeRevenue {
 export interface MonthlyTrend {
   year_month: string
   product_type: string
+  transaction_type: string
   revenue: number
   transactions: number
 }
@@ -92,7 +103,12 @@ export interface ProductsData {
 }
 
 export async function getProductsData(): Promise<ProductsData> {
+  if (dataCache.products) {
+    return dataCache.products as ProductsData
+  }
   const res = await fetch("/data/products.json")
   if (!res.ok) throw new Error("Failed to fetch products data")
-  return res.json()
+  const data = await res.json()
+  dataCache.products = data
+  return data
 }

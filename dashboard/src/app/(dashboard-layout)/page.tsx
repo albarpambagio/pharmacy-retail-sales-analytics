@@ -57,6 +57,18 @@ export default function OverviewPage() {
       }))
     }
 
+    if (productType === "generic") {
+      monthly = monthly.map((m) => ({
+        ...m,
+        revenue: m.revenue_generic ?? 0,
+      }))
+    } else if (productType === "branded") {
+      monthly = monthly.map((m) => ({
+        ...m,
+        revenue: m.revenue_branded ?? 0,
+      }))
+    }
+
     const totalRevenue = monthly.reduce((s, m) => s + m.revenue, 0)
     const totalTransactions = monthly.reduce((s, m) => s + m.transactions, 0)
     const totalWeighted = monthly.reduce(
@@ -67,7 +79,7 @@ export default function OverviewPage() {
       totalRevenue > 0 ? (totalWeighted / totalRevenue) * 100 : 0
 
     return { monthly, totalRevenue, totalTransactions, avgMargin }
-  }, [data, month, transactionType])
+  }, [data, month, transactionType, productType])
 
   const prevMonth = useMemo(() => {
     if (!data || month !== "all") return null
