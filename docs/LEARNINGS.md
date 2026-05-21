@@ -1279,3 +1279,95 @@ Always audit template/starter kit code before shipping. Every component that doe
 | Cache-busting in development | Stale JSON files during dev sessions won't be picked up without cache invalidation. Unique URL per load solves this. |
 | Visible disclaimer over silent inconsistency | When a chart can't respect a filter, document the limitation visibly. An amber disclaimer is better than confusing behavior. |
 | Strip template boilerplate before deploy | Dashboard starter kits ship with user auth, search, theme switching, layout options — none needed for a static analytics portfolio. Removing dead code reduces bundle size, eliminates confusing UI elements, and prevents build errors. |
+| Cross-tabulated ETL fields for filter intersections | When two filter dimensions (transaction type × product type) are combined, the data must include intersection fields. Sequential `if` blocks that overwrite each other produce wrong results. |
+
+---
+
+## 35. Filter Composition: Cross-Tabulated Data Required for Multi-Dimension Filters
+
+### The Problem
+
+Page 1 had two filters (Transaction Type, Product Type) that were supposed to work together. When both were active (e.g., "Outpatient" + "Generic"), the productType filter overwrote the transactionType filter:
+
+```typescript
+// page.tsx — BUG: sequential overwrites
+let revenue = m.revenue
+if (transactionType === "outpatient") {
+  revenue = m.revenue_outpatient ?? 0    // Set to outpatient
+}
+if (productType === "generic") {
+  revenue = m.revenue_generic ?? 0       // OVERWRITES with generic (all channels!)
+}
+```
+
+**Root Cause:** The ETL export only had single-dimension breakdowns:
+- `revenue_outpatient`, `revenue_inpatient` (by channel only)
+- `revenue_generic`, `revenue_branded` (by product only)
+
+There was no way to compute the intersection (Outpatient + Generic) because the data didn't exist.
+
+**Additional issues found:**
+- `transactions` count was never filtered — always showed total
+- `avg_margin_pct` was never filtered — always showed overall average
+- Page 2 `SKUQuadrantChart` ignored productType filter entirely
+- Page 3 `MarginHistogram` used pre-computed bins from all SKUs, ignoring productType filter
+
+### Solution: Cross-Tabulated ETL + Single-Pass Lookup
+
+Added 8 new fields to the ETL export query:
+
+```sql
+-- Revenue intersections
+SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient' AND p.product_type = 'Generic')::float AS revenue_outpatient_generic,
+SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient' AND p.product_type = 'Branded')::float AS revenue_outpatient_branded,
+SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient' AND p.product_type = 'Generic')::float AS revenue_inpatient_generic,
+SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient' AND p.product_type = 'Branded')::float AS revenue_inpatient_branded,
+-- Transaction counts per channel
+COUNT(*) FILTER (WHERE t.transaction_type = 'Outpatient')::int AS transactions_outpatient,
+COUNT(*) FILTER (WHERE t.transaction_type = 'Inpatient')::int AS transactions_inpatient,
+-- Margin averages per dimension
+AVG(f.margin_pct) FILTER (WHERE t.transaction_type = 'Outpatient')::float AS avg_margin_pct_outpatient,
+AVG(f.margin_pct) FILTER (WHERE t.transaction_type = 'Inpatient')::float AS avg_margin_pct_inpatient,
+AVG(f.margin_pct) FILTER (WHERE p.product_type = 'Generic')::float AS avg_margin_pct_generic,
+AVG(f.margin_pct) FILTER (WHERE p.product_type = 'Branded')::float AS avg_margin_pct_branded
+```
+
+Frontend uses a single lookup table with all 9 combinations (4 intersections + 2 channel-only + 2 product-only + 1 all):
+
+```typescript
+if (txn === "outpatient" && prod === "generic") {
+  revenue = m.revenue_outpatient_generic ?? 0
+  transactions = m.transactions_outpatient ?? 0
+  avg_margin_pct = m.avg_margin_pct_generic ?? null
+} else if (txn === "outpatient" && prod === "branded") {
+  // ... etc for all 9 combinations
+}
+```
+
+### Other Pages Fixed
+
+| Page | Issue | Fix |
+|------|-------|-----|
+| **2** | `SKUQuadrantChart` ignored productType filter | Pass filtered `data.sku_scatter` instead of raw |
+| **3** | `MarginHistogram` used pre-computed bins | Recompute bins client-side from filtered SKUs |
+
+### Rule
+
+When supporting multi-dimension filters, the data export must include cross-tabulated fields for every combination. Don't try to compose single-dimension fields at the frontend — the intersection data must exist in the source.
+
+### Type Safety Note
+
+Adding nullable fields (`avg_margin_pct` can be `null` when filters produce no data) requires null guards everywhere the value is used:
+
+```typescript
+// Sort comparison
+cmp = (a.avg_margin_pct ?? 0) - (b.avg_margin_pct ?? 0)
+
+// Display
+{(d.avg_margin_pct ?? 0).toFixed(1)}%
+
+// Delta calculation
+last.avg_margin_pct !== null && prev.avg_margin_pct !== null
+  ? last.avg_margin_pct - prev.avg_margin_pct
+  : 0
+```
