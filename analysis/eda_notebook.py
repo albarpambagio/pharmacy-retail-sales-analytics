@@ -205,11 +205,6 @@ def _(fmt_idr, fmt_pct, fmt_short_idr, mo, px, query_df):
         text=_df_txn["revenue"].apply(fmt_short_idr).tolist(),
         texttemplate="%{text}",
     )
-    _fig.update_traces(
-        textposition="outside",
-        hovertemplate="%{y:,.0f}<extra></extra>",
-        texttemplate="Rp%{y:,.3s}",
-    )
 
     _total_rev = _df_txn["revenue"].sum()
     _lines = []
@@ -691,24 +686,22 @@ def _(fmt_idr, fmt_pct, go, mo, pd):
     _pivot_rev = _df.pivot(index="product_type", columns="transaction_type", values="revenue")
     _pivot_margin = _df.pivot(index="product_type", columns="transaction_type", values="avg_margin_pct")
 
-    _text_labels = _pivot_rev.map(fmt_short_idr)
+    _combined_text = []
+    for _i in range(len(_pivot_rev.index)):
+        _row_text = []
+        for _j in range(len(_pivot_rev.columns)):
+            _rev = _pivot_rev.iloc[_i, _j]
+            _margin = _pivot_margin.iloc[_i, _j]
+            _row_text.append(f"{fmt_short_idr(_rev)}<br>{_margin:.1f}%")
+        _combined_text.append(_row_text)
 
     _fig = go.Figure()
     _fig.add_trace(go.Heatmap(
         z=_pivot_rev.values, x=_pivot_rev.columns, y=_pivot_rev.index,
-        colorscale="Blues", text=_text_labels.values,
+        colorscale="Blues", text=_combined_text,
         texttemplate="%{text}", showscale=False,
         hovertemplate="Revenue: %{z:,.0f}<extra></extra>",
     ))
-    for _i, _row in enumerate(_pivot_margin.index):
-        for _j, _col in enumerate(_pivot_margin.columns):
-            _val = _pivot_margin.iloc[_i, _j]
-            _fig.add_annotation(
-                x=_col, y=_row,
-                text=f"{_val:.1f}%",
-                showarrow=False,
-                font=dict(size=12, color="white" if _val < 30 else "black"),
-            )
 
     _fig.update_layout(
         title="Product × Transaction Crosstab: Revenue (size) + Margin % (label)",
