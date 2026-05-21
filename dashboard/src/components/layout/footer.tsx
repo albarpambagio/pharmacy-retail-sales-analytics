@@ -13,7 +13,7 @@ export function Footer() {
             href="https://github.com/albarpambagio/pharmacy-retail-sales-analytics"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
+            className="underline decoration-foreground/30 hover:decoration-foreground transition-colors"
           >
             Albar — Data Analytics Portfolio
           </a>

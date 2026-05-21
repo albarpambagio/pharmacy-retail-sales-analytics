@@ -47,7 +47,18 @@ def _(pd, psycopg2):
             return "N/A"
         return f"{val:.1f}%"
 
-    return fmt_idr, fmt_pct, query_df
+    def fmt_short_idr(val):
+        if val is None:
+            return "N/A"
+        if abs(val) >= 1e9:
+            return f"Rp{val/1e9:.1f}B"
+        elif abs(val) >= 1e6:
+            return f"Rp{val/1e6:.1f}M"
+        elif abs(val) >= 1e3:
+            return f"Rp{val/1e3:.1f}K"
+        return f"Rp{val:,.0f}"
+
+    return fmt_idr, fmt_pct, fmt_short_idr, query_df
 
 
 @app.cell
@@ -164,7 +175,7 @@ def _(fmt_idr, fmt_pct, go, mo, query_df):
 
 
 @app.cell
-def _(fmt_idr, fmt_pct, mo, px, query_df):
+def _(fmt_idr, fmt_pct, fmt_short_idr, mo, px, query_df):
     _df_txn = query_df("""
         SELECT
             t.transaction_type,
@@ -184,12 +195,21 @@ def _(fmt_idr, fmt_pct, mo, px, query_df):
     _fig = px.bar(
         _df_txn, x="transaction_type", y="revenue",
         color="transaction_type", color_discrete_map=_colors,
-        text_auto=".2s",
         title="Revenue by Transaction Type",
         labels={"transaction_type": "Channel", "revenue": "Revenue (IDR)"},
         template="plotly_white",
     )
-    _fig.update_traces(textposition="outside", hovertemplate="%{y:,.0f}<extra></extra>")
+    _fig.update_traces(
+        textposition="outside",
+        hovertemplate="%{y:,.0f}<extra></extra>",
+        text=_df_txn["revenue"].apply(fmt_short_idr).tolist(),
+        texttemplate="%{text}",
+    )
+    _fig.update_traces(
+        textposition="outside",
+        hovertemplate="%{y:,.0f}<extra></extra>",
+        texttemplate="Rp%{y:,.3s}",
+    )
 
     _total_rev = _df_txn["revenue"].sum()
     _lines = []
@@ -236,12 +256,16 @@ def _(fmt_idr, fmt_pct, mo, px, query_df):
     _fig = px.bar(
         _df_prod, x="product_type", y="revenue",
         color="product_type", color_discrete_map=_colors,
-        text_auto=".2s",
         title="Revenue by Product Type",
         labels={"product_type": "Product Type", "revenue": "Revenue (IDR)"},
         template="plotly_white",
     )
-    _fig.update_traces(textposition="outside", hovertemplate="%{y:,.0f}<extra></extra>")
+    _fig.update_traces(
+        textposition="outside",
+        hovertemplate="%{y:,.0f}<extra></extra>",
+        text=_df_prod["revenue"].apply(fmt_short_idr).tolist(),
+        texttemplate="%{text}",
+    )
 
     _total_rev = _df_prod["revenue"].sum()
     _lines = []
@@ -340,10 +364,14 @@ def _(fmt_idr, fmt_pct, mo, px, query_df):
         orientation="h",
         title="Top 20 SKUs by Revenue",
         labels={"kd_obat": "SKU Code", "revenue": "Revenue (IDR)", "product_type": "Product Type"},
-        text_auto=".2s", template="plotly_white",
+        template="plotly_white",
         hover_data={"avg_margin_pct": ":.1f", "transaction_count": True},
     )
-    _fig.update_traces(textposition="outside")
+    _fig.update_traces(
+        textposition="outside",
+        text=_df_sorted["revenue"].apply(fmt_short_idr).tolist(),
+        texttemplate="%{text}",
+    )
     _fig.update_layout(yaxis=dict(autorange="reversed"))
 
     _top_total = _df_top["revenue"].sum()
@@ -663,12 +691,14 @@ def _(fmt_idr, fmt_pct, go, mo, pd):
     _pivot_rev = _df.pivot(index="product_type", columns="transaction_type", values="revenue")
     _pivot_margin = _df.pivot(index="product_type", columns="transaction_type", values="avg_margin_pct")
 
+    _text_labels = _pivot_rev.map(fmt_short_idr)
+
     _fig = go.Figure()
     _fig.add_trace(go.Heatmap(
         z=_pivot_rev.values, x=_pivot_rev.columns, y=_pivot_rev.index,
-        colorscale="Blues", text=_pivot_rev.values,
-        texttemplate="%{text:.2s}", showscale=False,
-        hovertemplate="Revenue: %{text:,.0f}<extra></extra>",
+        colorscale="Blues", text=_text_labels.values,
+        texttemplate="%{text}", showscale=False,
+        hovertemplate="Revenue: %{z:,.0f}<extra></extra>",
     ))
     for _i, _row in enumerate(_pivot_margin.index):
         for _j, _col in enumerate(_pivot_margin.columns):

@@ -53,6 +53,18 @@ def fmt_pct(val):
     return f"{val:.1f}%"
 
 
+def fmt_short_idr(val):
+    if val is None:
+        return "N/A"
+    if abs(val) >= 1e9:
+        return f"Rp{val/1e9:.1f}B"
+    elif abs(val) >= 1e6:
+        return f"Rp{val/1e6:.1f}M"
+    elif abs(val) >= 1e3:
+        return f"Rp{val/1e3:.1f}K"
+    return f"Rp{val:,.0f}"
+
+
 # ---------------------------------------------------------------------------
 # Analysis 1 & 2: Monthly Revenue + Transaction Count
 # ---------------------------------------------------------------------------
@@ -140,12 +152,16 @@ def revenue_by_txn_type(conn):
     fig = px.bar(
         df, x="transaction_type", y="revenue",
         color="transaction_type", color_discrete_map=colors,
-        text_auto=".2s",
         title="Revenue by Transaction Type",
         labels={"transaction_type": "Channel", "revenue": "Revenue (IDR)"},
         template="plotly_white",
     )
-    fig.update_traces(textposition="outside", hovertemplate="%{y:,.0f}<extra></extra>")
+    fig.update_traces(
+        textposition="outside",
+        hovertemplate="%{y:,.0f}<extra></extra>",
+        text=df["revenue"].apply(fmt_short_idr).tolist(),
+        texttemplate="%{text}",
+    )
     fig.add_annotation(
         xref="paper", yref="paper", x=0, y=-0.2,
         text=f"All rows included (dated + undated) -- {df['transactions'].sum():,} total transactions",
@@ -187,12 +203,16 @@ def revenue_by_product_type(conn):
     fig = px.bar(
         df, x="product_type", y="revenue",
         color="product_type", color_discrete_map=colors,
-        text_auto=".2s",
         title="Revenue by Product Type (Generic vs Branded)",
         labels={"product_type": "Product Type", "revenue": "Revenue (IDR)"},
         template="plotly_white",
     )
-    fig.update_traces(textposition="outside", hovertemplate="%{y:,.0f}<extra></extra>")
+    fig.update_traces(
+        textposition="outside",
+        hovertemplate="%{y:,.0f}<extra></extra>",
+        text=df["revenue"].apply(fmt_short_idr).tolist(),
+        texttemplate="%{text}",
+    )
     save_chart(fig, "03_revenue_by_product_type.html")
 
     print(f"\n-- Revenue by Product Type --")
@@ -277,11 +297,14 @@ def top_20_skus(conn):
         orientation="h",
         title="Top 20 SKUs by Revenue",
         labels={"kd_obat": "SKU Code", "revenue": "Revenue (IDR)", "product_type": "Product Type"},
-        text_auto=".2s",
         template="plotly_white",
         hover_data={"avg_margin_pct": ":.1f", "transaction_count": True},
     )
-    fig.update_traces(textposition="outside")
+    fig.update_traces(
+        textposition="outside",
+        text=df_sorted["revenue"].apply(fmt_short_idr).tolist(),
+        texttemplate="%{text}",
+    )
     fig.update_layout(yaxis=dict(autorange="reversed"))
     save_chart(fig, "05_top20_skus.html")
 
