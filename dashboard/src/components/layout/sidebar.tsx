@@ -11,7 +11,6 @@ import { navigationsData } from "@/data/navigations"
 
 import { isActivePathname } from "@/lib/utils"
 
-import { useSettings } from "@/hooks/use-settings"
 import { Badge } from "@/components/ui/badge"
 import {
   Collapsible,
@@ -33,17 +32,10 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { DynamicIcon } from "@/components/dynamic-icon"
-import { CommandMenu } from "./command-menu"
 
 export function Sidebar() {
   const pathname = usePathname()
   const { openMobile, setOpenMobile, isMobile } = useSidebar()
-  const { settings } = useSettings()
-
-  const isHoizontalAndDesktop = settings.layout === "horizontal" && !isMobile
-
-  // If the layout is horizontal and not on mobile, don't render the sidebar. (We use a menubar for horizontal layout navigation.)
-  if (isHoizontalAndDesktop) return null
 
   const renderMenuItem = (item: NavigationRootItem | NavigationNestedItem) => {
     // If the item has nested items, render it with a collapsible dropdown.
@@ -110,15 +102,14 @@ export function Sidebar() {
           onClick={() => isMobile && setOpenMobile(!openMobile)}
         >
           <Image
-            src="/images/icons/shadboard.svg"
+            src="/images/icons/pharmacy.svg"
             alt=""
             height={24}
             width={24}
             className="dark:invert"
           />
-          <span>Shadboard</span>
+          <span>Pharmacy Analytics</span>
         </Link>
-        <CommandMenu buttonClassName="max-w-full" />
       </SidebarHeader>
       <ScrollArea>
         <SidebarContent className="gap-0">

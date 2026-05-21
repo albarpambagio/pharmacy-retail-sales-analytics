@@ -1198,6 +1198,63 @@ Instead of silently ignoring the filter, add a visible amber disclaimer:
 
 ---
 
+## 34. Strip Template Boilerplate Before Deploy
+
+### The Problem
+
+The Shadboard starter kit includes features designed for a full SaaS dashboard:
+- User authentication UI (avatar, dropdown with Profile/Settings/Sign Out)
+- Command palette / search menu
+- Fullscreen toggle
+- Horizontal + vertical layout switching
+- Theme color switching (zinc, blue, etc.)
+- Border radius customization
+- RTL language support
+- Toast notifications
+
+For a static analytics portfolio with 3 pages, all of these are dead code that:
+- Adds unnecessary bundle weight
+- Creates confusing UI elements (fake user "John Doe")
+- Risks build errors from unused imports
+- Distracts from the actual content
+
+### Solution: Surgical Removal
+
+Removed 15+ files and simplified 8 more:
+
+| Removed | Reason |
+|---------|--------|
+| `user-dropdown.tsx`, `user.ts` | Fake user data, no auth needed |
+| `command-menu.tsx` | Search adds no value for 3 pages |
+| `full-screen-toggle.tsx` | Nice-to-have, not portfolio-critical |
+| `horizontal-layout/` (4 files) | Only vertical layout used |
+| `avatar.tsx`, `keyboard.tsx`, `toaster.tsx`, `sonner.tsx`, `menubar.tsx`, `calendar.tsx`, `drawer.tsx` | Unused UI components |
+| `use-is-vertical.tsx`, `use-is-rtl.tsx`, `use-mode.tsx`, `use-radius.tsx` | Dead hooks |
+
+| Simplified | Change |
+|------------|--------|
+| `settings-context.tsx` | `SettingsType` with 5 fields → `{ mode: ModeType }` only |
+| `types.ts` | Removed `UserType`, `LayoutType`, `SettingsType`, etc. |
+| `providers/index.tsx` | Removed `locale` prop |
+| `theme-provider.tsx` | Removed theme/radius class logic |
+| `mode-provider.tsx` | Uses settings context directly instead of deleted `use-mode` hook |
+| `sidebar.tsx` | Removed CommandMenu + horizontal layout check |
+| `vertical-layout-header.tsx` | Only ModeDropdown + SidebarTrigger |
+| `layout/index.tsx` | Always renders `<VerticalLayout>` |
+
+### Result
+
+- Build passes cleanly with no dead imports
+- No confusing UI elements (no fake user, no search)
+- Smaller bundle (fewer components to compile)
+- Codebase reflects actual feature set, not starter kit defaults
+
+### Rule
+
+Always audit template/starter kit code before shipping. Every component that doesn't serve the actual use case is a liability — not just bundle size, but maintenance burden and potential confusion for reviewers.
+
+---
+
 ## Updated Decision Log
 
 | Decision | Rationale |
@@ -1221,3 +1278,4 @@ Instead of silently ignoring the filter, add a visible amber disclaimer:
 | Guard all division operations | Denominators can be zero — always check before dividing. |
 | Cache-busting in development | Stale JSON files during dev sessions won't be picked up without cache invalidation. Unique URL per load solves this. |
 | Visible disclaimer over silent inconsistency | When a chart can't respect a filter, document the limitation visibly. An amber disclaimer is better than confusing behavior. |
+| Strip template boilerplate before deploy | Dashboard starter kits ship with user auth, search, theme switching, layout options — none needed for a static analytics portfolio. Removing dead code reduces bundle size, eliminates confusing UI elements, and prevents build errors. |

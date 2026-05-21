@@ -3,47 +3,37 @@
 import { createContext, useCallback, useEffect, useState } from "react"
 import { useCookie } from "react-use"
 
-import type { LocaleType, SettingsType } from "@/types"
+import type { ModeType } from "@/types"
 import type { ReactNode } from "react"
 
-export const defaultSettings: SettingsType = {
-  theme: "zinc",
-  mode: "system",
-  radius: 0.5,
-  layout: "vertical",
-  locale: "en",
+export const defaultSettings = {
+  mode: "system" as ModeType,
 }
 
 export const SettingsContext = createContext<
   | {
-      settings: SettingsType
-      updateSettings: (newSettings: SettingsType) => void
+      settings: typeof defaultSettings
+      updateSettings: (newSettings: typeof defaultSettings) => void
       resetSettings: () => void
     }
   | undefined
 >(undefined)
 
-export function SettingsProvider({
-  locale,
-  children,
-}: {
-  locale: LocaleType
-  children: ReactNode
-}) {
+export function SettingsProvider({ children }: { children: ReactNode }) {
   const [storedSettings, setStoredSettings, deleteStoredSettings] =
     useCookie("settings")
-  const [settings, setSettings] = useState<SettingsType | null>(null)
+  const [settings, setSettings] = useState<typeof defaultSettings | null>(null)
 
   useEffect(() => {
     if (storedSettings) {
       setSettings(JSON.parse(storedSettings))
     } else {
-      setSettings({ ...defaultSettings, locale })
+      setSettings({ ...defaultSettings })
     }
-  }, [storedSettings, locale])
+  }, [storedSettings])
 
   const updateSettings = useCallback(
-    (newSettings: SettingsType) => {
+    (newSettings: typeof defaultSettings) => {
       setStoredSettings(JSON.stringify(newSettings))
       setSettings(newSettings)
     },
@@ -55,7 +45,6 @@ export function SettingsProvider({
     setSettings(defaultSettings)
   }, [deleteStoredSettings])
 
-  // Render children only when settings are ready
   if (!settings) {
     return null
   }

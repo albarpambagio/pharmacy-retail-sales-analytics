@@ -10,8 +10,6 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
 import { DataProvider } from "@/contexts/data-context"
-import { Toaster as Sonner } from "@/components/ui/sonner"
-import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: {
@@ -41,10 +39,8 @@ export default function RootLayout(props: { children: ReactNode }) {
           latoFont.variable
         )}
       >
-        <Providers locale="en">
+        <Providers>
           <DataProvider>{children}</DataProvider>
-          <Toaster />
-          <Sonner />
         </Providers>
       </body>
     </html>

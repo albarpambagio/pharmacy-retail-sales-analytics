@@ -4,21 +4,23 @@ import { useEffect } from "react"
 
 import type { ReactNode } from "react"
 
-import { useIsDarkMode } from "@/hooks/use-mode"
-
-const defaultModes = ["light", "dark"]
+import { useSettings } from "@/hooks/use-settings"
 
 export function ModeProvider({ children }: { children: ReactNode }) {
-  const isDarkMode = useIsDarkMode()
-  const mode = isDarkMode ? "dark" : "light"
+  const { settings } = useSettings()
 
   useEffect(() => {
     const rootElement = document.documentElement
 
-    // Update class names in the <html> tag
-    rootElement.classList.remove(...defaultModes)
-    rootElement.classList.add(mode)
-  }, [mode])
+    rootElement.classList.remove("light", "dark")
+
+    if (settings.mode === "system") {
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      rootElement.classList.add(isDark ? "dark" : "light")
+    } else {
+      rootElement.classList.add(settings.mode)
+    }
+  }, [settings.mode])
 
   return <>{children}</>
 }
