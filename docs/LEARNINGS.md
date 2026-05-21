@@ -626,6 +626,7 @@ Array.from({ length: totalPages }, (_, i) => i + 1)
 - `insights_log.md` — Business insights from data analysis
 - `issues_log.md` — Data quality issues discovered during ETL
 - `docs/bi-framework.md` — Business intelligence framework selection
+- [Olist Marketing Funnel README](https://github.com/albarpambagio/olist-marketing-report/blob/master/README.md) — Reference for README structure patterns
 
 ---
 
@@ -1134,6 +1135,69 @@ revenue: prev.revenue > 0
 
 ---
 
+## 32. Cache-Busting Query Param for Development
+
+### The Problem
+
+```typescript
+// data.ts — STALE DATA IN DEV
+const res = await fetch("/data/overview.json")
+```
+
+The in-memory cache + sessionStorage persist across navigations with no expiry or rebuild trigger. Regenerated JSON files during a development session won't be picked up — you see stale data until you clear the cache manually or reload the page.
+
+### Solution
+
+Add a cache-busting timestamp query param in development mode:
+
+```typescript
+const CACHE_BUST =
+  process.env.NODE_ENV === "development" ? `?t=${Date.now()}` : ""
+
+const res = await fetch(`/data/overview.json${CACHE_BUST}`)
+```
+
+**How it works:**
+
+| Environment | URL | Behavior |
+|-------------|-----|----------|
+| Development | `/data/overview.json?t=1716249600000` | Unique URL each load — bypasses browser cache |
+| Production | `/data/overview.json` | Cached by CDN — optimal performance |
+
+**Rule:** In development, always bust the cache for static data files. In production, rely on CDN caching for performance.
+
+---
+
+## 33. Visible Disclaimer for Charts That Can't Be Filtered
+
+### The Problem
+
+The SKU scatter chart and margin histogram show full-year aggregated data. When a user selects a month filter on Page 2, the trend chart updates but the scatter chart doesn't — creating a confusing inconsistency.
+
+Fixing this properly would require changing the ETL export to include `year_month` in the SKU-level data, or computing per-month aggregates at query time.
+
+### Solution: Honest Disclaimer
+
+Instead of silently ignoring the filter, add a visible amber disclaimer:
+
+```tsx
+<div className="flex items-center gap-1 text-amber-600">
+  <span>Full-year data — month filter applies to trend chart only</span>
+</div>
+```
+
+**Why this pattern works:**
+
+| Approach | Pros | Cons |
+|----------|------|------|
+| Fix properly (ETL change) | Correct behavior | Requires pipeline rebuild, schema change |
+| Hide the chart when filtered | Honest | Removes useful context |
+| Disclaimer (chosen) | Honest, no pipeline changes | User sees limitation |
+
+**Rule:** When a chart can't respect a filter due to data structure limitations, document the limitation visibly rather than silently ignoring it. An amber disclaimer is better than silent inconsistency.
+
+---
+
 ## Updated Decision Log
 
 | Decision | Rationale |
@@ -1155,16 +1219,5 @@ revenue: prev.revenue > 0
 | Error state accumulates | Multiple errors can coexist — append with semicolons rather than suppressing subsequent errors. |
 | Validate all parsed string components | Don't just validate the parts you use — unvalidated components can introduce phantom data. |
 | Guard all division operations | Denominators can be zero — always check before dividing. |
-
----
-
-## Updated Decision Log
-
-| Decision | Rationale |
-|----------|-----------|
-| Lazy data fetching over eager | 556x bandwidth reduction on Overview page (1.7 KB vs 946 KB). Cross-page caching preserved via shared context. |
-| Dynamic imports for charts | 45% smaller JS bundles on Overview and Margin Risk pages. Dev compile penalty (~1.6s) is acceptable tradeoff. |
-| sessionStorage for cache persistence | Survives page reload without re-fetching. Scoped to tab/session — appropriate for analytics data. |
-| psycopg2.extras.execute_values over row-by-row | 100-200x faster ETL transform (30-60 min → < 30 sec). |
-| TRUNCATE over DROP TABLE for data loads | Idempotent pipeline — re-running load.py doesn't destroy schema. Faster than DROP + CREATE. |
-| Computed derived revenue in single pass | Prevents filter composition bugs where second filter overwrites first filter's result. |
+| Cache-busting in development | Stale JSON files during dev sessions won't be picked up without cache invalidation. Unique URL per load solves this. |
+| Visible disclaimer over silent inconsistency | When a chart can't respect a filter, document the limitation visibly. An amber disclaimer is better than confusing behavior. |
