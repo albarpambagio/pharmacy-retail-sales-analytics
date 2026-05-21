@@ -18,7 +18,6 @@ import pandas as pd
 from pathlib import Path
 import sys
 import os
-import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "etl"))
 from config import DB_CONFIG

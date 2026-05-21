@@ -22,10 +22,17 @@ interface MonthlyTrendChartProps {
 
 const MONTH_LABELS: Record<string, string> = {
   "2015-01": "Jan",
+  "2015-02": "Feb",
   "2015-03": "Mar",
   "2015-04": "Apr",
+  "2015-05": "May",
+  "2015-06": "Jun",
+  "2015-07": "Jul",
   "2015-08": "Aug",
   "2015-09": "Sep",
+  "2015-10": "Oct",
+  "2015-11": "Nov",
+  "2015-12": "Dec",
 }
 
 export const MonthlyTrendChart = React.memo(function MonthlyTrendChart({
@@ -70,7 +77,6 @@ export const MonthlyTrendChart = React.memo(function MonthlyTrendChart({
           stroke="#3b82f6"
           strokeWidth={2}
           dot={{ r: 4 }}
-          connectNulls
         />
         <Line
           type="monotone"
@@ -79,7 +85,6 @@ export const MonthlyTrendChart = React.memo(function MonthlyTrendChart({
           strokeWidth={2}
           strokeDasharray="5 5"
           dot={{ r: 4 }}
-          connectNulls
         />
       </LineChart>
     </ResponsiveContainer>

@@ -1,22 +1,51 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+import dynamic from "next/dynamic"
 
 import { useDebounce } from "@/hooks/use-debounce"
 import { useData } from "@/contexts/data-context"
 import { Skeleton } from "@/components/ui/skeleton"
-import { AtRiskTable } from "@/components/page3/at-risk-table"
 import { InterpretationGuide } from "@/components/page3/interpretation-guide"
-import { MarginHistogram } from "@/components/page3/margin-histogram"
-import { MarginScatterChart } from "@/components/page3/margin-scatter-chart"
 import { ProductFilter } from "@/components/page3/product-filter"
 import { RiskKPICards } from "@/components/page3/risk-kpi-cards"
 import { ThresholdSlider } from "@/components/page3/threshold-slider"
 
+const AtRiskTable = dynamic(
+  () => import("@/components/page3/at-risk-table").then((m) => m.AtRiskTable),
+  { loading: () => <Skeleton className="h-[400px] w-full" /> }
+)
+const MarginHistogram = dynamic(
+  () =>
+    import("@/components/page3/margin-histogram").then(
+      (m) => m.MarginHistogram
+    ),
+  {
+    loading: () => (
+      <div className="h-[320px] animate-pulse rounded-lg bg-muted" />
+    ),
+  }
+)
+const MarginScatterChart = dynamic(
+  () =>
+    import("@/components/page3/margin-scatter-chart").then(
+      (m) => m.MarginScatterChart
+    ),
+  {
+    loading: () => (
+      <div className="h-[320px] animate-pulse rounded-lg bg-muted" />
+    ),
+  }
+)
+
 export default function MarginRiskPage() {
-  const { marginRisk: data, loading } = useData()
+  const { marginRisk: data, loading, fetchMarginRisk } = useData()
   const [threshold, setThreshold] = useState(10)
   const [productType, setProductType] = useState("all")
+
+  useEffect(() => {
+    fetchMarginRisk()
+  }, [fetchMarginRisk])
 
   const debouncedThreshold = useDebounce(threshold, 120)
 

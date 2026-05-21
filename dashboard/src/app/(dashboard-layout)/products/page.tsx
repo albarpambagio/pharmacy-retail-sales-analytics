@@ -1,6 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+import dynamic from "next/dynamic"
 
 import { MONTHS, formatCurrency } from "@/lib/data"
 
@@ -18,14 +19,30 @@ import { ChannelProductFilters } from "@/components/page2/channel-product-filter
 import { InterpretationGuide } from "@/components/page2/interpretation-guide"
 import { MonthlyTrendChart } from "@/components/page2/monthly-trend-chart"
 import { RevenueBarChart } from "@/components/page2/revenue-bar-chart"
-import { SKUQuadrantChart } from "@/components/page2/scatter-chart"
-import { Top20Table } from "@/components/page2/top-20-table"
+
+const SKUQuadrantChart = dynamic(
+  () =>
+    import("@/components/page2/scatter-chart").then((m) => m.SKUQuadrantChart),
+  {
+    loading: () => (
+      <div className="h-[300px] animate-pulse rounded-lg bg-muted" />
+    ),
+  }
+)
+const Top20Table = dynamic(
+  () => import("@/components/page2/top-20-table").then((m) => m.Top20Table),
+  { loading: () => <Skeleton className="h-12 w-full" /> }
+)
 
 export default function ProductsPage() {
-  const { products: data, loading } = useData()
+  const { products: data, loading, fetchProducts } = useData()
   const [month, setMonth] = useState("all")
   const [transactionType, setTransactionType] = useState("all")
   const [productType, setProductType] = useState("all")
+
+  useEffect(() => {
+    fetchProducts()
+  }, [fetchProducts])
 
   const channelFiltered = useMemo(() => {
     if (!data) return null

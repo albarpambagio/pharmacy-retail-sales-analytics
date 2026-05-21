@@ -78,7 +78,9 @@ export const Top20Table = React.memo(function Top20Table({
       d.avg_margin_pct.toFixed(2),
       d.total_qty,
     ])
-    const csv = [headers, ...rows].map((r) => r.join(",")).join("\n")
+    const csv = [headers, ...rows]
+      .map((r) => r.map((v) => `"${v}"`).join(","))
+      .join("\n")
     const blob = new Blob([csv], { type: "text/csv" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
@@ -119,7 +121,7 @@ export const Top20Table = React.memo(function Top20Table({
               <tr className="border-b">
                 <th className="text-left py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors"
                     onClick={() => handleSort("kd_obat")}
                   >
                     SKU
@@ -128,7 +130,7 @@ export const Top20Table = React.memo(function Top20Table({
                 </th>
                 <th className="text-left py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors"
                     onClick={() => handleSort("product_type")}
                   >
                     Type
@@ -138,7 +140,7 @@ export const Top20Table = React.memo(function Top20Table({
                 <th className="text-left py-2 px-2 font-medium">Tier</th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("revenue")}
                   >
                     Revenue
@@ -147,7 +149,7 @@ export const Top20Table = React.memo(function Top20Table({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("avg_margin_pct")}
                   >
                     Margin %
@@ -156,7 +158,7 @@ export const Top20Table = React.memo(function Top20Table({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("total_qty")}
                   >
                     Qty

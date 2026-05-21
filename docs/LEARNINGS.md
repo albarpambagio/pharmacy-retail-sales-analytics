@@ -626,3 +626,308 @@ Array.from({ length: totalPages }, (_, i) => i + 1)
 - `insights_log.md` — Business insights from data analysis
 - `issues_log.md` — Data quality issues discovered during ETL
 - `docs/bi-framework.md` — Business intelligence framework selection
+
+---
+
+## 16. QA Audit: setState Inside useMemo Causes Re-render Loops
+
+### The Problem
+
+```typescript
+// at-risk-table.tsx — BUG
+const filtered = useMemo(() => {
+  setPage(1)  // ❌ State update during render
+  if (!search) return skus
+  return skus.filter(...)
+}, [skus, search])
+```
+
+**Root Cause:** `useMemo` must be pure — no side effects. Calling `setPage(1)` inside a memoized computation triggers a state update during render, which causes React to re-render, which re-evaluates the `useMemo`, which calls `setPage(1)` again — infinite loop in React 18/19 Strict Mode.
+
+### Solution
+
+Move the side effect to `useEffect`:
+
+```typescript
+const filtered = useMemo(() => {
+  if (!search) return skus
+  return skus.filter(...)
+}, [skus, search])
+
+useEffect(() => {
+  setPage(1)
+}, [skus, search])
+```
+
+**Rule:** Never call `setState`, `dispatch`, or any side-effect function inside `useMemo`, `useCallback`, or the render body.
+
+---
+
+## 17. ETL Pipeline: Row-by-Row INSERT vs Batch Insert
+
+### The Problem
+
+```python
+# transform.py — SLOW (30-60 minutes for 511K rows)
+for row in rows_to_insert:
+    cur.execute(insert_sql, row)
+```
+
+Each `cur.execute()` is one round-trip to the database. 511,559 rows = 511,559 network round-trips.
+
+### Solution: psycopg2.extras.execute_values
+
+```python
+import psycopg2.extras
+
+# FAST (< 30 seconds for 511K rows)
+psycopg2.extras.execute_values(cur, insert_sql, rows_to_insert, page_size=10000)
+```
+
+`execute_values` uses PostgreSQL's `VALUES` syntax to batch rows into a single INSERT statement. `page_size=10000` means 10,000 rows per statement — 51 batches total instead of 511,559.
+
+**Performance impact:** 30-60 minutes → < 30 seconds (100-200x faster).
+
+---
+
+## 18. ETL Pipeline: DROP TABLE vs TRUNCATE for Idempotent Loads
+
+### The Problem
+
+```sql
+-- sql/02_create_star_schema.sql
+DROP TABLE IF EXISTS fact_sales;
+DROP TABLE IF EXISTS dim_transaction;
+DROP TABLE IF EXISTS dim_product;
+DROP TABLE IF EXISTS dim_date;
+```
+
+Every time `load.py` runs, it executes this SQL file — destroying all previously loaded data. This makes the pipeline non-idempotent: you can't re-run it safely without losing data.
+
+### Solution: Separate Migration from Data Load
+
+```python
+# load.py — new function
+def truncate_fact_tables(conn):
+    cur = conn.cursor()
+    cur.execute("TRUNCATE TABLE fact_sales, dim_transaction, dim_product, dim_date RESTART IDENTITY;")
+    conn.commit()
+    cur.close()
+```
+
+Replace `create_schema_tables(conn)` with `truncate_fact_tables(conn)` in `load.py`. Schema creation (`DROP TABLE` + `CREATE TABLE`) becomes a one-time migration. Data loads use `TRUNCATE` which is faster and preserves table structure, indexes, and constraints.
+
+**Best Practice:** Schema changes should be managed via migration tools (Flyway, Alembic, etc.), not embedded in data load scripts.
+
+---
+
+## 19. Filter Composition: Avoid Mutating Source Data
+
+### The Problem
+
+```typescript
+// page.tsx — BUG: filters overwrite each other
+if (transactionType === "outpatient") {
+  monthly = monthly.map((m) => ({ ...m, revenue: m.revenue_outpatient ?? 0 }))
+}
+if (productType === "generic") {
+  monthly = monthly.map((m) => ({ ...m, revenue: m.revenue_generic ?? 0 }))
+  // ❌ Overwrites the outpatient revenue set above!
+}
+```
+
+When both filters are active, the second filter overwrites the revenue set by the first. The user sees generic revenue, not generic + outpatient revenue.
+
+### Solution: Compute Derived Revenue in a Single Pass
+
+```typescript
+const displayMonthly = monthly.map((m) => {
+  let revenue = m.revenue
+  if (transactionType === "outpatient") revenue = m.revenue_outpatient ?? 0
+  else if (transactionType === "inpatient") revenue = m.revenue_inpatient ?? 0
+  if (productType === "generic") revenue = m.revenue_generic ?? 0
+  else if (productType === "branded") revenue = m.revenue_branded ?? 0
+  return { ...m, revenue }
+})
+```
+
+Single `map` pass, all filter logic in one place, no intermediate mutations.
+
+---
+
+## 20. Lazy Data Fetching: Hybrid Approach with React Context
+
+### The Problem
+
+The original `DataProvider` fetched ALL 3 JSON files (~946 KB) on EVERY page load, even though:
+- Overview page only needs `overview.json` (1.7 KB)
+- Products page only needs `products.json` (442 KB)
+- Margin Risk page only needs `margin_risk.json` (503 KB)
+
+This wasted 944 KB on the Overview page — a **556x bandwidth waste**.
+
+### Solution: Lazy Fetching with Shared Cache
+
+```typescript
+// data-context.tsx — lazy fetch functions
+const fetchOverview = useCallback(async () => {
+  if (state.overview || fetching.overviewLoading) return
+  setFetching(prev => ({ ...prev, overviewLoading: true }))
+  try {
+    const data = await getOverviewData()
+    setState(prev => ({ ...prev, overview: data }))
+  } catch (e) {
+    setError(prev => prev ?? (e as Error).message)
+  } finally {
+    setFetching(prev => ({ ...prev, overviewLoading: false }))
+  }
+}, [state.overview, fetching.overviewLoading])
+```
+
+Each page triggers its own fetch in `useEffect`:
+
+```typescript
+// page.tsx (Overview)
+const { overview, loading, fetchOverview } = useData()
+useEffect(() => { fetchOverview() }, [fetchOverview])
+```
+
+**Key design decisions:**
+
+| Decision | Rationale |
+|----------|-----------|
+| `fetchOverview` exposed via context | Pages trigger their own data load |
+| Guard: `if (state.overview) return` | Prevents double-fetch on navigation back |
+| Shared cache (in-memory + sessionStorage) | Cross-page navigation = instant (already cached) |
+| Per-dataset loading state | Overview can show data while Products is still loading |
+
+**Result:** Overview page downloads 1.7 KB instead of 946 KB on first visit. Cross-page navigation still instant via shared cache.
+
+---
+
+## 21. Dynamic Imports with next/dynamic
+
+### The Problem
+
+All chart components were statically imported, meaning the browser downloaded and parsed JavaScript for ALL charts on the first page visit — even charts only used on other pages.
+
+### Solution
+
+```typescript
+import dynamic from "next/dynamic"
+
+const MonthlyRevenueChart = dynamic(
+  () => import("@/components/page1/monthly-revenue-chart").then(m => m.MonthlyRevenueChart),
+  { loading: () => <div className="h-[280px] animate-pulse rounded-lg bg-muted" /> }
+)
+```
+
+**Impact on bundle size:**
+
+| Route | Before | After | Change |
+|-------|--------|-------|--------|
+| `/` First Load JS | 259 kB | 143 kB | **-45%** |
+| `/margin-risk` First Load JS | 264 kB | 147 kB | **-44%** |
+
+**Tradeoff:** Dev server cold compile is ~1.6s slower (dynamic import overhead). Production is unaffected — chunks are pre-built.
+
+**Best practice:** Always provide a `loading` fallback that matches the component's dimensions to avoid layout shift.
+
+---
+
+## 22. sessionStorage Cache Persistence
+
+### The Problem
+
+In-memory cache (`dataCache` object) is lost on page reload, causing all 3 JSON files to re-fetch.
+
+### Solution
+
+```typescript
+function loadFromSessionStorage(key: string): unknown | null {
+  if (typeof window === "undefined") return null
+  try {
+    const raw = sessionStorage.getItem(`pharmacy_cache_${key}`)
+    if (!raw) return null
+    const { data, timestamp } = JSON.parse(raw)
+    if (Date.now() - timestamp > CACHE_TTL) {
+      sessionStorage.removeItem(`pharmacy_cache_${key}`)
+      return null
+    }
+    return data
+  } catch {
+    return null
+  }
+}
+```
+
+Cache lookup order: in-memory → sessionStorage → network fetch.
+
+**Why sessionStorage (not localStorage):** Data is scoped to the current tab/session. Closing the tab clears the cache — appropriate for analytics data that might be regenerated.
+
+**Why not both:** In-memory is fastest (no serialization). sessionStorage is the fallback for page reloads. The TTL check ensures stale data is not served.
+
+---
+
+## 23. CSV Export: Proper Field Quoting
+
+### The Problem
+
+```typescript
+// BUG: values with commas break CSV structure
+const csv = [headers, ...rows].map(r => r.join(",")).join("\n")
+// If a field contains a comma: "SKU,Name",100,50 → breaks parsing
+```
+
+### Solution
+
+```typescript
+const csv = [headers, ...rows]
+  .map(r => r.map(v => `"${v}"`).join(","))
+  .join("\n")
+```
+
+Quote-wrap every value. This is the simplest correct CSV escaping. For production use, consider a proper CSV library (e.g., `papaparse`) that handles edge cases like embedded quotes and newlines.
+
+---
+
+## 24. Exception Handling: Uninitialized Variable in Error Handler
+
+### The Problem
+
+```python
+# load.py — BUG
+try:
+    conn = psycopg2.connect(**DB_CONFIG)
+    # ... do work
+except Exception as e:
+    update_lineage(conn, ...)  # ❌ conn was never assigned if connect() failed
+```
+
+If `psycopg2.connect()` raises an exception, `conn` is undefined. The `except` block references it, causing a `NameError` that swallows the original connection failure.
+
+### Solution
+
+```python
+except Exception as e:
+    if 'conn' in locals():
+        try:
+            update_lineage(conn, batch_id, 0, 0, 0, {"error": str(e)}, 'FAILED')
+        except Exception:
+            pass
+```
+
+Guard with `if 'conn' in locals()` to check if the variable was assigned before the exception.
+
+---
+
+## Updated Decision Log
+
+| Decision | Rationale |
+|----------|-----------|
+| Lazy data fetching over eager | 556x bandwidth reduction on Overview page (1.7 KB vs 946 KB). Cross-page caching preserved via shared context. |
+| Dynamic imports for charts | 45% smaller JS bundles on Overview and Margin Risk pages. Dev compile penalty (~1.6s) is acceptable tradeoff. |
+| sessionStorage for cache persistence | Survives page reload without re-fetching. Scoped to tab/session — appropriate for analytics data. |
+| psycopg2.extras.execute_values over row-by-row | 100-200x faster ETL transform (30-60 min → < 30 sec). |
+| TRUNCATE over DROP TABLE for data loads | Idempotent pipeline — re-running load.py doesn't destroy schema. Faster than DROP + CREATE. |
+| Computed derived revenue in single pass | Prevents filter composition bugs where second filter overwrites first filter's result. |

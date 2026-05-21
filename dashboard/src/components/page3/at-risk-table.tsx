@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { ArrowUpDown, Download, Search } from "lucide-react"
 
 import type { MarginSKU } from "@/lib/data"
@@ -36,7 +36,6 @@ export const AtRiskTable = React.memo(function AtRiskTable({
   const pageSize = 25
 
   const filtered = useMemo(() => {
-    setPage(1)
     if (!search) return skus
     const lower = search.toLowerCase()
     return skus.filter(
@@ -44,6 +43,10 @@ export const AtRiskTable = React.memo(function AtRiskTable({
         s.kd_obat.toLowerCase().includes(lower) ||
         s.product_type.toLowerCase().includes(lower)
     )
+  }, [skus, search])
+
+  useEffect(() => {
+    setPage(1)
   }, [skus, search])
 
   const sorted = useMemo(() => {
@@ -91,7 +94,9 @@ export const AtRiskTable = React.memo(function AtRiskTable({
       s.avg_hna.toFixed(2),
       s.avg_hj.toFixed(2),
     ])
-    const csv = [headers, ...rows].map((r) => r.join(",")).join("\n")
+    const csv = [headers, ...rows]
+      .map((r) => r.map((v) => `"${v}"`).join(","))
+      .join("\n")
     const blob = new Blob([csv], { type: "text/csv" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
@@ -138,7 +143,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
               <tr className="border-b">
                 <th className="text-left py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors"
                     onClick={() => handleSort("kd_obat")}
                   >
                     SKU
@@ -147,7 +152,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                 </th>
                 <th className="text-left py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors"
                     onClick={() => handleSort("product_type")}
                   >
                     Type
@@ -156,7 +161,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("total_qty")}
                   >
                     Qty
@@ -165,7 +170,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("revenue")}
                   >
                     Revenue
@@ -174,7 +179,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("avg_margin_pct")}
                   >
                     Margin %
@@ -183,7 +188,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("avg_hna")}
                   >
                     Avg HNA
@@ -192,7 +197,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                 </th>
                 <th className="text-right py-2 px-2 font-medium">
                   <button
-                    className="flex items-center gap-1 hover:text-foreground ml-auto"
+                    className="flex items-center gap-1 hover:text-foreground transition-colors ml-auto"
                     onClick={() => handleSort("avg_hj")}
                   >
                     Avg HJ
@@ -260,7 +265,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
             </p>
             <div className="flex gap-1">
               <button
-                className="rounded border px-3 py-1 hover:bg-muted disabled:opacity-50"
+                className="rounded border px-3 py-1 hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={page === 1}
                 onClick={() => setPage((p) => p - 1)}
               >
@@ -286,7 +291,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                   ) : (
                     <button
                       key={item}
-                      className={`rounded border px-3 py-1 hover:bg-muted ${
+                      className={`rounded border px-3 py-1 hover:bg-muted transition-colors ${
                         item === page
                           ? "bg-primary text-primary-foreground"
                           : ""
@@ -298,7 +303,7 @@ export const AtRiskTable = React.memo(function AtRiskTable({
                   )
                 )}
               <button
-                className="rounded border px-3 py-1 hover:bg-muted disabled:opacity-50"
+                className="rounded border px-3 py-1 hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={page === totalPages}
                 onClick={() => setPage((p) => p + 1)}
               >

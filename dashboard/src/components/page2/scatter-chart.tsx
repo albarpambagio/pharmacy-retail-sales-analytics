@@ -54,13 +54,12 @@ export const SKUQuadrantChart = React.memo(function SKUQuadrantChart({
   }))
 
   const medianRevenue =
-    [...validData].sort((a, b) => a.revenue - b.revenue)[
-      Math.floor(validData.length / 2)
-    ]?.revenue || 0
+    [...chartData].sort((a, b) => a.x - b.x)[Math.floor(chartData.length / 2)]
+      ?.x || 0
   const medianMargin =
-    [...validData].sort(
-      (a, b) => (a.avg_margin_pct || 0) - (b.avg_margin_pct || 0)
-    )[Math.floor(validData.length / 2)]?.avg_margin_pct || 0
+    [...chartData].sort((a, b) => (a.y || 0) - (b.y || 0))[
+      Math.floor(chartData.length / 2)
+    ]?.y || 0
 
   return (
     <Card>

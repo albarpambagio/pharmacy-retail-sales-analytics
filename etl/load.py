@@ -22,6 +22,13 @@ def create_schema_tables(conn):
     cur.close()
 
 
+def truncate_fact_tables(conn):
+    cur = conn.cursor()
+    cur.execute("TRUNCATE TABLE fact_sales, dim_transaction, dim_product, dim_date RESTART IDENTITY;")
+    conn.commit()
+    cur.close()
+
+
 def populate_dim_date(conn):
     months = [
         (201501, "2015-01", 1, "January", 2015),
@@ -143,7 +150,7 @@ def main():
 
         init_lineage(conn, batch_id, len(df))
 
-        create_schema_tables(conn)
+        truncate_fact_tables(conn)
         populate_dim_date(conn)
         populate_dim_transaction(conn, df)
         populate_dim_product(conn, df)
@@ -179,7 +186,11 @@ def main():
         LOG_PATH.write_text("\n".join(log_lines), encoding="utf-8")
 
     except Exception as e:
-        update_lineage(conn, batch_id, 0, 0, 0, {"error": str(e)}, 'FAILED')
+        if 'conn' in locals():
+            try:
+                update_lineage(conn, batch_id, 0, 0, 0, {"error": str(e)}, 'FAILED')
+            except Exception:
+                pass
         log_lines = [
             f"load.py — ERROR: {pd.Timestamp.now()}",
             f"  Batch ID:       {batch_id}",

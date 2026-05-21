@@ -7,6 +7,7 @@ Implements data traceability with batch tracking.
 
 import re
 import psycopg2
+import psycopg2.extras
 import pandas as pd
 import numpy as np
 import json
@@ -26,8 +27,10 @@ def _valid_month(ym):
     if pd.isna(ym):
         return False
     try:
-        m = int(str(ym).split("-")[1])
-        return 1 <= m <= 12
+        parts = str(ym).split("-")
+        year = int(parts[0])
+        m = int(parts[1])
+        return year == 2015 and 1 <= m <= 12
     except (ValueError, IndexError):
         return False
 
@@ -212,10 +215,9 @@ def main():
              revenue, gross_margin, margin_pct, tax_inclusive,
              flag_hj_lt_hna, flag_qty_le_zero, flag_unrecognized_prefix,
              etl_batch_id)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            VALUES %s
         """
-        for row in rows_to_insert:
-            cur.execute(insert_sql, row)
+        psycopg2.extras.execute_values(cur, insert_sql, rows_to_insert, page_size=10000)
         conn.commit()
 
         cur.close()

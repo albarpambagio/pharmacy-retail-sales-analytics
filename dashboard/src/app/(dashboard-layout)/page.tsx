@@ -1,6 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+import dynamic from "next/dynamic"
 
 import type { MonthlyData } from "@/lib/data"
 
@@ -9,16 +10,41 @@ import { formatCurrency, formatNumber } from "@/lib/data"
 import { useData } from "@/contexts/data-context"
 import { InterpretationGuide } from "@/components/page1/interpretation-guide"
 import { KPICard } from "@/components/page1/kpi-card"
-import { MonthlyRevenueChart } from "@/components/page1/monthly-revenue-chart"
 import { OverviewFilters } from "@/components/page1/overview-filters"
-import { RevenueMixChart } from "@/components/page1/revenue-mix-chart"
 import { SummaryTable } from "@/components/page1/summary-table"
 
+const MonthlyRevenueChart = dynamic(
+  () =>
+    import("@/components/page1/monthly-revenue-chart").then(
+      (m) => m.MonthlyRevenueChart
+    ),
+  {
+    loading: () => (
+      <div className="h-[280px] animate-pulse rounded-lg bg-muted" />
+    ),
+  }
+)
+const RevenueMixChart = dynamic(
+  () =>
+    import("@/components/page1/revenue-mix-chart").then(
+      (m) => m.RevenueMixChart
+    ),
+  {
+    loading: () => (
+      <div className="h-[240px] animate-pulse rounded-lg bg-muted" />
+    ),
+  }
+)
+
 export default function OverviewPage() {
-  const { overview: data, loading } = useData()
+  const { overview: data, loading, fetchOverview } = useData()
   const [month, setMonth] = useState("all")
   const [transactionType, setTransactionType] = useState("all")
   const [productType, setProductType] = useState("all")
+
+  useEffect(() => {
+    fetchOverview()
+  }, [fetchOverview])
 
   const filtered = useMemo(() => {
     if (!data)
@@ -35,47 +61,44 @@ export default function OverviewPage() {
       monthly = monthly.filter((m) => m.year_month === month)
     }
 
-    if (transactionType === "outpatient") {
-      monthly = monthly.map((m) => ({
-        ...m,
-        revenue: m.revenue_outpatient ?? 0,
-        revenue_inpatient: 0,
-      }))
-    } else if (transactionType === "inpatient") {
-      monthly = monthly.map((m) => ({
-        ...m,
-        revenue: m.revenue_inpatient ?? 0,
-        revenue_outpatient: 0,
-      }))
-    }
+    const displayMonthly = monthly.map((m) => {
+      let revenue = m.revenue
+      if (transactionType === "outpatient") {
+        revenue = m.revenue_outpatient ?? 0
+      } else if (transactionType === "inpatient") {
+        revenue = m.revenue_inpatient ?? 0
+      }
+      if (productType === "generic") {
+        revenue = m.revenue_generic ?? 0
+      } else if (productType === "branded") {
+        revenue = m.revenue_branded ?? 0
+      }
+      return { ...m, revenue }
+    })
 
-    if (productType === "generic") {
-      monthly = monthly.map((m) => ({
-        ...m,
-        revenue: m.revenue_generic ?? 0,
-      }))
-    } else if (productType === "branded") {
-      monthly = monthly.map((m) => ({
-        ...m,
-        revenue: m.revenue_branded ?? 0,
-      }))
-    }
-
-    const totalRevenue = monthly.reduce((s, m) => s + m.revenue, 0)
-    const totalTransactions = monthly.reduce((s, m) => s + m.transactions, 0)
-    const totalWeighted = monthly.reduce(
+    const totalRevenue = displayMonthly.reduce((s, m) => s + m.revenue, 0)
+    const totalTransactions = displayMonthly.reduce(
+      (s, m) => s + m.transactions,
+      0
+    )
+    const totalWeighted = displayMonthly.reduce(
       (s, m) => s + m.revenue * (m.avg_margin_pct / 100),
       0
     )
     const avgMargin =
       totalRevenue > 0 ? (totalWeighted / totalRevenue) * 100 : 0
 
-    return { monthly, totalRevenue, totalTransactions, avgMargin }
+    return {
+      monthly: displayMonthly,
+      totalRevenue,
+      totalTransactions,
+      avgMargin,
+    }
   }, [data, month, transactionType, productType])
 
   const prevMonth = useMemo(() => {
     if (!data || month !== "all") return null
-    const sorted = [...data.monthly].sort((a, b) =>
+    const sorted = [...filtered.monthly].sort((a, b) =>
       a.year_month.localeCompare(b.year_month)
     )
     if (sorted.length < 2) return null
@@ -83,18 +106,18 @@ export default function OverviewPage() {
     const prev = sorted[sorted.length - 2]
     return {
       revenue:
-        last.revenue > 0
+        prev.revenue > 0
           ? ((last.revenue - prev.revenue) / prev.revenue) * 100
           : 0,
       transactions:
-        last.transactions > 0
+        prev.transactions > 0
           ? ((last.transactions - prev.transactions) / prev.transactions) * 100
           : 0,
       margin: last.avg_margin_pct - prev.avg_margin_pct,
       lastMonth: last.year_month,
       prevMonth: prev.year_month,
     }
-  }, [data, month])
+  }, [filtered.monthly, data, month])
 
   if (loading) {
     return (
