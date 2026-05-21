@@ -39,7 +39,7 @@ const MarginScatterChart = dynamic(
 )
 
 export default function MarginRiskPage() {
-  const { marginRisk: data, loading, fetchMarginRisk } = useData()
+  const { marginRisk: data, marginRiskLoading, fetchMarginRisk } = useData()
   const [threshold, setThreshold] = useState(10)
   const [productType, setProductType] = useState("all")
 
@@ -81,7 +81,7 @@ export default function MarginRiskPage() {
     }
   }, [atRiskSKUs, filteredSkus.length])
 
-  if (loading) {
+  if (marginRiskLoading) {
     return (
       <div className="container p-4 space-y-6">
         <div>

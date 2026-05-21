@@ -9,6 +9,7 @@ logs/*.log.md
 dashboard/node_modules/
 dashboard/.next/
 dashboard/out/
+dashboard/.env
 
 # OS
 Thumbs.db

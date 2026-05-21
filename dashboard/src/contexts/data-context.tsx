@@ -26,7 +26,9 @@ interface DataFetchingState {
 }
 
 interface DataContextValue extends DataState {
-  loading: boolean
+  overviewLoading: boolean
+  productsLoading: boolean
+  marginRiskLoading: boolean
   error: string | null
   fetchOverview: () => Promise<void>
   fetchProducts: () => Promise<void>
@@ -37,7 +39,9 @@ const DataContext = createContext<DataContextValue>({
   overview: null,
   products: null,
   marginRisk: null,
-  loading: true,
+  overviewLoading: false,
+  productsLoading: false,
+  marginRiskLoading: false,
   error: null,
   fetchOverview: async () => {},
   fetchProducts: async () => {},
@@ -100,24 +104,18 @@ export function DataProvider({ children }: { children: ReactNode }) {
     }
   }, [state.marginRisk, fetching.marginRiskLoading])
 
-  const loading =
-    !state.overview &&
-    !state.products &&
-    !state.marginRisk &&
-    !fetching.overviewLoading &&
-    !fetching.productsLoading &&
-    !fetching.marginRiskLoading
-
   const value = useMemo(
     () => ({
       ...state,
-      loading,
+      overviewLoading: fetching.overviewLoading,
+      productsLoading: fetching.productsLoading,
+      marginRiskLoading: fetching.marginRiskLoading,
       error,
       fetchOverview,
       fetchProducts,
       fetchMarginRisk,
     }),
-    [state, loading, error, fetchOverview, fetchProducts, fetchMarginRisk]
+    [state, fetching, error, fetchOverview, fetchProducts, fetchMarginRisk]
   )
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>

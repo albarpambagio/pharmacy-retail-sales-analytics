@@ -35,7 +35,7 @@ const Top20Table = dynamic(
 )
 
 export default function ProductsPage() {
-  const { products: data, loading, fetchProducts } = useData()
+  const { products: data, productsLoading, fetchProducts } = useData()
   const [month, setMonth] = useState("all")
   const [transactionType, setTransactionType] = useState("all")
   const [productType, setProductType] = useState("all")
@@ -90,7 +90,7 @@ export default function ProductsPage() {
     }
   }, [channelFiltered, month])
 
-  if (loading) {
+  if (productsLoading) {
     return (
       <div className="container p-4 space-y-6">
         <div>

@@ -4,12 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-html:lang(ar) {
-  font-family:
-    var(--font-cairo), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-html:lang(en) {
+html {
   font-family:
     var(--font-lato), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -18,9 +13,6 @@ html:lang(en) {
 @theme inline {
   --font-lato:
     "Lato", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-cairo:
-    "Cairo", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-border: hsl(var(--border));

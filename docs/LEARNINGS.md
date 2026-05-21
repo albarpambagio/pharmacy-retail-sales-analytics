@@ -921,6 +921,243 @@ Guard with `if 'conn' in locals()` to check if the variable was assigned before 
 
 ---
 
+## 25. `connectNulls=true` Creates False Continuity in Line Charts
+
+### The Problem
+
+```typescript
+// monthly-trend-chart.tsx — MISLEADING
+<Line connectNulls={true} dataKey="revenue" />
+```
+
+With only 5 months of data across 12 calendar months, `connectNulls` draws straight lines across 3-4 month gaps (Apr→Aug, skipping May-Jun-Jul). Users see a continuous trend that doesn't exist.
+
+### Solution
+
+Remove `connectNulls` (defaults to `false`). Gaps display as breaks in the line, which is the honest representation:
+
+```typescript
+<Line dataKey="revenue" />  // No connectNulls — gaps are visible
+```
+
+**Rule:** Never use `connectNulls` when data gaps represent missing data rather than zero values. A break in the line is more honest than a misleading straight connection.
+
+---
+
+## 26. Charts Must Respect Active Filter Scope
+
+### The Problem
+
+The SKU scatter chart and margin histogram always render all 12 months of SKU data regardless of the active month filter on Page 2. Users filtering to "January" still see the full-year scatter plot — the filter is silently ignored.
+
+### Solution
+
+Pipe the month filter into the data pipeline:
+
+```typescript
+// Option A: Filter at the aggregate level (preferred)
+const filteredSkus = useMemo(() => {
+  if (month === "all") return data.sku_scatter
+  return data.sku_scatter.filter(s => s.year_month === month)
+}, [data, month])
+
+// Option B: Filter at the query level (ETL export)
+// GROUP BY kd_obat, product_type, year_month
+// WHERE d.year_month = :selected_month
+```
+
+**Rule:** Every filter on a page must affect every chart on that page. If a chart can't be filtered (e.g., histogram bins are pre-computed), document the limitation visibly.
+
+---
+
+## 27. Median Lines Must Match Displayed Data
+
+### The Problem
+
+```typescript
+// scatter-chart.tsx — MISALIGNED
+const medianX = data.reduce((sum, s) => sum + s.revenue, 0) / data.length  // Full 2,233 SKUs
+// But chart only displays 500 sampled points
+<ReferenceLine x={medianX} />  // Quadrant doesn't match visible points
+```
+
+The quadrant chart samples to 500 points but computes median lines from the full 2,233 SKU dataset. The visual quadrants don't match the visible points.
+
+### Solution
+
+Compute medians from the sampled (displayed) data:
+
+```typescript
+const sampledData = sampleData(data.sku_scatter, MAX_POINTS)
+const medianX = sampledData.reduce((sum, s) => sum + s.revenue, 0) / sampledData.length
+const medianY = sampledData.reduce((sum, s) => sum + (s.avg_margin_pct ?? 0), 0) / sampledData.length
+```
+
+**Rule:** Reference lines (medians, means, thresholds) must be computed from the same dataset that's being displayed. Mismatched reference lines create visual confusion.
+
+---
+
+## 28. KPI Delta Must Compare Same Cohort Over Time
+
+### The Problem
+
+```typescript
+// page.tsx — MISLEADING
+const prevMonth = useMemo(() => {
+  const last = sorted[sorted.length - 1]
+  const prev = sorted[sorted.length - 2]
+  return {
+    revenue: ((last.revenue - prev.revenue) / prev.revenue) * 100,
+    // ❌ When a product-type filter is active, this compares
+    //    different products across months, not the same cohort
+  }
+}, [filtered.monthly])
+```
+
+When a product-type or channel filter is active, the delta compares different products/channels across months rather than the same cohort over time.
+
+### Solution
+
+Compute period-over-period deltas after applying filters, ensuring the same cohort is compared:
+
+```typescript
+const prevMonth = useMemo(() => {
+  if (!data || month !== "all") return null
+  // Filter to same cohort as current display
+  const cohortData = filtered.monthly.filter(m => m.year_month !== "all")
+  if (cohortData.length < 2) return null
+  const last = cohortData[cohortData.length - 1]
+  const prev = cohortData[cohortData.length - 2]
+  return {
+    revenue: prev.revenue > 0
+      ? ((last.revenue - prev.revenue) / prev.revenue) * 100
+      : 0,
+  }
+}, [filtered.monthly, data, month])
+```
+
+**Rule:** Period-over-period comparisons must use the same filter cohort. A delta that mixes different products or channels is meaningless.
+
+---
+
+## 29. Silent Error Swallowing in DataProvider
+
+### The Problem
+
+```typescript
+// data-context.tsx — NO ERROR FEEDBACK
+const fetchProducts = useCallback(async () => {
+  try {
+    const data = await getProductsData()
+    setState(prev => ({ ...prev, products: data }))
+  } catch (e) {
+    setError(prev => prev ?? (e as Error).message)  // Only sets error if none exists
+  }
+}, [...])
+```
+
+Errors in `getProductsData` and `getMarginRiskData` are caught but the `error` state is only set if `prev` is null (`prev ?? ...`). If overview already loaded successfully, product/margin errors are silently swallowed.
+
+### Solution
+
+Always surface errors, don't suppress them:
+
+```typescript
+catch (e: unknown) {
+  const msg = (e as Error).message
+  setError(prev => prev ? `${prev}; ${msg}` : msg)  // Append, don't suppress
+}
+```
+
+**Rule:** Error state should accumulate, not suppress. Multiple errors can coexist — join them with semicolons or use an error array.
+
+---
+
+## 30. Missing Year Validation in NO_RESEP Parser
+
+### The Problem
+
+```python
+# transform.py — ACCEPTS INVALID YEARS
+def _valid_month(ym):
+    parts = str(ym).split("-")
+    m = int(parts[1])
+    return 1 <= m <= 12  # ❌ Never checks the year!
+```
+
+A row like `RJ-01.9999-01-0001` passes as valid and appears in monthly charts under year 9999.
+
+### Solution
+
+Add year validation:
+
+```python
+def _valid_month(ym):
+    try:
+        parts = str(ym).split("-")
+        year = int(parts[0])
+        m = int(parts[1])
+        return year == 2015 and 1 <= m <= 12  # Year guard added
+    except (ValueError, IndexError):
+        return False
+```
+
+**Rule:** Always validate all components of a parsed string, not just the parts you care about. Unvalidated components can introduce phantom data.
+
+---
+
+## 31. Division by Zero in KPI Delta Calculation
+
+### The Problem
+
+```typescript
+// page.tsx — POSSIBLE INFINITY
+const prevMonth = useMemo(() => {
+  return {
+    revenue: ((last.revenue - prev.revenue) / prev.revenue) * 100,
+    // ❌ If prev.revenue === 0, this displays "Infinity%"
+  }
+}, [...])
+```
+
+### Solution
+
+Add guard:
+
+```typescript
+revenue: prev.revenue > 0
+  ? ((last.revenue - prev.revenue) / prev.revenue) * 100
+  : 0,
+```
+
+**Rule:** Always guard division operations where the denominator can be zero. Display "N/A" or 0 instead of Infinity.
+
+---
+
+## Updated Decision Log
+
+| Decision | Rationale |
+|----------|-----------|
+| Per-page loading states over single boolean | Prevents blank pages when navigating directly to a page whose data hasn't loaded yet. Each page shows its own skeletons. |
+| Lazy data fetching over eager | 556x bandwidth reduction on Overview page (1.7 KB vs 946 KB). Cross-page caching preserved via shared context. |
+| Dynamic imports for charts | 45% smaller JS bundles on Overview and Margin Risk pages. Dev compile penalty (~1.6s) is acceptable tradeoff. |
+| sessionStorage for cache persistence | Survives page reload without re-fetching. Scoped to tab/session — appropriate for analytics data. |
+| psycopg2.extras.execute_values over row-by-row | 100-200x faster ETL transform (30-60 min → < 30 sec). |
+| TRUNCATE over DROP TABLE for data loads | Idempotent pipeline — re-running load.py doesn't destroy schema. Faster than DROP + CREATE. |
+| Computed derived revenue in single pass | Prevents filter composition bugs where second filter overwrites first filter's result. |
+| Single package manager lockfile | Mixing npm and pnpm lockfiles causes dependency resolution inconsistencies. |
+| `.env` in `.gitignore` | Standard security practice — `.env` files often contain secrets. |
+| Remove unused font imports | Each unused font adds ~50-200 KB to initial page load. |
+| README as executive brief | Scenario-first, findings with citations, recommendations with confidence — mirrors proven portfolio project structure. |
+| No `connectNulls` on line charts | Gaps in data are meaningful — a break in the line is more honest than a misleading connection. |
+| Reference lines from displayed data | Median/mean lines must be computed from the same dataset being displayed, not the full source. |
+| KPI delta uses same cohort | Period-over-period comparisons must apply the same filters to both periods. |
+| Error state accumulates | Multiple errors can coexist — append with semicolons rather than suppressing subsequent errors. |
+| Validate all parsed string components | Don't just validate the parts you use — unvalidated components can introduce phantom data. |
+| Guard all division operations | Denominators can be zero — always check before dividing. |
+
+---
+
 ## Updated Decision Log
 
 | Decision | Rationale |

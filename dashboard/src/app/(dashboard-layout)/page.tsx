@@ -37,7 +37,7 @@ const RevenueMixChart = dynamic(
 )
 
 export default function OverviewPage() {
-  const { overview: data, loading, fetchOverview } = useData()
+  const { overview: data, overviewLoading, fetchOverview } = useData()
   const [month, setMonth] = useState("all")
   const [transactionType, setTransactionType] = useState("all")
   const [productType, setProductType] = useState("all")
@@ -119,7 +119,7 @@ export default function OverviewPage() {
     }
   }, [filtered.monthly, data, month])
 
-  if (loading) {
+  if (overviewLoading) {
     return (
       <div className="container p-4 space-y-6">
         <div className="h-8 w-64 animate-pulse rounded bg-muted" />
