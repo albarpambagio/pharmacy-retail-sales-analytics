@@ -1,6 +1,8 @@
 const dataCache: Record<string, unknown> = {}
 const CACHE_TTL = process.env.NODE_ENV === "development" ? 60_000 : 300_000
 const cacheTimestamps: Record<string, number> = {}
+const CACHE_BUST =
+  process.env.NODE_ENV === "development" ? `?t=${Date.now()}` : ""
 
 function isCacheExpired(key: string): boolean {
   const ts = cacheTimestamps[key]
@@ -64,7 +66,7 @@ export async function getOverviewData(): Promise<OverviewData> {
     cacheTimestamps.overview = Date.now()
     return cached as OverviewData
   }
-  const res = await fetch("/data/overview.json")
+  const res = await fetch(`/data/overview.json${CACHE_BUST}`)
   if (!res.ok) throw new Error("Failed to fetch overview data")
   const data = await res.json()
   dataCache.overview = data
@@ -163,7 +165,7 @@ export async function getProductsData(): Promise<ProductsData> {
     cacheTimestamps.products = Date.now()
     return cached as ProductsData
   }
-  const res = await fetch("/data/products.json")
+  const res = await fetch(`/data/products.json${CACHE_BUST}`)
   if (!res.ok) throw new Error("Failed to fetch products data")
   const data = await res.json()
   dataCache.products = data
@@ -205,7 +207,7 @@ export async function getMarginRiskData(): Promise<MarginRiskData> {
     cacheTimestamps.marginRisk = Date.now()
     return cached as MarginRiskData
   }
-  const res = await fetch("/data/margin_risk.json")
+  const res = await fetch(`/data/margin_risk.json${CACHE_BUST}`)
   if (!res.ok) throw new Error("Failed to fetch margin risk data")
   const data = await res.json()
   dataCache.marginRisk = data

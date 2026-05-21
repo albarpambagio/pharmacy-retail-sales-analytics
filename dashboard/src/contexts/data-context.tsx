@@ -72,7 +72,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
       const data = await getOverviewData()
       setState((prev) => ({ ...prev, overview: data }))
     } catch (e: unknown) {
-      setError((prev) => prev ?? (e as Error).message)
+      const msg = (e as Error).message
+      setError((prev) => (prev ? `${prev}; ${msg}` : msg))
     } finally {
       setFetching((prev) => ({ ...prev, overviewLoading: false }))
     }
@@ -85,7 +86,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
       const data = await getProductsData()
       setState((prev) => ({ ...prev, products: data }))
     } catch (e: unknown) {
-      setError((prev) => prev ?? (e as Error).message)
+      const msg = (e as Error).message
+      setError((prev) => (prev ? `${prev}; ${msg}` : msg))
     } finally {
       setFetching((prev) => ({ ...prev, productsLoading: false }))
     }
@@ -98,7 +100,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
       const data = await getMarginRiskData()
       setState((prev) => ({ ...prev, marginRisk: data }))
     } catch (e: unknown) {
-      setError((prev) => prev ?? (e as Error).message)
+      const msg = (e as Error).message
+      setError((prev) => (prev ? `${prev}; ${msg}` : msg))
     } finally {
       setFetching((prev) => ({ ...prev, marginRiskLoading: false }))
     }

@@ -129,6 +129,11 @@ export const SKUQuadrantChart = React.memo(function SKUQuadrantChart({
               </span>
             </div>
           )}
+          <div className="flex items-center gap-1 text-amber-600">
+            <span>
+              Full-year data — month filter applies to trend chart only
+            </span>
+          </div>
         </div>
       </CardContent>
     </Card>

@@ -98,6 +98,9 @@ export const MarginHistogram = React.memo(function MarginHistogram({
             <div className="w-3 h-3 rounded-sm bg-slate-400" />
             <span>Above threshold</span>
           </div>
+          <div className="flex items-center gap-1 text-amber-600">
+            <span>Full-year data — threshold slider filters in real-time</span>
+          </div>
         </div>
       </CardContent>
     </Card>
