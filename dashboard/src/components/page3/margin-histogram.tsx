@@ -11,34 +11,53 @@ import {
   YAxis,
 } from "recharts"
 
-import type { HistogramBin } from "@/lib/data"
+import type { MarginSKU } from "@/lib/data"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface MarginHistogramProps {
-  bins: HistogramBin[]
+  skus: MarginSKU[]
   threshold: number
 }
 
 export const MarginHistogram = React.memo(function MarginHistogram({
-  bins,
+  skus,
   threshold,
 }: MarginHistogramProps) {
-  const chartData = useMemo(
-    () =>
-      bins.map((bin) => {
-        const isBelow = bin.bin_end < threshold
-        const crossesThreshold =
-          bin.bin_start < threshold && bin.bin_end >= threshold
+  const chartData = useMemo(() => {
+    const validMargins = skus
+      .map((s) => s.avg_margin_pct)
+      .filter((m): m is number => m !== null)
 
-        return {
-          label: `${bin.bin_start.toFixed(1)}–${bin.bin_end.toFixed(1)}%`,
-          count: bin.count,
-          fill: isBelow ? "#ef4444" : crossesThreshold ? "#f59e0b" : "#94a3b8",
-        }
-      }),
-    [bins, threshold]
-  )
+    if (validMargins.length === 0) return []
+
+    const minM = Math.min(...validMargins)
+    const maxM = Math.max(...validMargins)
+    const binCount = 30
+    const binWidth = (maxM - minM) / binCount || 1
+
+    const bins: { bin_start: number; bin_end: number; count: number }[] = []
+    for (let i = 0; i < binCount; i++) {
+      const lo = minM + i * binWidth
+      const hi = lo + binWidth
+      const count = validMargins.filter(
+        (m) => m >= lo && (i === binCount - 1 ? m <= hi : m < hi)
+      ).length
+      bins.push({ bin_start: lo, bin_end: hi, count })
+    }
+
+    return bins.map((bin) => {
+      const isBelow = bin.bin_end < threshold
+      const crossesThreshold =
+        bin.bin_start < threshold && bin.bin_end >= threshold
+
+      return {
+        label: `${bin.bin_start.toFixed(1)}–${bin.bin_end.toFixed(1)}%`,
+        count: bin.count,
+        fill: isBelow ? "#ef4444" : crossesThreshold ? "#f59e0b" : "#94a3b8",
+      }
+    })
+  }, [skus, threshold])
 
   return (
     <Card>
@@ -97,9 +116,6 @@ export const MarginHistogram = React.memo(function MarginHistogram({
           <div className="flex items-center gap-1">
             <div className="w-3 h-3 rounded-sm bg-slate-400" />
             <span>Above threshold</span>
-          </div>
-          <div className="flex items-center gap-1 text-amber-600">
-            <span>Full-year data — threshold slider filters in real-time</span>
           </div>
         </div>
       </CardContent>

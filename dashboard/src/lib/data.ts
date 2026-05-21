@@ -42,11 +42,21 @@ export interface MonthlyData {
   year_month: string
   revenue: number
   transactions: number
-  avg_margin_pct: number
+  avg_margin_pct: number | null
   revenue_outpatient: number | null
   revenue_inpatient: number | null
   revenue_generic: number | null
   revenue_branded: number | null
+  revenue_outpatient_generic: number | null
+  revenue_outpatient_branded: number | null
+  revenue_inpatient_generic: number | null
+  revenue_inpatient_branded: number | null
+  transactions_outpatient: number | null
+  transactions_inpatient: number | null
+  avg_margin_pct_outpatient: number | null
+  avg_margin_pct_inpatient: number | null
+  avg_margin_pct_generic: number | null
+  avg_margin_pct_branded: number | null
 }
 
 export interface OverviewData {

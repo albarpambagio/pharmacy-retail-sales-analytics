@@ -33,7 +33,17 @@ def export_overview(conn) -> dict:
             SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient')::float AS revenue_outpatient,
             SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient')::float AS revenue_inpatient,
             SUM(f.revenue) FILTER (WHERE p.product_type = 'Generic')::float AS revenue_generic,
-            SUM(f.revenue) FILTER (WHERE p.product_type = 'Branded')::float AS revenue_branded
+            SUM(f.revenue) FILTER (WHERE p.product_type = 'Branded')::float AS revenue_branded,
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient' AND p.product_type = 'Generic')::float AS revenue_outpatient_generic,
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Outpatient' AND p.product_type = 'Branded')::float AS revenue_outpatient_branded,
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient' AND p.product_type = 'Generic')::float AS revenue_inpatient_generic,
+            SUM(f.revenue) FILTER (WHERE t.transaction_type = 'Inpatient' AND p.product_type = 'Branded')::float AS revenue_inpatient_branded,
+            COUNT(*) FILTER (WHERE t.transaction_type = 'Outpatient')::int AS transactions_outpatient,
+            COUNT(*) FILTER (WHERE t.transaction_type = 'Inpatient')::int AS transactions_inpatient,
+            AVG(f.margin_pct) FILTER (WHERE t.transaction_type = 'Outpatient')::float AS avg_margin_pct_outpatient,
+            AVG(f.margin_pct) FILTER (WHERE t.transaction_type = 'Inpatient')::float AS avg_margin_pct_inpatient,
+            AVG(f.margin_pct) FILTER (WHERE p.product_type = 'Generic')::float AS avg_margin_pct_generic,
+            AVG(f.margin_pct) FILTER (WHERE p.product_type = 'Branded')::float AS avg_margin_pct_branded
         FROM fact_sales f
         JOIN dim_date d ON f.date_key = d.date_key
         JOIN dim_transaction t ON f.no_resep = t.no_resep

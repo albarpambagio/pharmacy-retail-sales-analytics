@@ -134,7 +134,7 @@ export default function MarginRiskPage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <MarginScatterChart skus={sortedSkus} threshold={debouncedThreshold} />
-        <MarginHistogram bins={data.histogram} threshold={debouncedThreshold} />
+        <MarginHistogram skus={sortedSkus} threshold={debouncedThreshold} />
       </div>
 
       <AtRiskTable skus={atRiskSKUs} threshold={debouncedThreshold} />

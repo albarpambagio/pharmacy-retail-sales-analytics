@@ -205,7 +205,17 @@ export default function ProductsPage() {
         </Card>
       </div>
 
-      <SKUQuadrantChart data={data.sku_scatter} />
+      <SKUQuadrantChart
+        data={
+          productType === "all"
+            ? data.sku_scatter
+            : data.sku_scatter.filter(
+                (s) =>
+                  s.product_type ===
+                  (productType === "generic" ? "Generic" : "Branded")
+              )
+        }
+      />
 
       <Top20Table data={channelFiltered.top_20} />
 

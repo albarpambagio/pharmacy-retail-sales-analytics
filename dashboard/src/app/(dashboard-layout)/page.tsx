@@ -62,18 +62,52 @@ export default function OverviewPage() {
     }
 
     const displayMonthly = monthly.map((m) => {
-      let revenue = m.revenue
-      if (transactionType === "outpatient") {
+      const txn = transactionType
+      const prod = productType
+
+      let revenue: number
+      let transactions: number
+      let avg_margin_pct: number | null
+
+      if (txn === "outpatient" && prod === "generic") {
+        revenue = m.revenue_outpatient_generic ?? 0
+        transactions = m.transactions_outpatient ?? 0
+        avg_margin_pct = m.avg_margin_pct_generic ?? null
+      } else if (txn === "outpatient" && prod === "branded") {
+        revenue = m.revenue_outpatient_branded ?? 0
+        transactions = m.transactions_outpatient ?? 0
+        avg_margin_pct = m.avg_margin_pct_branded ?? null
+      } else if (txn === "inpatient" && prod === "generic") {
+        revenue = m.revenue_inpatient_generic ?? 0
+        transactions = m.transactions_inpatient ?? 0
+        avg_margin_pct = m.avg_margin_pct_generic ?? null
+      } else if (txn === "inpatient" && prod === "branded") {
+        revenue = m.revenue_inpatient_branded ?? 0
+        transactions = m.transactions_inpatient ?? 0
+        avg_margin_pct = m.avg_margin_pct_branded ?? null
+      } else if (txn === "outpatient") {
         revenue = m.revenue_outpatient ?? 0
-      } else if (transactionType === "inpatient") {
+        transactions = m.transactions_outpatient ?? 0
+        avg_margin_pct = m.avg_margin_pct_outpatient ?? null
+      } else if (txn === "inpatient") {
         revenue = m.revenue_inpatient ?? 0
-      }
-      if (productType === "generic") {
+        transactions = m.transactions_inpatient ?? 0
+        avg_margin_pct = m.avg_margin_pct_inpatient ?? null
+      } else if (prod === "generic") {
         revenue = m.revenue_generic ?? 0
-      } else if (productType === "branded") {
+        transactions = m.transactions
+        avg_margin_pct = m.avg_margin_pct_generic ?? null
+      } else if (prod === "branded") {
         revenue = m.revenue_branded ?? 0
+        transactions = m.transactions
+        avg_margin_pct = m.avg_margin_pct_branded ?? null
+      } else {
+        revenue = m.revenue
+        transactions = m.transactions
+        avg_margin_pct = m.avg_margin_pct
       }
-      return { ...m, revenue }
+
+      return { ...m, revenue, transactions, avg_margin_pct }
     })
 
     const totalRevenue = displayMonthly.reduce((s, m) => s + m.revenue, 0)
@@ -82,7 +116,7 @@ export default function OverviewPage() {
       0
     )
     const totalWeighted = displayMonthly.reduce(
-      (s, m) => s + m.revenue * (m.avg_margin_pct / 100),
+      (s, m) => s + m.revenue * ((m.avg_margin_pct ?? 0) / 100),
       0
     )
     const avgMargin =
@@ -113,7 +147,10 @@ export default function OverviewPage() {
         prev.transactions > 0
           ? ((last.transactions - prev.transactions) / prev.transactions) * 100
           : 0,
-      margin: last.avg_margin_pct - prev.avg_margin_pct,
+      margin:
+        last.avg_margin_pct !== null && prev.avg_margin_pct !== null
+          ? last.avg_margin_pct - prev.avg_margin_pct
+          : 0,
       lastMonth: last.year_month,
       prevMonth: prev.year_month,
     }

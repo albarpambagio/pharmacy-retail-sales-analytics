@@ -58,7 +58,7 @@ export function SummaryTable({ data, overallAvgMargin }: SummaryTableProps) {
           cmp = a.transactions - b.transactions
           break
         case "margin":
-          cmp = a.avg_margin_pct - b.avg_margin_pct
+          cmp = (a.avg_margin_pct ?? 0) - (b.avg_margin_pct ?? 0)
           break
         case "mix": {
           const aPct =
@@ -182,7 +182,7 @@ export function SummaryTable({ data, overallAvgMargin }: SummaryTableProps) {
                       100
                     : 0
                 const isMaxRev = d.revenue === maxRevenue
-                const isLowMargin = d.avg_margin_pct < overallAvgMargin
+                const isLowMargin = (d.avg_margin_pct ?? 0) < overallAvgMargin
 
                 return (
                   <TableRow
@@ -201,7 +201,7 @@ export function SummaryTable({ data, overallAvgMargin }: SummaryTableProps) {
                     <TableCell
                       className={`text-right ${isLowMargin ? "text-red-500" : ""}`}
                     >
-                      {d.avg_margin_pct.toFixed(1)}%
+                      {(d.avg_margin_pct ?? 0).toFixed(1)}%
                     </TableCell>
                     <TableCell className="text-right">
                       {mixPct.toFixed(0)}%
