@@ -1371,3 +1371,157 @@ last.avg_margin_pct !== null && prev.avg_margin_pct !== null
   ? last.avg_margin_pct - prev.avg_margin_pct
   : 0
 ```
+
+---
+
+## 36. Cloudflare Pages Deployment & CI/CD
+
+### wrangler OAuth Login
+
+**Problem:** `npx wrangler login` opens a browser for OAuth. In a terminal-only environment (or when the shell times out), the local OAuth callback server stops listening before the browser redirect completes — auth fails silently.
+
+**Root Cause:** The default timeout (30s) is too short for manual browser auth flow.
+
+**Solution:** Run with a longer timeout or use an API token directly:
+
+```bash
+# Option A: Longer timeout
+cd dashboard && npx wrangler login    # Wait for browser, don't interrupt
+
+# Option B: API token (CI/CD)
+# Set CLOUDFLARE_API_TOKEN as environment variable
+```
+
+---
+
+### Production Branch Must Match Deploy Target
+
+**Problem:** The deploy command `wrangler pages deploy out --branch main` deployed successfully, but the Cloudflare Pages project's **production branch** was set to `master`. The alias `main.pharmacy-retail-sales-analytics.pages.dev` returned 200, but the canonical `pharmacy-retail-sales-analytics.pages.dev` returned 404.
+
+**Root Cause:** Cloudflare Pages assigns different URLs based on branch:
+- Production branch deployments → `project-name.pages.dev`
+- Non-production branch deployments → `{branch}.project-name.pages.dev`
+
+**Solution:** Align the deploy branch with the Pages project's production branch setting:
+
+```bash
+# Create project with explicit production branch
+npx wrangler pages project create pharmacy-retail-sales-analytics --production-branch master
+
+# Deploy to production
+npx wrangler pages deploy out --branch master
+```
+
+**Files affected:** `.github/workflows/deploy.yml`, `dashboard/wrangler.toml`
+
+---
+
+### GitHub Secret Scope: Repository vs Environment
+
+**Problem:** The CI/CD workflow kept failing with `Not logged in.` even though the `CLOUDFLARE_API_TOKEN` was configured.
+
+**Root Cause:** The token was stored as a **GitHub Environment secret** (scoped to a specific deployment environment), not a **Repository secret**. Environment secrets are only available to workflows that explicitly target that environment — the deploy workflow had no `environment:` field.
+
+**Solution:** Store the API token as a **Repository secret** (Settings → Secrets and variables → Actions → New repository secret). Repository secrets are available to all workflows across all branches and environments.
+
+```
+Wrong:    Settings → Environments → [env] → Environment secrets
+Correct:  Settings → Secrets and variables → Actions → Repository secrets
+```
+
+---
+
+### wrangler-action@v3 Requires `accountId` for Pages
+
+**Problem:** The initial CI/CD deploy step specified only `apiToken` and `workingDirectory`. Wrangler failed with `Not logged in.` even though the token was valid.
+
+**Root Cause:** `wrangler pages deploy` requires an account ID to find the project. Without it, wrangler tries to read from the local config or interactive prompt — neither of which works in a CI runner.
+
+**Solution:** Explicitly pass the Cloudflare account ID to the action:
+
+```yaml
+- name: Deploy to Cloudflare Pages
+  uses: cloudflare/wrangler-action@v3
+  with:
+    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    accountId: 5efdc2e85ba37ce38b948335387786bb  # Required for pages deploy
+    command: pages deploy out --project-name=pharmacy-retail-sales-analytics --branch master
+```
+
+**Files affected:** `.github/workflows/deploy.yml`
+
+---
+
+### Workflow Path Filters Block Empty Commits
+
+**Problem:** The workflow had `paths:` filters to only run on `dashboard/**` or `.github/workflows/**` changes. An empty commit (`git commit --allow-empty`) didn't match any path filter — the workflow never triggered.
+
+**Solution:** Either remove the paths filter entirely (deploys on every push), or use `workflow_dispatch` for manual triggers:
+
+```yaml
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+```
+
+**Rule:** Path filters on push events are useful for monorepos but prevent manual triggers and empty commits. Use them only when build times are prohibitive.
+
+---
+
+### `wrangler pages deploy` Has No `--dry-run` Flag
+
+**Problem:** When verifying the deploy command in CI, there was no way to validate the command without actually deploying. The `wrangler deploy` subcommand has `--dry-run`, but `wrangler pages deploy` does not.
+
+**Solution:** Use `wrangler pages deployment list --project-name=<name>` to verify the project exists before deploying. For command validation, test locally:
+
+```bash
+# Verify project exists
+npx wrangler pages deployment list --project-name=pharmacy-retail-sales-analytics
+
+# Test build locally
+npm run build
+
+# Deploy (only way to truly validate)
+npm run deploy
+```
+
+---
+
+### `wrangler.jsonc` vs `wrangler.toml`
+
+**Problem:** The Cloudflare Wrangler skill documentation recommends `wrangler.jsonc` (JSON format) over `wrangler.toml` (TOML format) for newer features. The project used the older TOML format.
+
+**Resolution:** For a static Pages export (no Workers, no bindings), `wrangler.toml` with a minimal config is sufficient:
+
+```toml
+name = "pharmacy-retail-sales-analytics"
+compatibility_date = "2026-05-26"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "out"
+```
+
+**JSON config equivalent:**
+```json
+{
+  "name": "pharmacy-retail-sales-analytics",
+  "compatibility_date": "2026-05-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "pages_build_output_dir": "out"
+}
+```
+
+**Files affected:** `dashboard/wrangler.toml`
+
+---
+
+### Updated Decision Log
+
+| Decision | Rationale |
+|----------|-----------|
+| GitHub Actions + wrangler over Cloudflare Git integration | GHA can trigger ETL before build; portfolio visibility via `.github/workflows/`; full control over deploy conditions |
+| Repository secrets over environment secrets | Environment secrets are scoped to specific environments — easy to misconfigure. Repository secrets are universally available. |
+| `--branch master` over default (auto) | Explicit branch prevents confusion when production branch name differs from default |
+| `wrangler.toml` over `wrangler.jsonc` | Minimal static-site config doesn't need newer JSON-only features TOML can't express |
+| `accountId` passed explicitly in CI | Prevents "Not logged in" error in CI runners where interactive auth is impossible |
+| No path filters on CI trigger | Path filters prevent manual `workflow_dispatch` runs and empty-commit triggers. Simpler to just filter by branch. |

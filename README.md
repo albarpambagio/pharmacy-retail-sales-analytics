@@ -2,7 +2,7 @@
 
 > **Scenario:** This analysis was prepared for a hospital pharmacy's Q4 2015 operational review. The deliverable is a performance dashboard and findings brief for the Pharmacy Director and Finance team, supporting 2016 procurement planning and pricing decisions.
 
-**Live Dashboard:** [Cloudflare Pages URL] *(deploy pending)*
+**Live Dashboard:** [pharmacy-retail-sales-analytics.pages.dev](https://pharmacy-retail-sales-analytics.pages.dev)
 
 ## Table of Contents
 
@@ -252,13 +252,15 @@ Every metric in this report is traceable to an exported JSON file generated from
 
 ### Dashboard (`/dashboard/` folder)
 
-Built with Next.js 15 (App Router), static export, TypeScript, Recharts, shadcn/ui.
+Built with Next.js 15 (App Router), static export, TypeScript, Recharts, shadcn/ui. Deployed to Cloudflare Pages via GitHub Actions (`.github/workflows/deploy.yml`).
 
 ```bash
 cd dashboard
-npm install
-npm run dev        # Development server at localhost:3000
-npm run build      # Static export to out/
+npm install            # Install dependencies
+npm run dev            # Development server at localhost:3000
+npm run build          # Static export to out/
+npm run deploy         # Build + deploy to Cloudflare Pages
+npm run deploy:preview # Build + deploy to preview branch
 ```
 
 ---
@@ -294,8 +296,13 @@ uv run python etl/transform.py
 uv run python etl/load.py
 uv run python etl/export_json.py
 
-# 4. Dashboard
+# 4. Dashboard (local dev)
 cd dashboard && npm install && npm run dev
+
+# 5. Deploy to Cloudflare Pages (requires wrangler auth)
+cd dashboard && npm run deploy
+
+# CI/CD: Push to master → GitHub Actions auto-deploys via .github/workflows/deploy.yml
 
 # 5. EDA notebooks (optional)
 uv run marimo edit analysis/eda_notebook.py

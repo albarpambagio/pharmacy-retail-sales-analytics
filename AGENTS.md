@@ -84,9 +84,11 @@ uv run python analysis/eda_notebook.py
 ### Dashboard Setup
 ```bash
 cd dashboard
-npm install
+npm install                # Install dependencies
 npm run dev                # Development server
 npm run build              # Static build for deployment
+npm run deploy             # Build + deploy to Cloudflare Pages (requires wrangler auth)
+npm run deploy:preview     # Build + deploy to preview branch
 ```
 
 ---
@@ -214,6 +216,9 @@ ls dashboard/public/data/
 ### Project Structure
 ```
 pharmacy-sales-analytics/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml             # CI/CD: auto-deploys dashboard on push to master
 ├── docs/
 │   └── data/
 │       └── temp/
@@ -236,6 +241,8 @@ pharmacy-sales-analytics/
 │   │       ├── overview.json
 │   │       ├── products.json
 │   │       └── margin_risk.json
+│   ├── .node-version              # Node version pinned to 22
+│   ├── wrangler.toml              # Cloudflare Pages config
 │   └── src/
 ├── docs/
 │   ├── issues_log.md
@@ -279,21 +286,20 @@ pharmacy-sales-analytics/
 
 #### First-Time Setup (one-time only)
 
-**Option A — Via Cloudflare Dashboard (recommended):**
+**Option A — Via Cloudflare Dashboard:**
 1. Go to [Cloudflare Dashboard → Workers & Pages → Create application → Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/pages)
 2. Click the **"Git"** tab (not "Direct Upload")
 3. Authorize GitHub and select this repository
 4. Set project name: `pharmacy-retail-sales-analytics`
-5. Set build command: `next build && wrangler pages deploy out --branch main`
-6. Set build output directory: `out`
-7. Under **Environment variables (advanced)**, add `NODE_VERSION` = `22`
-8. Click **Save and Deploy**
+5. Build settings are handled by GitHub Actions — leave defaults or set build command to `npm run build` and output dir to `out`
+6. Under **Environment variables (advanced)**, add `NODE_VERSION` = `22`
+7. Click **Save and Deploy**
 
 **Option B — CLI (via wrangler):**
 ```bash
 cd dashboard
 npx wrangler login                              # Browser auth
-npx wrangler pages project create pharmacy-retail-sales-analytics
+npx wrangler pages project create pharmacy-retail-sales-analytics --production-branch master
 ```
 
 #### CI/CD Secret
