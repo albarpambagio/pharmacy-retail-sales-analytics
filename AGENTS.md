@@ -270,9 +270,45 @@ pharmacy-sales-analytics/
 - Table: auto-filters to at-risk SKUs only
 
 ### Deployment
+
+#### Stack
 - Build: `next build` with `output: 'export'`
 - Host: Cloudflare Pages
+- CI/CD: GitHub Actions (`wrangler-action@v3`)
 - Free tier: unlimited bandwidth, global CDN, automatic HTTPS
+
+#### First-Time Setup (one-time only)
+
+**Option A — Via Cloudflare Dashboard (recommended):**
+1. Go to [Cloudflare Dashboard → Workers & Pages → Create application → Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create/pages)
+2. Click the **"Git"** tab (not "Direct Upload")
+3. Authorize GitHub and select this repository
+4. Set project name: `pharmacy-retail-sales-analytics`
+5. Set build command: `next build && wrangler pages deploy out --branch main`
+6. Set build output directory: `out`
+7. Under **Environment variables (advanced)**, add `NODE_VERSION` = `22`
+8. Click **Save and Deploy**
+
+**Option B — CLI (via wrangler):**
+```bash
+cd dashboard
+npx wrangler login                              # Browser auth
+npx wrangler pages project create pharmacy-retail-sales-analytics
+```
+
+#### CI/CD Secret
+After creating the project, generate an API token:
+1. Cloudflare Dashboard → My Profile → API Tokens → Create Token
+2. Use "Edit Cloudflare Workers" template, scope to Cloudflare Pages
+3. Add as GitHub repo secret: `Settings → Secrets and variables → Actions → New repository secret`
+4. Name: `CLOUDFLARE_API_TOKEN`, Value: paste the token
+
+#### Manual Deploy (local)
+```bash
+cd dashboard
+npm run deploy                                  # Build + deploy to production
+npm run deploy:preview                          # Build + deploy to preview branch
+```
 
 ---
 
