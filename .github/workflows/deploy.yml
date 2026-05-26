@@ -2,15 +2,9 @@ name: Deploy Dashboard to Cloudflare Pages
 
 on:
   push:
-    branches: [main, master]
-    paths:
-      - 'dashboard/**'
-      - '.github/workflows/deploy.yml'
+    branches: [master]
   pull_request:
-    branches: [main, master]
-    paths:
-      - 'dashboard/**'
-      - '.github/workflows/deploy.yml'
+    branches: [master]
   workflow_dispatch:
     inputs:
       run_etl:
