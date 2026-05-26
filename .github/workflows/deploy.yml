@@ -43,9 +43,11 @@ jobs:
         run: npm run build
 
       - name: Deploy to Cloudflare Pages
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 5efdc2e85ba37ce38b948335387786bb
           workingDirectory: ./dashboard
-          command: pages deploy out --branch ${{ github.head_ref || 'main' }}
+          command: pages deploy out --project-name=pharmacy-retail-sales-analytics --branch ${{ github.head_ref || 'main' }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
