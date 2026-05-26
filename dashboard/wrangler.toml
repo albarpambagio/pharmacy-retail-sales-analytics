@@ -2,3 +2,6 @@ name = "pharmacy-retail-sales-analytics"
 compatibility_date = "2026-05-26"
 
 pages_build_output_dir = "out"
+
+[assets]
+directory = "out"
